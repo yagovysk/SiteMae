@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.container-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../../../../assets/AllBackground.png');
+  background-size: contain;
+  position: relative;
+  height: 9.4rem;
+}
+.container-title::before {
+  content: '';
+  background-color: rgba(242, 149, 178, 0.81);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.container-title h1 {
+  color: #612d3d;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 41.6px; /* 130% */
+  z-index: 1;
+}

@@ -1,0 +1,68 @@
+.container-special {
+  display: flex;
+  background-image: url('../../../../assets/background-bolos.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 1px;
+  padding: 5.3rem 25rem;
+  gap: 9rem;
+}
+.cesta-icon {
+  display: flex;
+}
+.linha {
+  display: flex;
+  border-right: solid #bcbfc198;
+  position: absolute;
+  width: 0.5px;
+  height: 14.68rem;
+  margin-top: 2rem;
+  left: 42%;
+}
+.cesta-icon img {
+  width: 19.3rem;
+  height: 19rem;
+  border-radius: 10px;
+}
+.container-special article * {
+  margin: 0;
+  padding: 0;
+}
+.container-special article {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.container-special article h1 {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 76.8px;
+}
+.container-special article p {
+  color: #fff;
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  width: 38rem;
+}
+.container-special a {
+  display: flex;
+  text-decoration: none;
+  color: #242424;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 45px;
+  width: 9.2rem;
+
+  border-radius: 22px;
+  background: #fff;
+  justify-content: center;
+}

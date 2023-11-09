@@ -1,0 +1,67 @@
+.container-history {
+  display: flex;
+  padding: 3rem 14rem;
+  gap: 4.7rem;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
+}
+.container-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 34.6rem;
+}
+.container-texts h1 {
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 53.2px;
+  font-size: 2.2rem;
+}
+.container-texts .p-1 {
+  color: #b16133;
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 30px;
+}
+.container-texts .p-2 {
+  color: #555;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  font-style: normal;
+  line-height: 26px;
+  font-weight: 400;
+  text-align: left;
+  width: 33.8rem;
+}
+.container-img-1 {
+  padding: 1rem;
+}
+.container-img-1 img {
+  width: 646px;
+  height: 430.561px;
+  border-radius: 10px;
+}
+.container-texts a {
+  display: flex;
+  text-decoration: none;
+  border-radius: 22px;
+  background: #fe86a4;
+  padding: 0.1rem 0.6rem;
+  color: #fff;
+
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 45px;
+  width: 12rem;
+  font-size: 1rem;
+
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

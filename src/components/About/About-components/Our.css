@@ -1,0 +1,46 @@
+.Our-container {
+  display: flex;
+  background: #f4f4f4;
+}
+.Our-description {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 22rem;
+  justify-content: center;
+  gap: 1rem;
+}
+.Our-description h1 {
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 53.2px;
+  font-size: 2.2rem;
+}
+.Our-description h2 {
+  color: #b16133;
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 30px;
+  width: 33rem;
+}
+.Our-description p {
+  color: #555;
+
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  width: 33rem;
+}
+
+.Our-container .img-our {
+  width: 30rem;
+  height: 20rem;
+  border-radius: 5px;
+  margin-top: 4.5rem;
+  margin-left: -13rem;
+}

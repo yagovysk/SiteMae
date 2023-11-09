@@ -1,0 +1,74 @@
+.menu-container {
+  display: flex;
+  background: #fe86a4;
+  padding: 1rem 15rem;
+}
+.menu-contact {
+  display: flex;
+}
+.contact-container {
+  display: flex;
+  gap: 1rem;
+  z-index: 1;
+}
+.phone-icon {
+  display: flex;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  align-items: center;
+  font-size: 1rem;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+.email-icon {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  color: #fff;
+  font-weight: 400;
+  line-height: 26px;
+}
+.teste {
+  display: flex;
+  justify-content: flex-end;
+  width: 53rem;
+  align-items: center;
+}
+.social-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 1;
+}
+.facebook-icon {
+  color: #fff;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.youtube-icon {
+  color: #fff;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.instagram-icon {
+  color: #fff;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.search-button {
+  all: unset;
+  cursor: pointer;
+  color: #fff;
+}
+.lupa-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
