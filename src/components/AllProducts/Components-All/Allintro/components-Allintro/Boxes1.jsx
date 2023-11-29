@@ -12,6 +12,7 @@ import bolo2 from '../../../../../assets/img-bolo1.png';
 import { FiAlertCircle } from 'react-icons/fi';
 import { Cards } from './Cards';
 import { Mini } from './Mini';
+
 import './Boxes1.css';
 
 export function Boxes1() {

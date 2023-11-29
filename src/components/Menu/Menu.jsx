@@ -14,7 +14,7 @@ export function Menu() {
   const [searchPerformed, setSearchPerformed] = useState(false);
 
   const content = [
-    'Título 1',
+    'dsadasdasda',
     'Título 2',
     'Parágrafo 1',
     'Parágrafo 2',
@@ -25,7 +25,11 @@ export function Menu() {
     setSearchResults(results);
     setSearchPerformed(true); // Define o estado para indicar que a pesquisa foi realizada
   };
-
+  const handleCloseSearch = () => {
+    setShowInput(false);
+    setSearchPerformed(false);
+    setSearchTerm(''); // Limpa o termo de pesquisa ao fechar
+  };
   const toggleInput = () => {
     setShowInput(!showInput);
   };
@@ -65,6 +69,7 @@ export function Menu() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                   <button onClick={handleSearch}>Buscar</button>
+                  <button onClick={handleCloseSearch}>Fechar</button>
                 </div>
               )}
 
