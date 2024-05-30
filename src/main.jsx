@@ -1,35 +1,35 @@
-import React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home } from './components/Home/index.jsx';
-import { About } from './components/About/About.jsx';
-import { AllProducts } from './components/AllProducts/AllProducts.jsx';
-import { ServicesPage } from './components/Services-page/ServicesPage.jsx';
+import React from "react";
+import * as ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home } from "./components/Home/Home.jsx";
+import { About } from "./components/About/About.jsx";
+import { AllProducts } from "./components/AllProducts/AllProducts.jsx";
+import { ServicesPage } from "./components/Services-page/ServicesPage.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Home />,
   },
 
   {
-    path: '/products',
+    path: "/products",
     element: <AllProducts />,
   },
 
   {
-    path: '/about',
+    path: "/about",
     element: <About />,
   },
 
   {
-    path: '/services',
+    path: "/services",
     element: <ServicesPage />,
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
