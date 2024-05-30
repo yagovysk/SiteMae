@@ -1,7 +1,7 @@
-import produto1 from "../../../../assets/produto1.png";
-import produto2 from "../../../../assets/produto2.png";
-import produto3 from "../../../../assets/produto3.png";
-import produto4 from "../../../../assets/produto4.png";
+import produto1 from "../../../../assets/Produto1.png";
+import produto2 from "../../../../assets/Produto2.png";
+import produto3 from "../../../../assets/Produto3.png";
+import produto4 from "../../../../assets/Produto4.png";
 import "./Produtos.css";
 
 export function Products() {
