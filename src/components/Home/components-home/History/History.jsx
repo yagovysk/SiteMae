@@ -1,9 +1,9 @@
-import foto1 from '../../../../assets/foto-1.png';
-import './History.css';
+import foto1 from "../../../../assets/foto-1.png";
+import "./History.css";
 
 export function History() {
   return (
-    <div className="container-history">
+    <section className="container-history">
       <article className="container-texts">
         <h1>Conheça a Nossa História</h1>
         <p className="p-1">
@@ -20,9 +20,7 @@ export function History() {
         </p>
         <a href="">Venha saber mais</a>
       </article>
-      <div className="container-img-1">
-        <img src={foto1} alt="" />
-      </div>
-    </div>
+      <img src={foto1} alt="" />
+    </section>
   );
 }

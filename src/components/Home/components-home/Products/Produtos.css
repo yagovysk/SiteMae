@@ -1,179 +1,84 @@
-.container {
+.products-section {
   display: flex;
   flex-direction: column;
-  padding: 5rem 18.5rem;
+  padding: 5rem;
+  justify-content: center;
+  width: 100%;
   border-top: solid 0.5px #33333331;
   background: #f4f4f4;
+  gap: 1rem;
 }
-.container article * {
-  margin: 0;
-  padding: 0;
+.responsive-test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 15rem;
 }
-.container article h1 {
+.products-section article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.products-section article h1 {
   color: #333;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 2.3rem;
   font-style: normal;
   font-weight: 700;
   line-height: 53.2px;
 }
-.container article p {
+.products-section article p {
   color: #bf7a52;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-style: italic;
   font-weight: 700;
   line-height: 30px;
 }
-.container article div {
-  display: inline-block;
-  border: solid 0.5px #33333369;
-  width: 3rem;
-}
+
 .container-Products {
   display: flex;
-  gap: 5rem;
-  align-items: center;
-  padding: 1.5rem 0;
+  justify-content: center;
+  gap: 2rem;
 }
-.Produto-1 {
+.produto {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
   border-radius: 5px;
   background: #fff;
   box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
 }
-.Produto-1 h1 {
+.produto h1 {
   color: #343434;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 27px;
 }
-.Produto-1 img {
+.produto img {
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
+  width: 15rem;
 }
-.Produto-1 nav {
+.produto nav {
   display: flex;
   justify-content: center;
   padding: 2rem 0;
 }
-.Produto-1 nav a {
+.produto nav a {
   border-radius: 19px;
   background: #fe86a4;
   color: #fff;
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 36px;
   padding: 0.1rem 1rem;
   cursor: pointer;
-}
-.Produto-2 {
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
-}
-.Produto-2 h1 {
-  color: #343434;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 27px;
-}
-.Produto-2 img {
-  border-top-right-radius: 7px;
-  border-top-left-radius: 7px;
-}
-.Produto-2 nav {
-  display: flex;
-  justify-content: center;
-  padding: 2rem 0;
-}
-.Produto-2 nav a {
-  border-radius: 19px;
-  background: #fe86a4;
-  color: #fff;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 36px;
-  padding: 0.1rem 1rem;
-}
-.Produto-3 {
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
-}
-.Produto-3 h1 {
-  color: #343434;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 27px;
-}
-.Produto-3 img {
-  border-top-right-radius: 7px;
-  border-top-left-radius: 7px;
-}
-.Produto-3 nav {
-  display: flex;
-  justify-content: center;
-  padding: 2rem 0;
-}
-.Produto-3 nav a {
-  border-radius: 19px;
-  background: #fe86a4;
-  color: #fff;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 36px;
-  padding: 0.1rem 1rem;
-}
-.Produto-4 {
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0px 0px 15px 0px rgba(40, 40, 40, 0.08);
-}
-.Produto-4 h1 {
-  color: #343434;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 27px;
-}
-.Produto-4 img {
-  border-top-right-radius: 7px;
-  border-top-left-radius: 7px;
-}
-.Produto-4 nav {
-  display: flex;
-  justify-content: center;
-  padding: 2rem 0;
-}
-.Produto-4 nav a {
-  border-radius: 19px;
-  background: #fe86a4;
-  color: #fff;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 36px;
-  padding: 0.1rem 1rem;
 }

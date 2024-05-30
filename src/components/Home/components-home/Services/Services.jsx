@@ -1,12 +1,12 @@
-import linha1 from '../../../../assets/linha1.png';
-import { RiCake2Fill } from 'react-icons/ri';
-import { GiBasket } from 'react-icons/gi';
-import { LuCandy } from 'react-icons/lu';
-import './Services.css';
+import linha1 from "../../../../assets/linha1.png";
+import { RiCake2Fill } from "react-icons/ri";
+import { GiBasket } from "react-icons/gi";
+import { LuCandy } from "react-icons/lu";
+import "./Services.css";
 
 export function Services() {
   return (
-    <div className="Container-Services">
+    <section className="Container-Services">
       <div className="title">
         <h1>Conheça Nossos Serviços</h1>
         <img src={linha1} alt="" />
@@ -36,6 +36,6 @@ export function Services() {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

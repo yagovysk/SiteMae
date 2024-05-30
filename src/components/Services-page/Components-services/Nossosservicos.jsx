@@ -1,15 +1,15 @@
-import linha from '../../../assets/linha-siga.png';
-import doces from '../../../assets/img-doces.png';
-import cesta from '../../../assets/CestaEspecial.jpg';
-import bolo from '../../../assets/img-bolo1.png';
-import Boloespecial from '../../../assets/img-bolo4.png';
-import cookie from '../../../assets/SpecialCookie.png';
-import caneca from '../../../assets/Caneca.png';
-import './Nosso.css';
+import linha from "../../../assets/linha-siga.png";
+import doces from "../../../assets/img-doces.png";
+import cesta from "../../../assets/CestaEspecial.jpg";
+import bolo from "../../../assets/img-bolo1.png";
+import Boloespecial from "../../../assets/img-bolo4.png";
+import cookie from "../../../assets/SpecialCookie.png";
+import caneca from "../../../assets/Caneca.png";
+import "./Nosso.css";
 
 export function Nossosservicos() {
   return (
-    <div className="container-nossos">
+    <section className="container-nossos">
       <article className="article-nossos">
         <h1>
           Nossos Serviços <img src={linha} alt="" />
@@ -32,7 +32,7 @@ export function Nossosservicos() {
             <h2>Doces</h2>
           </div>
           <div className="Nossos-img">
-            {' '}
+            {" "}
             <img src={cesta} alt="" />
             <h2>Cestas</h2>
           </div>
@@ -52,6 +52,6 @@ export function Nossosservicos() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

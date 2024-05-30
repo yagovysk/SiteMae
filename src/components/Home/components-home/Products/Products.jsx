@@ -1,12 +1,12 @@
-import produto1 from '../../../../assets/produto1.png';
-import produto2 from '../../../../assets/produto2.png';
-import produto3 from '../../../../assets/produto3.png';
-import produto4 from '../../../../assets/produto4.png';
-import './Produtos.css';
+import produto1 from "../../../../assets/produto1.png";
+import produto2 from "../../../../assets/produto2.png";
+import produto3 from "../../../../assets/produto3.png";
+import produto4 from "../../../../assets/produto4.png";
+import "./Produtos.css";
 
 export function Products() {
   return (
-    <div id="products" className="container">
+    <section id="products" className="products-section">
       <article>
         <h1>
           Produtos mais vendidos <div></div>
@@ -14,28 +14,28 @@ export function Products() {
         <p>Sabor e Qualidade em cada detalhe</p>
       </article>
       <div className="container-Products">
-        <div className="Produto-1">
+        <div className="produto">
           <img src={produto1} alt="" />
           <h1>Bolos</h1>
           <nav>
             <a>Fazer Pedido</a>
           </nav>
         </div>
-        <div className="Produto-2">
+        <div className="produto">
           <img src={produto2} alt="" />
           <h1>Kit de doces</h1>
           <nav>
             <a>Fazer pedido</a>
           </nav>
         </div>
-        <div className="Produto-3">
+        <div className="produto">
           <img src={produto3} alt="" />
           <h1>Caixa de Presentes</h1>
           <nav>
             <a>Fazer pedido</a>
           </nav>
         </div>
-        <div className="Produto-4">
+        <div className="produto">
           <img src={produto4} alt="" />
           <h1>Coockies</h1>
           <nav>
@@ -43,6 +43,6 @@ export function Products() {
           </nav>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

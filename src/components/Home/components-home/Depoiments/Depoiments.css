@@ -3,8 +3,9 @@
   padding: 0;
 }
 .Depoiments-container {
-  background: url('../../../../assets/DepoimentsBack.svg');
+  background: url("../../../../assets/DepoimentsBack.svg");
   background-color: #fff4f5;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +16,7 @@
   color: #fe86a4;
 
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 700;
@@ -59,7 +60,7 @@
 .testimonial-slide h2 {
   color: var(--Black-100, #2f3137);
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -76,7 +77,7 @@
 .testimonial-text {
   color: var(--Black-50, #707070);
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -85,7 +86,7 @@
 }
 .testimonial-author {
   color: var(--Pink-100, #db6885);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;

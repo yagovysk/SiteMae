@@ -1,74 +1,83 @@
-.menu-container {
-  display: flex;
+.section-menu {
   background: #fe86a4;
-  padding: 1rem 15rem;
+  overflow: hidden;
+  width: 100%;
+  padding: 1rem 0rem;
 }
-.menu-contact {
-  display: flex;
-}
+
 .contact-container {
   display: flex;
-  gap: 1rem;
-  z-index: 1;
-}
-.phone-icon {
-  display: flex;
-  color: #fff;
-  font-family: 'Open Sans', sans-serif;
   align-items: center;
-  font-size: 1rem;
-  gap: 0.5rem;
-  text-decoration: none;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 26px;
+  justify-content: space-between;
+  padding: 0 17rem;
 }
-.email-icon {
-  display: flex;
-  text-decoration: none;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
-  font-style: normal;
-  color: #fff;
-  font-weight: 400;
-  line-height: 26px;
-}
-.teste {
-  display: flex;
-  justify-content: flex-end;
-  width: 53rem;
-  align-items: center;
-}
-.social-container {
+.contact-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+}
+
+.contact-buttons a {
+  text-decoration: none;
+  display: flex;
   gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9rem;
+  font-style: normal;
+  color: #fff;
+  font-weight: 400;
+  z-index: 1;
+}
+.social-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.social-container a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
 }
 .facebook-icon {
   color: #fff;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1rem;
+  height: 1rem;
 }
 .youtube-icon {
   color: #fff;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
 }
-.instagram-icon {
+.icon-insta {
   color: #fff;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
 }
 .search-button {
   all: unset;
   cursor: pointer;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 .lupa-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+.search-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding: 0 1rem;
+}
+.search-container button {
+  z-index: 999;
+  cursor: pointer;
 }

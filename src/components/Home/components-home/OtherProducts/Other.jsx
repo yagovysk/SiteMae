@@ -1,10 +1,10 @@
-import other1 from '../../../../assets/other1.png';
-import other2 from '../../../../assets/other2.png';
-import './Other.css';
+import other1 from "../../../../assets/other1.png";
+import other2 from "../../../../assets/other2.png";
+import "./Other.css";
 
 export function Other() {
   return (
-    <div className="container-other">
+    <section className="container-other">
       <div className="foto-other1">
         <img src={other1} alt="" />
       </div>
@@ -72,6 +72,6 @@ export function Other() {
       <div className="button-other">
         <a href="">Ver todos os produtos</a>
       </div>
-    </div>
+    </section>
   );
 }

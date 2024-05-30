@@ -6,13 +6,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('../../../../assets/AllBackground.png');
-  background-size: contain;
+  background: url("../../../../assets/AllBackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   height: 9.4rem;
 }
 .container-title::before {
-  content: '';
+  content: "";
   background-color: rgba(242, 149, 178, 0.81);
   position: absolute;
   top: 0;
@@ -24,7 +26,7 @@
 .container-title h1 {
   color: #612d3d;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 32px;
   font-style: normal;
   font-weight: 600;

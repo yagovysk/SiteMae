@@ -1,6 +1,10 @@
-main {
+.Service-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+.container-title {
+  width: 100%;
 }

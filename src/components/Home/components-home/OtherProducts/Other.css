@@ -4,8 +4,10 @@
 }
 .container-other {
   background: #f4f4f4;
+  width: 100%;
   display: flex;
-  padding: 4rem 20rem;
+  align-items: center;
+  padding: 4rem;
   flex-direction: column;
   gap: 3rem;
 }
@@ -30,7 +32,7 @@
 }
 .text-other h1 {
   color: #333;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 2.2rem;
   font-style: normal;
   font-weight: 700;
@@ -38,7 +40,7 @@
 }
 .text-other p {
   color: #bf7a52;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-style: italic;
   font-weight: 700;
@@ -63,7 +65,7 @@
 }
 .p1 h1 {
   color: #242424;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -71,7 +73,7 @@
 }
 .p1 p {
   color: #555;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -80,7 +82,7 @@
 }
 .p1 span {
   color: #f26d97;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -98,7 +100,7 @@
 }
 .p2 h1 {
   color: #242424;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -110,7 +112,7 @@
 }
 .p2 p {
   color: #555;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -118,7 +120,7 @@
 }
 .p2 span {
   color: #f26d97;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -127,7 +129,7 @@
 }
 .p3 h1 {
   color: #242424;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -139,7 +141,7 @@
 }
 .p3 p {
   color: #555;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -148,7 +150,7 @@
 
 .p3 span {
   color: #f26d97;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -161,7 +163,7 @@
 }
 .p4 h1 {
   color: #242424;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -173,7 +175,7 @@
 }
 .p4 p {
   color: #555;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -182,7 +184,7 @@
 }
 .p4 span {
   color: #f26d97;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -195,7 +197,7 @@
 }
 .p5 h1 {
   color: #242424;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -207,7 +209,7 @@
 }
 .p5 p {
   color: #555;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -216,7 +218,7 @@
 }
 .p5 span {
   color: #f26d97;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -225,7 +227,7 @@
 }
 .p6 h1 {
   color: #242424;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -237,7 +239,7 @@
 }
 .p6 p {
   color: #555;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -246,7 +248,7 @@
 }
 .p6 span {
   color: #f26d97;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
@@ -257,8 +259,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 0.5rem;
-  padding-right: 8rem;
 }
 .button-other a {
   text-decoration: none;
@@ -270,7 +270,7 @@
   padding: 0.8rem 2.5rem;
 
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;

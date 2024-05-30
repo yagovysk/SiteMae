@@ -1,15 +1,15 @@
-import { End } from '../End/End';
-import { Depoiments } from '../Home/components-home/Depoiments/Depoiments';
-import { Menu } from '../Menu/Menu';
-import { MenuClick } from '../Menu/MenuClick';
-import { Como } from './About-components/Como';
-import { Memory } from './About-components/Memory';
-import { Our } from './About-components/Our';
-import { Titleabout } from './About-components/Titleabout';
+import { End } from "../End/End";
+import { Depoiments } from "../Home/components-home/Depoiments/Depoiments";
+import { Menu } from "../Menu/Menu";
+import { MenuClick } from "../Menu/MenuClick";
+import { Como } from "./About-components/Como";
+import { Memory } from "./About-components/Memory";
+import { Our } from "./About-components/Our";
+import { Titleabout } from "./About-components/Titleabout";
 
 export function About() {
   return (
-    <div>
+    <section className="about-section">
       <Menu />
       <MenuClick />
       <Titleabout />
@@ -18,6 +18,6 @@ export function About() {
       <Como />
       <Depoiments />
       <End />
-    </div>
+    </section>
   );
 }
