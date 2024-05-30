@@ -7,7 +7,7 @@ import "./AllProducts.css";
 
 export function AllProducts() {
   return (
-    <section className="ALL-section">
+    <section className="section-all">
       <Menu />
       <MenuClick />
       <Title />
