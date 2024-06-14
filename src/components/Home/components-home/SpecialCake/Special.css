@@ -58,3 +58,28 @@
   background: #fff;
   justify-content: center;
 }
+@media (max-width: 768px) {
+  .container-special {
+    flex-direction: column;
+    padding: 5rem 0;
+  }
+  .cesta-icon img {
+    width: 15rem;
+    height: 15rem;
+  }
+  .container-special article {
+    justify-content: center;
+    border-top: solid #bcbfc198;
+    border-left: none;
+    align-items: center;
+    padding: 2rem 3rem;
+    width: 15rem;
+  }
+  .container-special article h1 {
+    font-size: 1.8rem;
+  }
+  .container-special article p {
+    font-size: 0.9rem;
+    width: 18rem;
+  }
+}

@@ -3,11 +3,13 @@ import { AiFillYoutube } from "react-icons/ai";
 import { SiFacebook } from "react-icons/si";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
+import logo from "../../assets/Logo.png";
 import "./Menu.css";
 
 export function Menu() {
   return (
     <section className="section-menu">
+      <img className="logo-img" src={logo} alt="" />
       <div className="contact-container">
         <div className="contact-buttons">
           <a href="">

@@ -1,4 +1,5 @@
 .nav-menu {
+  position: relative;
   display: flex;
   gap: 4rem;
   padding: 1.3rem 0rem;
@@ -7,6 +8,14 @@
   height: 3rem;
   width: 100%;
   background: #f4f4f4;
+}
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 }
 .Menu-ul {
   list-style: none;
@@ -85,4 +94,64 @@
 }
 .button-menu {
   text-decoration: none;
+}
+@media (max-width: 768px) {
+  .nav-menu {
+    height: 2rem;
+    padding: 0.5rem 0;
+  }
+  .menu-icon {
+    display: block;
+    font-size: 1.5rem;
+    top: 10px;
+    right: 30px;
+  }
+  .Menu-ul {
+    position: absolute;
+    top: -47px;
+    right: 0;
+    background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    height: 100vh;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    gap: 1rem;
+    z-index: 3;
+  }
+  .Menu-ul img {
+    display: none;
+  }
+  .Menu-ul.open {
+    transform: translateX(0);
+    z-index: 3;
+  }
+
+  .Menu-ul li {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  .Menu-ul li::before {
+    display: none;
+  }
+  .button {
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    padding: 0.5rem 1rem;
+    left: 100px;
+    font-size: 0.8rem;
+  }
+  .menu-close-icon {
+    display: block;
+    position: absolute;
+    top: -42px;
+    right: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 3;
+  }
 }

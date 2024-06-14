@@ -82,3 +82,18 @@
   padding: 0.1rem 1rem;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .products-section {
+    padding: 2rem 0;
+  }
+  .products-section article h1 {
+    font-size: 1.5rem;
+  }
+  .products-section article p {
+    font-size: 0.8rem;
+  }
+  .container-Products {
+    flex-direction: column;
+    align-items: center;
+  }
+}

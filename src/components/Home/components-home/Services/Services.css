@@ -112,3 +112,30 @@
   line-height: 26px; /* 162.5% */
   width: 22.81rem;
 }
+@media (max-width: 768px) {
+  .title h1 {
+    font-size: 1.3rem;
+    width: 15rem;
+    line-height: 1.5rem;
+  }
+  .container-cards {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+  }
+  .container-cest {
+    align-items: center;
+    justify-content: center;
+  }
+  .container-cake {
+    align-items: center;
+    justify-content: center;
+  }
+  .container-doces {
+    align-items: center;
+    justify-content: center;
+  }
+  .container-doces p {
+    width: 20rem;
+  }
+}

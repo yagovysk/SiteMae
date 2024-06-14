@@ -4,7 +4,9 @@
   width: 100%;
   padding: 1rem 0rem;
 }
-
+.section-menu .logo-img {
+  display: none;
+}
 .contact-container {
   display: flex;
   align-items: center;
@@ -80,4 +82,18 @@
 .search-container button {
   z-index: 999;
   cursor: pointer;
+}
+@media (max-width: 768px) {
+  .contact-buttons a {
+    display: none;
+  }
+  .section-menu .logo-img {
+    display: flex;
+    position: absolute;
+    top: 3px;
+    left: 10px;
+    width: 2.5rem;
+    background-color: #fff;
+    border-radius: 100%;
+  }
 }

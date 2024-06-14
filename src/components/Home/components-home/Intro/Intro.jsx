@@ -47,7 +47,7 @@ export function Intro() {
           )
         }
       >
-        <div>
+        <div className="container-content">
           <img src={fundo} alt="Imagem 1" />
 
           <article className="container-article">
@@ -60,7 +60,7 @@ export function Intro() {
           </article>
         </div>
 
-        <div>
+        <div className="container-content">
           <img src={fundo} alt="Imagem 1" />
 
           <article className="container-article">
@@ -73,7 +73,7 @@ export function Intro() {
           </article>
         </div>
 
-        <div>
+        <div className="container-content">
           <img src={fundo} alt="Imagem 1" />
           <article className="container-article">
             <h1>Sabor e Arte em Cada Mordida!</h1>
