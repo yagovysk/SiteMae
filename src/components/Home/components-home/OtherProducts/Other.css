@@ -291,4 +291,112 @@
   .text-other p {
     font-size: 0.8rem;
   }
+  .container-p1 {
+    justify-content: center;
+    align-items: center;
+  }
+  .p1 h1 {
+    font-size: 1.2rem;
+  }
+  .p1 p {
+    font-size: 0.7rem;
+    width: 16rem;
+  }
+  .container-pother1 {
+    gap: 2rem;
+  }
+  .container-pother1 span {
+    font-size: 1rem;
+  }
+
+  .container-p2 {
+    justify-content: center;
+    align-items: center;
+  }
+  .p2 h1 {
+    font-size: 1.2rem;
+  }
+  .p2 p {
+    font-size: 0.7rem;
+    width: 16rem;
+  }
+  .container-pother2 {
+    gap: 2rem;
+  }
+  .container-pother2 span {
+    font-size: 1rem;
+  }
+
+  .container-p3 {
+    justify-content: center;
+    align-items: center;
+  }
+  .p3 h1 {
+    font-size: 1.2rem;
+  }
+  .p3 p {
+    font-size: 0.7rem;
+    width: 16rem;
+  }
+  .container-pother3 {
+    gap: 2rem;
+  }
+  .container-pother3 span {
+    font-size: 1rem;
+  }
+  .text-other p {
+    font-size: 0.8rem;
+  }
+  .container-p4 {
+    justify-content: center;
+    align-items: center;
+  }
+  .p4 h1 {
+    font-size: 1.2rem;
+  }
+  .p4 p {
+    font-size: 0.7rem;
+    width: 16rem;
+  }
+  .container-pother4 {
+    gap: 2rem;
+  }
+  .container-pother4 span {
+    font-size: 1rem;
+  }
+
+  .container-p5 {
+    justify-content: center;
+    align-items: center;
+  }
+  .p5 h1 {
+    font-size: 1.2rem;
+  }
+  .p5 p {
+    font-size: 0.7rem;
+    width: 16rem;
+  }
+  .container-pother5 {
+    gap: 2rem;
+  }
+  .container-pother5 span {
+    font-size: 1rem;
+  }
+  .container-p6 {
+    justify-content: center;
+    align-items: center;
+  }
+  .p6 h1 {
+    font-size: 1.2rem;
+  }
+  .p6 p {
+    font-size: 0.7rem;
+    width: 16rem;
+  }
+  .container-pother6 {
+    gap: 2rem;
+  }
+  .container-pother6 span {
+    font-size: 1rem;
+  }
 }
