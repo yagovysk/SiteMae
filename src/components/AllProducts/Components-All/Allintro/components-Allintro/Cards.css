@@ -53,3 +53,11 @@
 .cards-list button:hover {
   background: #f79cb3;
 }
+
+@media (max-width: 768px) {
+  .cards-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

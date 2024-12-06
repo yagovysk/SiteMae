@@ -123,3 +123,11 @@ label input[type="checkbox"] {
 .arrow.up {
   transform: rotate(180deg);
 }
+
+@media (max-width: 768px) {
+  .div-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

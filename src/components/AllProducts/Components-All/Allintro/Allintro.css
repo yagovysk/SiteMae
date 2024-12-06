@@ -29,3 +29,22 @@
   line-height: 30px; /* 150% */
   width: 85%;
 }
+@media (max-width: 768px) {
+  .title-ALL {
+    font-size: 1.5rem;
+  }
+  .title-ALL img {
+    display: none;
+  }
+  .container-Allintro article {
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .container-Allintro article p {
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 16px;
+  }
+}
