@@ -69,8 +69,8 @@ export function Description1() {
               <span>
                 <GrCircleAlert className="alert-icon" />
               </span>
-              Saiba como funciona nossos prazos de entrega e processos de
-              encomenda na seção abaixo "Informações Importantes".
+              Por favor, respeite o horário agendado para retirada, para saber
+              mais clique na seção abaixo, Informações Importantes.
             </h3>
           </div>
         </article>
@@ -111,47 +111,33 @@ export function Description1() {
       )}
       {activeTab === "info" && (
         <article className="info-section">
-          <h1>📦 Prazos de Entrega Especiais</h1>
+          <h1>📦Prazo para encomenda </h1>
           <p className="info-paragraph">
-            Na Laços & Confeitos, valorizamos a qualidade e a atenção dedicadas
-            a cada criação. Por isso, nossos produtos são feitos sob encomenda
-            para garantir frescor e sabor excepcionais. Os prazos de entrega
-            podem variar de acordo com a complexidade do pedido e a demanda
-            atual. Para assegurar que sua encomenda seja entregue perfeitamente,
-            solicitamos que considere os seguintes prazos estimados:
+            Encomendas para bolos com até 5 dias de antecedência ou enquanto
+            houver data para a vaga que deseja.
           </p>
-          <h1>🎂 Bolos e Tortas Artesanais</h1>
+          <h1>💰 Forma de pagamento</h1>
           <p className="info-paragraph">
-            Geralmente, pedimos um prazo de pelo menos [X dias/semanas] para
-            criar e preparar seu bolo ou torta com todo o cuidado necessário.
+            Pix , link para pagamento débito ou crédito (com acréscimo).
           </p>
-          <h1>🧁 Cupcakes e Brigadeiros</h1>
+          <h1>💸 Quando pagar</h1>
           <p className="info-paragraph">
-            Nossos cupcakes e brigadeiros são feitos com atenção minuciosa. Por
-            isso, pedimos um prazo de [Y dias] para garantir que cada peça seja
-            feita com perfeição.
+            O pagamento do sinal de 50% do valor total do pedido deverá ser
+            feito no ato da encomenda; só assim , a vaga será confirmada e
+            reservada.
           </p>
-          <h1>🍬 Cestas e Kits Personalizados</h1>
+          <h1>😩 Cancelamento e desesistencia</h1>
           <p className="info-paragraph">
-            Para cestas e kits sob medida, recomendamos uma antecedência de [Z
-            dias] para que possamos selecionar os melhores ingredientes/produtos
-            e montar sua cesta ou kit com alta qualidade.
-          </p>
-          <h1>✨ Personalização Exclusiva</h1>
-          <p className="info-paragraph">
-            Lembre-se de que produtos personalizados podem exigir um tempo extra
-            para aperfeiçoar os detalhes que tornarão sua encomenda
-            verdadeiramente especial.
+            Em caso de desistência ou cancelamento o valor do sinal não será
+            devolvido, ficará retido como crédito e poderá ser usado no prazo de
+            6 meses em qualquer produto que fornecemos.
           </p>
           <h1>📝 Pedidos Antecipados</h1>
           <p className="info-paragraph">
-            Ao fazer sua encomenda, planeje com antecedência para garantir que
-            possamos atender às suas expectativas e entregar no prazo desejado.
-            Agradecemos por escolher a Laços & Confeitos para tornar seus
-            momentos ainda mais doces e especiais. Estamos ansiosos para criar
-            algo incrível para você! Para detalhes mais precisos sobre os prazos
-            de entrega e disponibilidade, entre em contato conosco. Estamos aqui
-            para tornar sua experiência conosco memorável.
+            O cliente pode solicitar entregas por app de entregas (Uber
+            flash/99), sendo de sua responsabilidade fazer a solicitação e
+            efetuar o pagamento referente ao serviço. Não fazemos solicitação do
+            carro e não nos responsabilizamos por esse tipo de transporte.
           </p>
         </article>
       )}

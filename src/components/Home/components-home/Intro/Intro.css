@@ -7,6 +7,9 @@
   display: flex;
   position: relative;
 }
+.container-content img {
+  height: 70vh;
+}
 .arrow-button-left {
   position: absolute;
   top: 50%;

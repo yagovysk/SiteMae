@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Boxes.css";
 import { Cards } from "./Cards";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";

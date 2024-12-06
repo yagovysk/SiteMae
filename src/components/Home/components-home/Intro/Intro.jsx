@@ -3,6 +3,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdArrowBackIosNew } from "react-icons/md";
 import fundo from "../../../../assets/fundo1.png";
+import fundo2 from "../../../../assets/fundo2.png";
+import fundo3 from "../../../../assets/fundo3.png";
 import "./Intro.css";
 
 export function Intro() {
@@ -61,7 +63,7 @@ export function Intro() {
         </div>
 
         <div className="container-content">
-          <img src={fundo} alt="Imagem 1" />
+          <img src={fundo2} alt="Imagem 1" />
 
           <article className="container-article">
             <h1>Sabor e Arte em Cada Mordida!</h1>
@@ -74,7 +76,7 @@ export function Intro() {
         </div>
 
         <div className="container-content">
-          <img src={fundo} alt="Imagem 1" />
+          <img src={fundo3} alt="Imagem 1" />
           <article className="container-article">
             <h1>Sabor e Arte em Cada Mordida!</h1>
             <p>
