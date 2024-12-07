@@ -15,15 +15,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo preto transparente */
-  border-radius: 5px; /* Borda arredondada */
-  z-index: 1; /* Garante que o background esteja acima da imagem */
-  opacity: 0; /* Começa invisível */
-  transition: opacity 0.3s ease; /* Adiciona transição suave */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .instagram-hover:hover::before {
-  opacity: 1; /* Torna o background visível no hover */
+  opacity: 1;
 }
 
 .instagram-icon {
@@ -31,15 +31,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2; /* Garante que o ícone esteja acima do background */
+  z-index: 2;
   color: white;
   font-size: 3rem;
-  opacity: 0; /* Começa invisível */
-  transition: opacity 0.3s ease; /* Adiciona transição suave */
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .instagram-hover:hover .instagram-icon {
-  opacity: 1; /* Torna o ícone visível no hover */
+  opacity: 1;
 }
 .container-sigatext {
   display: flex;
@@ -93,4 +93,35 @@
   width: 18rem;
   height: 16.5rem;
   border-radius: 5px;
+}
+@media (max-width: 768px) {
+  .container-siga {
+    justify-content: center;
+    align-items: center;
+  }
+  .container-sigatext {
+    justify-content: center;
+    padding: 1rem;
+  }
+  .container-sigatext h1 {
+    font-size: 1.3rem;
+  }
+  .container-sigatext h1 img {
+    width: 2rem;
+  }
+  .container-sigatext p {
+    font-size: 0.9rem;
+    line-height: 16px;
+    width: 20rem;
+  }
+  .container-photos1 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container-photos2 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
