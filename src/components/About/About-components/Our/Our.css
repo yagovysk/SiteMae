@@ -1,0 +1,83 @@
+.Our-container {
+  display: flex;
+  background: #f4f4f4;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+  gap: 3rem;
+}
+.Our-description {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  gap: 1rem;
+}
+.Our-description h1 {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 53.2px;
+  font-size: 2.2rem;
+}
+.Our-description h2 {
+  color: #b16133;
+  font-family: "Lora", serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 30px;
+  width: 33rem;
+}
+.Our-description p {
+  color: #555;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  width: 33rem;
+}
+
+.Our-container .img-our {
+  width: 30rem;
+  height: 20rem;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .Our-container {
+    flex-direction: column;
+
+    padding: 2rem 0;
+    gap: 1rem;
+  }
+  .Our-description {
+    align-items: center;
+    padding: 0;
+  }
+  .Our-description h1 {
+    font-size: 1.3rem;
+  }
+  .Our-description h1 img {
+    width: 2rem;
+  }
+  .Our-description h2 {
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 20px;
+    width: 21rem;
+  }
+  .Our-description p {
+    font-size: 0.9rem;
+    line-height: 20px;
+    text-align: center;
+    width: 21rem;
+  }
+  .Our-container .img-our {
+    width: 20rem;
+    height: 12rem;
+  }
+}

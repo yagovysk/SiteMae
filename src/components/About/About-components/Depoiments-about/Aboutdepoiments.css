@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.DepoimentsAbout-container {
+  background: url("../../../../assets/DepoimentsBack.svg");
+  background-color: #fff4f5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow-x: hidden;
+  padding: 1.5rem 0;
+}
+.DepoimentsAbout-container h1 {
+  color: #fe86a4;
+
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50.4px;
+}
+.testimonialAbout-slide {
+  display: flex;
+}
+.DepoimentsAbout-carousel {
+  border-radius: 16px;
+  width: 37.25rem;
+  height: 23.25rem;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+.carouselAbout .dot {
+  background-color: #ffd3d7 !important; /* Cor de fundo das bolinhas */
+  border: 1px solid #ffd3d7 !important; /* Estilo da borda das bolinhas */
+  width: 12px !important;
+  height: 12px !important;
+}
+.carouselAbout .dot.selected {
+  background-color: #f26d97 !important; /* Cor de fundo das bolinhas selecionadas */
+  border: 1px solid #f26d97 !important; /* Estilo da borda das bolinhas selecionadas */
+  width: 12px;
+  height: 12px;
+}
+.testimonialAbout-slide {
+  display: flex;
+  flex-direction: column;
+  width: 37.25rem;
+  height: 20.25rem;
+  gap: 1rem;
+  align-items: center;
+  background: #fff;
+  padding-top: 2rem;
+  border-radius: 16px;
+}
+.testimonialAbout-slide h2 {
+  color: var(--Black-100, #2f3137);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.72px;
+}
+.stars1About {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.4rem;
+  margin-top: -1rem;
+}
+.testimonialAbout-text {
+  color: var(--Black-50, #707070);
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  width: 436px;
+}
+.testimonialAbout-author {
+  color: var(--Pink-100, #db6885);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+@media (max-width: 768px) {
+  .DepoimentsAbout-container {
+    padding: 1rem 0;
+  }
+  .DepoimentsAbout-container h1 {
+    font-size: 1.3rem;
+  }
+  .DepoimentsAbout-carousel {
+    width: 80%;
+    padding: 0;
+  }
+  .testimonialAbout-slide {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+  }
+  .testimonialAbout-text {
+    width: 17rem;
+  }
+}

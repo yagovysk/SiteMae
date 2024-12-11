@@ -1,0 +1,149 @@
+.container-como {
+  background: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 5rem 4rem;
+}
+.como-responsive {
+  display: flex;
+  align-items: center;
+}
+.container-como .article-como {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem 4rem;
+  gap: 1.5rem;
+}
+.article-como h1 {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 700;
+}
+.article-como h2 {
+  color: #b16133;
+
+  font-family: "Lora", serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 30px;
+  width: 35rem;
+}
+.article-como .p-como1 {
+  color: #555;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  width: 35rem;
+}
+.article-como .p-como2 {
+  color: #555;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+.article-como p {
+  color: #555;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+.article-como h3 {
+  color: #b16133;
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 30px;
+}
+.container-imgs {
+  display: flex;
+  justify-content: center;
+
+  gap: 2rem;
+}
+.img1-container {
+  display: flex;
+  height: 14rem;
+}
+.img1-container .img1 {
+  border-radius: 5px;
+}
+.img2-container {
+  display: flex;
+  height: 14rem;
+  padding: 2rem 0;
+}
+.img2-container .img2 {
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .container-como {
+    padding: 2rem 0;
+    flex-direction: column;
+  }
+  .como-responsive {
+    flex-direction: column;
+  }
+  .article-como {
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  .article-como h1 {
+    font-size: 1.4rem;
+    line-height: 20px;
+  }
+  .article-como h1 img {
+    width: 1.5rem;
+  }
+  .article-como h2 {
+    font-size: 0.9rem;
+    line-height: 20px;
+    width: 22rem;
+  }
+  .article-como .p-como1 {
+    font-size: 0.8rem;
+    line-height: 20px;
+    width: 20rem;
+  }
+  .article-como .p-como2 {
+    font-size: 0.8rem;
+    line-height: 20px;
+    width: 20rem;
+  }
+  .article-como p {
+    font-size: 0.8rem;
+    line-height: 20px;
+    width: 20rem;
+  }
+  .article-como h3 {
+    font-size: 0.8rem;
+    line-height: 0;
+    width: 20rem;
+  }
+  .container-imgs {
+    gap: 1rem;
+  }
+  .img1-container {
+    height: 10rem;
+  }
+  .img2-container {
+    height: 10rem;
+  }
+}
