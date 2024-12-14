@@ -13,7 +13,7 @@
 }
 .container-nossos .article-nossos h1 {
   color: #333;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 38px;
   font-style: normal;
   font-weight: 700;
@@ -21,7 +21,7 @@
 }
 .container-nossos .article-nossos p {
   color: #b16133;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   font-size: 20px;
   font-style: italic;
   font-weight: 400;
@@ -56,7 +56,7 @@
 .Nossos-img h2 {
   color: #333;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -68,4 +68,28 @@
   gap: 12rem;
   padding-left: 0.5rem;
   padding-bottom: 8rem;
+}
+
+@media (max-width: 768px) {
+  .container-nossos {
+    padding: 2rem 0;
+  }
+  .container-nossos .article-nossos {
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .container-nossos .article-nossos h1 {
+    font-size: 1.9rem;
+    line-height: 20px;
+  }
+  .article-nossos h1 img {
+    width: 2rem;
+  }
+  .container-nossos .article-nossos p {
+    font-size: 0.8rem;
+    line-height: 20px;
+    text-align: center;
+    width: 20rem;
+  }
 }

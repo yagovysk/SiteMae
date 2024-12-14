@@ -126,16 +126,23 @@
   .container-cest {
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
   .container-cake {
     align-items: center;
     justify-content: center;
+    text-align: center;
+  }
+  .container-cake p {
+    text-align: center;
   }
   .container-doces {
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
   .container-doces p {
     width: 20rem;
+    text-align: center;
   }
 }

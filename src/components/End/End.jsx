@@ -78,9 +78,9 @@ export function End() {
       </div>
       <div className="container-footer-end">
         <h1>Laços & Confeitos © 2023. Todos os direitos reservados.</h1>
-        <p>
+        <a href="">
           Developed by <span>Togyro Group Victory.</span>
-        </p>
+        </a>
       </div>
     </footer>
   );

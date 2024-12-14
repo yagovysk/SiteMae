@@ -212,7 +212,8 @@
   font-weight: 400;
   line-height: 26px; /* 185.714% */
 }
-.container-footer-end p {
+.container-footer-end a {
+  text-decoration: none;
   color: #fafafa;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
@@ -227,4 +228,34 @@
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
+}
+@media (max-width: 768px) {
+  .container-title-footer {
+    padding: 2rem 0;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .container-title-footer h1 {
+    font-size: 0.8rem;
+    line-height: 16px;
+    text-align: center;
+  }
+  .container-footer-dark {
+    flex-direction: column;
+  }
+  .container-footer-end {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0.5rem;
+  }
+  .container-footer-end h1 {
+    font-size: 0.7rem;
+  }
+  .container-footer-end a {
+    font-size: 0.7rem;
+  }
+  .container-footer-end span {
+    font-size: 0.7rem;
+  }
 }
