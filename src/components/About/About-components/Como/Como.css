@@ -138,13 +138,13 @@
     width: 20rem;
   }
   .container-imgs {
-    gap: 1rem;
+    gap: 0.5rem;
   }
   .img1-container {
     height: 10rem;
   }
   .img2-container {
     height: 10rem;
-    padding: 1rem 0;
+    padding: 0;
   }
 }
