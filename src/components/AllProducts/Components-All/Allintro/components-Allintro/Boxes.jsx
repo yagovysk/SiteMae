@@ -552,6 +552,26 @@ export function Boxes() {
                 <p className="selection-warning">{selectionWarning}</p>
               )}
 
+              <div className="finishing-info">
+                <h2>Acabamentos disponíveis</h2>
+                <ul>
+                  <li>
+                    Naked cake com acabamento no acetato, finalizado com calda,
+                    docinhos, rosetas de brigadeiro ou frutas.
+                  </li>
+                  <li>
+                    Brigadeiro no acabamento para bolos acima de 2 kg,
+                    finalizado com doces ou frutas.
+                  </li>
+                  <li>
+                    Chantilly para bolos a partir de 18 cm: acabamento
+                    espatulado com rosetas, frutas ou flores. Pode haver
+                    acréscimos referentes à embalagem especial e demais
+                    materiais.
+                  </li>
+                </ul>
+              </div>
+
               <div className="summary-card">
                 <h2>Resumo do bolo</h2>
                 <ul>
@@ -598,26 +618,6 @@ export function Boxes() {
                   Revise as escolhas antes de enviar. O valor final pode variar
                   conforme decoração e acabamentos escolhidos.
                 </p>
-              </div>
-
-              <div className="finishing-info">
-                <h2>Acabamentos disponíveis</h2>
-                <ul>
-                  <li>
-                    Naked cake com acabamento no acetato, finalizado com calda,
-                    docinhos, rosetas de brigadeiro ou frutas.
-                  </li>
-                  <li>
-                    Brigadeiro no acabamento para bolos acima de 2 kg,
-                    finalizado com doces ou frutas.
-                  </li>
-                  <li>
-                    Chantilly para bolos a partir de 18 cm: acabamento
-                    espatulado com rosetas, frutas ou flores. Pode haver
-                    acréscimos referentes à embalagem especial e demais
-                    materiais.
-                  </li>
-                </ul>
               </div>
             </div>
           )}
