@@ -1,9 +1,9 @@
-import './Title.css';
+import "./Title.css";
 
 export function Title() {
   return (
     <div className="container-title">
-      <h1>Nossos Produtos</h1>
+      <h1>Faça seu pedido!</h1>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export function Allintro() {
     <div className="container-Allintro">
       <article>
         <h1 className="title-ALL">
-          Nossos Produtos <img src={imgall} alt="" />
+          Faça seu pedido! <img src={imgall} alt="" />
         </h1>
         <p>
           Conheça nossa variedade de produtos. De bolos magníficos a doces

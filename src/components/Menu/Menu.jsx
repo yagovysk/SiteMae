@@ -12,7 +12,11 @@ export function Menu() {
       <img className="logo-img" src={logo} alt="" />
       <div className="contact-container">
         <div className="contact-buttons">
-          <a href="">
+          <a
+            href="https://wa.me/61083663051?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <BsFillTelephoneFill /> (61)983663051
           </a>
           <a href="">

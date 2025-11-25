@@ -1,77 +1,295 @@
 .div-container {
   display: flex;
-  gap: 3rem;
-  padding: 1rem 0;
+  justify-content: center;
+  padding: 2rem 0;
 }
-.menu-drops {
+
+.builder-wrapper {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border-radius: 12px;
+  gap: 1.75rem;
+  border-radius: 16px;
   border: 1px solid #f3c4e9;
-  height: 20rem;
-  padding: 2rem 1rem;
+  background: #ffffff;
+  padding: 2rem;
+  box-shadow: 0px 8px 16px rgba(15, 32, 60, 0.05);
 }
-.title-drops {
-  color: #333;
 
+.builder-title {
+  color: #333;
   font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 140%; /* 28px */
-  letter-spacing: -0.2px;
-  border-bottom: 1px solid #e4e9ee;
-  padding-bottom: 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
-.button-drops {
-  color: #333;
 
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-style: normal;
+.builder-toggles {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.builder-toggle {
+  flex: 1;
+  border: 1px solid #dfe6ee;
+  border-radius: 999px;
+  background: #f6f8fb;
+  color: #4b5563;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
-  line-height: 140%; /* 22.4px */
-  letter-spacing: -0.2px;
-  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.25rem;
   cursor: pointer;
-  width: 100%;
-  text-align: left;
-  position: relative;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.builder-toggle:hover {
+  border-color: #fe86a4;
+}
+
+.builder-toggle.is-open {
+  background: #fe86a4;
+  border-color: #fe86a4;
+  color: #ffffff;
+  box-shadow: 0px 6px 16px rgba(254, 134, 164, 0.2);
+}
+
+.builder-section {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: none;
-  border: none;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 1.75rem;
 }
 
-.dropdown {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  border-bottom: 2px solid #e4e9ee;
-}
-
-.dropdown.open {
-  max-height: 300px;
-}
-
-label {
+.builder-group {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid #e4e9ee;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  background: #fafbff;
+}
+
+.group-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.group-header h2 {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.group-header p {
   color: #818b9c;
   font-family: "Inter", sans-serif;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 160%;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.option-list,
+.option-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option-grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.option-grid .option-item {
+  flex: 1 1 calc(50% - 0.75rem);
+  min-width: 260px;
+}
+
+.option-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #dfe6ee;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   cursor: pointer;
 }
-label input[type="checkbox"] {
-  cursor: pointer; /* Adiciona cursor pointer para os checkboxes */
+
+.option-item:hover {
+  border-color: #fe86a4;
+  box-shadow: 0 0 0 3px rgba(254, 134, 164, 0.15);
 }
+
+.option-item.is-selected {
+  border-color: #fe86a4;
+  box-shadow: 0 0 0 3px rgba(254, 134, 164, 0.2);
+  background: #fff8fb;
+}
+
+.option-item input {
+  margin-top: 0.3rem;
+  cursor: pointer;
+}
+
+.option-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.option-meta span {
+  color: #333;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.option-meta small {
+  color: #818b9c;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.selection-warning {
+  color: #f0346f;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid #e4e9ee;
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: #ffffff;
+  box-shadow: 0px 6px 20px rgba(15, 32, 60, 0.06);
+}
+
+.summary-card h2 {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.summary-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.summary-card li strong {
+  color: #333;
+}
+
+.basket-items-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+.basket-items {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.summary-message {
+  width: 100%;
+  min-height: 160px;
+  border-radius: 12px;
+  border: 1px solid #dce3eb;
+  background: #fafbff;
+  padding: 1rem;
+  resize: vertical;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  background: #25d366;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.whatsapp-button:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.whatsapp-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.summary-hint {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.finishing-info {
+  border-radius: 14px;
+  border: 1px dashed #f3c4e9;
+  background: #fff6fb;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.finishing-info h2 {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.finishing-info ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #4b5563;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+}
+
 .modal {
   display: flex;
   justify-content: center;
@@ -82,7 +300,7 @@ label input[type="checkbox"] {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
+  overflow-y: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -91,11 +309,11 @@ label input[type="checkbox"] {
   padding: 20px;
   overflow-y: auto;
   width: 80%;
-
   max-height: 90vh;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .close {
@@ -115,19 +333,55 @@ label input[type="checkbox"] {
   cursor: pointer;
 }
 
-.arrow {
-  margin-left: 10px;
-  transition: transform 0.3s ease;
-}
+@media (max-width: 1024px) {
+  .div-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
 
-.arrow.up {
-  transform: rotate(180deg);
+  .builder-wrapper {
+    width: 100%;
+    padding: 1.75rem;
+  }
+
+  .option-grid .option-item {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
 }
 
 @media (max-width: 768px) {
-  .div-container {
+  .builder-toggles {
     flex-direction: column;
-    justify-content: center;
+  }
+
+  .builder-toggle {
+    width: 100%;
+  }
+
+  .builder-wrapper {
+    padding: 1.5rem;
+  }
+
+  .summary-card {
+    padding: 1.25rem;
+  }
+
+  .modal {
     align-items: center;
+    padding: 0.75rem;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 24rem;
+    max-height: calc(100vh - 1.5rem);
+    border-radius: 16px;
+    padding: 1rem 0.75rem 1.25rem;
+  }
+
+  .close {
+    top: 12px;
+    right: 12px;
   }
 }

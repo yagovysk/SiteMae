@@ -1,6 +1,7 @@
 import other1 from "../../../../assets/other1.png";
 import other2 from "../../../../assets/other2.png";
 import "./Other.css";
+import { Link } from "react-router-dom";
 
 export function Other() {
   return (
@@ -22,21 +23,21 @@ export function Other() {
               <h1>Kits de Doces</h1>
               <div className="container-pother1">
                 <p>Brigadeiros, beijinhos, cookies dentre outras delícias </p>
-                <span>R$34,00</span>
+                <span>a partir de R$80,00</span>
               </div>
             </div>
             <div className="p2">
               <h1>Cestas Personalizadas</h1>
               <div className="container-pother2">
                 <p>Bolos artesanais, chocolates finos e doces variados</p>
-                <span>R$50,00</span>
+                <span>a partir de R$230,00</span>
               </div>
             </div>
             <div className="p3">
-              <h1>Bolo de Aniversário</h1>
+              <h1>Monte seu bolo</h1>
               <div className="container-pother3">
                 <p>Ingredientes selecionados e de qualidade</p>
-                <span>R$120,00</span>
+                <span>a partir de R$105,00</span>
               </div>
             </div>
           </div>
@@ -47,14 +48,14 @@ export function Other() {
                 <p>
                   Arte para impressionar, um ótimo presente para alguém especial
                 </p>
-                <span>R$40,00</span>
+                <span>a partir de R$40,00</span>
               </div>
             </div>
             <div className="p5">
               <h1>Caixa de Chocolates</h1>
               <div className="container-pother5">
                 <p>Uma caixa recheada de diversos chocolates finos</p>
-                <span>R$150,00</span>
+                <span>a partir de R$150,00</span>
               </div>
             </div>
             <div className="p6">
@@ -63,14 +64,14 @@ export function Other() {
                 <p>
                   Uma caixa recheada de diversos brigadeiros finos a sua escolha
                 </p>
-                <span>R$60,00</span>
+                <span>a partir de R$90,00</span>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="button-other">
-        <a href="">Ver todos os produtos</a>
+        <Link to="/products">Ver todos os produtos</Link>
       </div>
     </section>
   );

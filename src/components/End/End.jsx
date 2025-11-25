@@ -47,7 +47,7 @@ export function End() {
           <h1>Institucional</h1>
           <ul>
             <li>Sobre nós</li>
-            <li>Nossos Produtos</li>
+            <li>Faça seu pedido!</li>
             <li>Serviços</li>
           </ul>
         </div>

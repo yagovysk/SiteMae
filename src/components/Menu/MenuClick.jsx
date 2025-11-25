@@ -28,7 +28,7 @@ export function MenuClick() {
         </li>
         <li>
           <Link className="button-menu" to="/products" onClick={closeMenu}>
-            Nossos Produtos
+            Faça seu pedido!
           </Link>
         </li>
 
@@ -50,7 +50,12 @@ export function MenuClick() {
           <FaTimes />
         </div>
       )}
-      <a href="#" className="button">
+      <a
+        href="https://wa.me/61083663051?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+        className="button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Entre em contato
       </a>
     </section>

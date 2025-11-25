@@ -305,8 +305,14 @@
   .container-pother1 {
     gap: 2rem;
   }
-  .container-pother1 span {
-    font-size: 1rem;
+  .container-pother1 span,
+  .container-pother2 span,
+  .container-pother3 span,
+  .container-pother4 span,
+  .container-pother5 span,
+  .container-pother6 span {
+    font-size: 0.9rem;
+    display: flex;
   }
 
   .container-p2 {
@@ -323,10 +329,6 @@
   .container-pother2 {
     gap: 2rem;
   }
-  .container-pother2 span {
-    font-size: 1rem;
-  }
-
   .container-p3 {
     justify-content: center;
     align-items: center;
@@ -340,9 +342,6 @@
   }
   .container-pother3 {
     gap: 2rem;
-  }
-  .container-pother3 span {
-    font-size: 1rem;
   }
   .text-other p {
     font-size: 0.8rem;
@@ -361,10 +360,6 @@
   .container-pother4 {
     gap: 2rem;
   }
-  .container-pother4 span {
-    font-size: 1rem;
-  }
-
   .container-p5 {
     justify-content: center;
     align-items: center;
@@ -379,9 +374,6 @@
   .container-pother5 {
     gap: 2rem;
   }
-  .container-pother5 span {
-    font-size: 1rem;
-  }
   .container-p6 {
     justify-content: center;
     align-items: center;
@@ -395,8 +387,5 @@
   }
   .container-pother6 {
     gap: 2rem;
-  }
-  .container-pother6 span {
-    font-size: 1rem;
   }
 }

@@ -27,7 +27,7 @@
 .cards2 h2 {
   color: #343434;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -38,7 +38,7 @@
   background: var(--brand-colors-rosa-01, #fe86a4);
   color: #fff;
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -50,4 +50,27 @@
 }
 .cards-list2 button:hover {
   background: #f79cb3;
+}
+
+@media (max-width: 768px) {
+  .cards-list2 {
+    flex-direction: column;
+    width: 100%;
+    gap: 1.5rem;
+  }
+
+  .cards2 {
+    width: 100%;
+    max-width: 22rem;
+    padding: 1.5rem 1.25rem 2rem;
+  }
+
+  .cards2 img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cards-list2 button {
+    width: 100%;
+  }
 }
