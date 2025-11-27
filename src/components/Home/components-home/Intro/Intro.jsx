@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
@@ -58,7 +59,7 @@ export function Intro() {
               Experimente produtos extremamente saborosos e de qualidade que
               transformarão cada momento em uma celebração memorável.
             </p>
-            <a href="#">Saiba mais</a>
+            <Link to="/products">Saiba mais</Link>
           </article>
         </div>
 
@@ -71,7 +72,7 @@ export function Intro() {
               Experimente produtos extremamente saborosos e de qualidade que
               transformarão cada momento em uma celebração memorável.
             </p>
-            <a href="#">Saiba mais</a>
+            <Link to="/products">Saiba mais</Link>
           </article>
         </div>
 
@@ -83,7 +84,7 @@ export function Intro() {
               Experimente produtos extremamente saborosos e de qualidade que
               transformarão cada momento em uma celebração memorável.
             </p>
-            <a href="#">Saiba mais</a>
+            <Link to="/products">Saiba mais</Link>
           </article>
         </div>
       </Carousel>

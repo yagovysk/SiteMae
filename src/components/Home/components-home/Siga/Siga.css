@@ -5,7 +5,16 @@
 }
 .instagram-hover {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.instagram-hover:focus {
+  outline: 2px solid #bf7a52;
+  outline-offset: 4px;
 }
 
 .instagram-hover::before {
@@ -24,6 +33,13 @@
 
 .instagram-hover:hover::before {
   opacity: 1;
+}
+
+.instagram-hover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
 }
 
 .instagram-icon {
@@ -75,13 +91,9 @@
   gap: 1rem;
   padding: 0 24rem;
 }
-.container-photos1 a {
-  display: flex;
-}
-.container-photos1 img {
+.container-photos1 .instagram-hover {
   width: 18rem;
   height: 16.5rem;
-  border-radius: 5px;
 }
 .container-photos2 {
   display: flex;
@@ -89,10 +101,72 @@
   padding: 0 24rem;
   padding-bottom: 4.6rem;
 }
-.container-photos2 img {
+.container-photos2 .instagram-hover {
   width: 18rem;
   height: 16.5rem;
-  border-radius: 5px;
+}
+.instagram-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 1000;
+}
+
+.instagram-modal-content {
+  position: relative;
+  max-width: 640px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  box-shadow: 0 20px 45px rgba(15, 32, 60, 0.25);
+}
+
+.instagram-modal-content img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.instagram-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #bf7a52;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.instagram-modal-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease;
+}
+
+.instagram-modal-button:hover {
+  transform: translateY(-2px);
+}
+
+.instagram-modal-button svg {
+  font-size: 1.25rem;
 }
 @media (max-width: 768px) {
   .container-siga {
@@ -119,9 +193,18 @@
     justify-content: center;
     align-items: center;
   }
+  .container-photos1 .instagram-hover,
+  .container-photos2 .instagram-hover {
+    width: 16rem;
+    height: auto;
+  }
   .container-photos2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .instagram-modal-content {
+    max-width: 90vw;
+    padding: 1.25rem;
   }
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import foto1 from "../../../../assets/foto-1.png";
 import "./History.css";
 
@@ -18,7 +19,7 @@ export function History() {
           transformar ingredientes selecionados em verdadeiras obras de arte
           açucaradas.
         </p>
-        <a href="">Venha saber mais</a>
+        <Link to="/about">Venha saber mais</Link>
       </article>
       <img src={foto1} alt="" />
     </section>
