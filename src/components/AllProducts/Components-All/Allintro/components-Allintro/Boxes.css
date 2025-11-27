@@ -268,77 +268,6 @@
   color: #6b7280;
 }
 
-.finishing-info {
-  border-radius: 14px;
-  border: 1px dashed #f3c4e9;
-  background: #fff6fb;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.finishing-info h2 {
-  color: #333;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.finishing-info ul {
-  margin: 0;
-  padding-left: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  color: #4b5563;
-  font-family: "Inter", sans-serif;
-  font-size: 0.9rem;
-}
-
-.modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  overflow-y: auto;
-  width: 80%;
-  max-height: 90vh;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  position: relative;
-  box-sizing: border-box;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 @media (max-width: 1024px) {
   .div-container {
     flex-direction: column;
@@ -375,23 +304,5 @@
 
   .summary-card {
     padding: 1.25rem;
-  }
-
-  .modal {
-    align-items: center;
-    padding: 0.75rem;
-  }
-
-  .modal-content {
-    width: 100%;
-    max-width: 24rem;
-    max-height: calc(100vh - 1.5rem);
-    border-radius: 16px;
-    padding: 1rem 0.75rem 1.25rem;
-  }
-
-  .close {
-    top: 12px;
-    right: 12px;
   }
 }

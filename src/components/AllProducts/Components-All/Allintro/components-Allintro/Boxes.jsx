@@ -1,7 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./Boxes.css";
-import { Description1 } from "./Descriptions/Description1";
-import { Description2 } from "./Descriptions/Description2";
 
 const PRICE_PER_KG = 105;
 const MASS_SURCHARGE_CHOCOLATE = 12;
@@ -15,6 +13,7 @@ const CAKE_SIZES = [
     serves: "Serve até 10 pessoas",
     minKg: 1,
     maxKg: 1.5,
+    diameter: 15,
     priceRange: { min: PRICE_PER_KG * 1, max: PRICE_PER_KG * 1.5 },
   },
   {
@@ -23,6 +22,7 @@ const CAKE_SIZES = [
     serves: "Serve até 18 pessoas",
     minKg: 1.5,
     maxKg: 2,
+    diameter: 18,
     priceRange: { min: PRICE_PER_KG * 1.5, max: PRICE_PER_KG * 2 },
   },
   {
@@ -31,6 +31,7 @@ const CAKE_SIZES = [
     serves: "Serve até 25 pessoas",
     minKg: 2,
     maxKg: 2.5,
+    diameter: 20,
     priceRange: { min: PRICE_PER_KG * 2, max: PRICE_PER_KG * 2.5 },
   },
   {
@@ -39,6 +40,7 @@ const CAKE_SIZES = [
     serves: "Serve até 35 pessoas",
     minKg: 3,
     maxKg: 3.5,
+    diameter: 23,
     priceRange: { min: PRICE_PER_KG * 3, max: PRICE_PER_KG * 3.5 },
   },
 ];
@@ -48,13 +50,40 @@ const MASS_OPTIONS = [
     id: "massa-branca",
     label: "Massa branca tradicional",
     surcharge: 0,
-    modalContent: <Description2 />,
+  },
+  {
+    id: "massa-baunilha",
+    label: "Massa de baunilha artesanal",
+    surcharge: 0,
   },
   {
     id: "massa-chocolate",
     label: "Massa de chocolate (+R$ 12,00)",
     surcharge: MASS_SURCHARGE_CHOCOLATE,
-    modalContent: <Description1 />,
+  },
+];
+
+const FINISHING_OPTIONS = [
+  {
+    id: "finishing-naked",
+    label: "Naked cake no acetato",
+    description:
+      "Disponível para bolos de até 1,5 kg, finalizado com calda, frutas frescas ou docinhos artesanais.",
+    isAvailable: (size) => size.maxKg <= 1.5,
+  },
+  {
+    id: "finishing-brigadeiro",
+    label: "Brigadeiro em todo acabamento",
+    description:
+      "Ideal para bolos a partir de 2 kg com finalização em brigadeiro e seleção de docinhos ou chocolates premium.",
+    isAvailable: (size) => size.minKg >= 2,
+  },
+  {
+    id: "finishing-chantilly",
+    label: "Chantilly espatulado",
+    description:
+      "Para bolos a partir de 18 cm com rosetas, frutas ou flores. Pode haver acréscimos para toppers e embalagens.",
+    isAvailable: (size) => size.diameter >= 18,
   },
 ];
 
@@ -96,43 +125,201 @@ const EXTRA_OPTIONS = [
   "Nutella",
   "Compota de Abacaxi",
 ];
+
+const CHRISTMAS_OPTIONS = [
+  {
+    id: "natal-1",
+    name: "Natal – Prato decorado",
+    price: 190,
+    includes: [
+      "Prato decorado",
+      "Tecido natalino",
+      "Bolinho de cacau com especiarias",
+      "Porta guardanapo",
+    ],
+  },
+  {
+    id: "natal-2",
+    name: "Natal – Bandeja aconchego",
+    price: 369,
+    includes: [
+      "Bandeja de madeira",
+      "Tecido decorativo",
+      "Caneca de cerâmica",
+      "Pó especial para preparo de capuccino artesanal",
+      "Vela aromática",
+      "Pote de vidro com biscoitos amanteigados",
+    ],
+  },
+  {
+    id: "natal-3",
+    name: "Natal – Caixa gourmet",
+    price: 305,
+    includes: [
+      "Caixa de madeira",
+      "Queijo especial canastra",
+      "Brownie crunch com praliné de castanhas",
+      "Baby Chandon",
+    ],
+  },
+  {
+    id: "natal-4",
+    name: "Natal – Brinde festivo",
+    price: 268,
+    includes: [
+      "Bandeja de madeira",
+      "Baby Chandon",
+      "Mini panetone recheado",
+      "Vela aromática",
+    ],
+  },
+  {
+    id: "natal-5",
+    name: "Natal – Cesto doce especiarias",
+    price: 286,
+    includes: [
+      "Cesto",
+      "Pote com biscoitos amanteigados",
+      "Cookie",
+      "Castanhas e frutas secas",
+      "Brownie com especiarias e praliné de castanhas",
+    ],
+  },
+  {
+    id: "natal-6",
+    name: "Natal – Cesta celebração premium",
+    price: 438,
+    includes: [
+      "Cesta",
+      "Charcutaria",
+      "Queijo trufado",
+      "Bisnaga de queijo Brie",
+      "Cookies artesanais",
+      "Brownie com especiarias e praliné de castanhas",
+    ],
+  },
+];
 const BASKET_OPTIONS = [
   {
     id: "breakfast",
-    name: "Cesta Café da Manhã",
-    price: 165,
+    name: "Doce Laço",
+    price: 238,
     includes: [
-      "Pães artesanais",
-      "Geleias caseiras",
-      "Mini bolos da casa",
-      "Suco natural",
-      "Arranjo floral delicado",
+      "Sachê de Café individual",
+      "Suco ou refrigerante",
+      "Bolo Caseirinho do dia",
+      "Pão de Queijo",
+      "Croissant",
+      "Mini Geleia",
+      "Queijo Minas 120g",
+      "Iogurte natural",
+      "Frutas Cortadas do dia",
     ],
   },
   {
     id: "afternoon",
-    name: "Cesta Chá da Tarde",
-    price: 210,
+    name: "Encantos e Confeitos",
+    price: 265,
     includes: [
-      "Seleção de doces finos",
-      "Cookies amanteigados",
-      "Torradas com patês",
-      "Chás especiais",
-      "Mini vinho frisante",
+      "Pão de Fermentação Natural, Pão Levain",
+      "Kit Frios (Queijo e presunto) bandeja com 3 unidades cada",
+      "Pão de Queijo",
+      "Geleia Pote de vidro 180g",
+      "Frutas Cortadas do dia",
+      "Bolo no Pote",
+      "Caixinha com docinhos 1 sabor",
+      "Cereal Sucrilhos ou Granola",
+      "Iogurte natural",
+      "Suco de Laranja integral 300ml",
+      "Cappuccino Artesanal",
     ],
   },
   {
     id: "celebration",
-    name: "Cesta Celebração",
-    price: 285,
+    name: "Amor de Confeito",
+    price: 385,
     includes: [
-      "Bolo personalizado P",
-      "Caixa com brigadeiros gourmets",
-      "Espumante rosé",
-      "Vela e cartão dedicatória",
-      "Arranjo de flores secas",
+      "Suco integral laranja ou uva",
+      "Mini Bolo do Ateliê (Nacked festa) 900g",
+      "Frutas cortadas do dia",
+      "Bem casado de colher, brigadeiro de colher ou geleia artesanal de morango",
+      "Caixinha com 6 docinhos",
+      "Pão de fermeneção natural",
+      "Brioche",
+      "Kit frios (queijo e presunto) bandeja com 3 unidades cada",
+      "Torradas",
+      "Requeijão 160g",
+      "Iogurte natural",
+      "Capuccino artesanal",
+      "Cereal sucrilhos ou granola",
+      "Pão de queijo",
     ],
   },
+  {
+    id: "lacos-carinho",
+    name: "Laços de Carinho",
+    price: 240,
+    includes: [
+      "Café sachê individual",
+      "Chá especial sachê",
+      "Biscoito de queijo",
+      "Mix de castanhas",
+      "Croissant",
+      "Brownie",
+      "Geleia artesanal",
+      "Torrada",
+    ],
+  },
+  {
+    id: "confeitos-nobres",
+    name: "Confeitos Nobres",
+    price: 420,
+    includes: [
+      "Pão de fermentação natural",
+      "Frios especiais (queijo gouda, salame)",
+      "Geleia de pimenta",
+      "Patê (verifique as opções disponíveis)",
+      "Calda de brigadeiro",
+      "Uva verde sem sementes",
+      "Torrada aperitivo",
+      "Brownie (do Ateliê)",
+      "Suco integral",
+      "Vinho reservado (consulte as sugestões disponíveis)",
+    ],
+  },
+  {
+    id: "happy-birthday-box",
+    name: "Box Happy Birthday com mini bolo de aniversário",
+    price: 210,
+    includes: ["Mini bolo 930g", "Refrigerante", "Brigadeiros", "Snack"],
+  },
+  {
+    id: "celebrar-cerveja",
+    name: "Box Celebrar com cerveja",
+    price: 196,
+    includes: [
+      "Cerveja Baden Baden",
+      "Mix de castanhas",
+      "Damasco",
+      "Brownie",
+      "Patê de queijo (feito no Ateliê)",
+      "Torrada (pão artesanal)",
+      "Tulipa acrílico",
+    ],
+  },
+];
+
+const BASKET_EXTRA_OPTIONS = [
+  "Cerveja",
+  "Vinho",
+  "Água com gás",
+  "Suco",
+  "Capuccino",
+  "Chocolate quente",
+  "Caneca personalizada",
+  "Foto 10x9",
+  "Caixa cartonizada colorida",
+  "Balões",
 ];
 
 const currencyFormatter = new Intl.NumberFormat("pt-BR", {
@@ -161,15 +348,18 @@ export function Boxes() {
   const [activeSection, setActiveSection] = useState("cake");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedMass, setSelectedMass] = useState("");
+  const [selectedFinishing, setSelectedFinishing] = useState("");
   const [selectedFillings, setSelectedFillings] = useState([]);
   const [selectedCreams, setSelectedCreams] = useState([]);
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [selectedBasket, setSelectedBasket] = useState("");
+  const [selectedBasketExtras, setSelectedBasketExtras] = useState([]);
+  const [selectedChristmas, setSelectedChristmas] = useState("");
   const [selectionWarning, setSelectionWarning] = useState("");
-  const [modalContent, setModalContent] = useState(null);
 
   const isCakeOpen = activeSection === "cake";
   const isBasketOpen = activeSection === "basket";
+  const isChristmasOpen = activeSection === "christmas";
 
   const selectedSizeInfo = useMemo(
     () => CAKE_SIZES.find((size) => size.id === selectedSize) || null,
@@ -181,10 +371,51 @@ export function Boxes() {
     [selectedMass]
   );
 
+  const availableFinishingOptions = useMemo(() => {
+    if (!selectedSizeInfo) {
+      return [];
+    }
+    return FINISHING_OPTIONS.filter((option) =>
+      option.isAvailable(selectedSizeInfo)
+    );
+  }, [selectedSizeInfo]);
+
+  const selectedFinishingOption = useMemo(
+    () =>
+      FINISHING_OPTIONS.find((option) => option.id === selectedFinishing) ||
+      null,
+    [selectedFinishing]
+  );
+
   const selectedBasketInfo = useMemo(
     () => BASKET_OPTIONS.find((basket) => basket.id === selectedBasket) || null,
     [selectedBasket]
   );
+
+  const selectedChristmasInfo = useMemo(
+    () =>
+      CHRISTMAS_OPTIONS.find((option) => option.id === selectedChristmas) ||
+      null,
+    [selectedChristmas]
+  );
+
+  useEffect(() => {
+    if (!selectedSizeInfo || !availableFinishingOptions.length) {
+      if (selectedFinishing) {
+        setSelectedFinishing("");
+      }
+      return;
+    }
+
+    if (
+      selectedFinishing &&
+      !availableFinishingOptions.some(
+        (option) => option.id === selectedFinishing
+      )
+    ) {
+      setSelectedFinishing("");
+    }
+  }, [availableFinishingOptions, selectedFinishing, selectedSizeInfo]);
 
   const extrasTotal = useMemo(
     () => selectedExtras.length * EXTRA_UNIT_PRICE,
@@ -221,11 +452,6 @@ export function Boxes() {
     setSelectedMass(option.id);
     setSelectionWarning("");
     setActiveSection("cake");
-    if (option.modalContent) {
-      setModalContent(option.modalContent);
-    } else {
-      setModalContent(null);
-    }
   };
 
   const toggleLimitedSelection = (
@@ -279,6 +505,22 @@ export function Boxes() {
   const handleBasketSelect = (basketId) => {
     setSelectedBasket(basketId);
     setActiveSection("basket");
+    setSelectedBasketExtras([]);
+  };
+
+  const handleBasketExtraToggle = (value) => {
+    if (selectedBasketExtras.includes(value)) {
+      setSelectedBasketExtras(
+        selectedBasketExtras.filter((item) => item !== value)
+      );
+      return;
+    }
+    setSelectedBasketExtras([...selectedBasketExtras, value]);
+  };
+
+  const handleChristmasSelect = (optionId) => {
+    setSelectedChristmas(optionId);
+    setActiveSection("christmas");
   };
 
   const cakeMessage = useMemo(() => {
@@ -290,6 +532,13 @@ export function Boxes() {
       "Olá! Gostaria de montar um bolo personalizado:",
       `• Tamanho: ${selectedSizeInfo.label} (${selectedSizeInfo.serves})`,
       `• Massa: ${selectedMassInfo.label}`,
+      `• Acabamento: ${
+        selectedFinishingOption
+          ? selectedFinishingOption.label
+          : availableFinishingOptions.length
+          ? "não selecionado"
+          : "não se aplica"
+      }`,
       `• Recheios: ${
         selectedFillings.length ? selectedFillings.join(", ") : "a definir"
       }`,
@@ -311,6 +560,8 @@ export function Boxes() {
   }, [
     selectedSizeInfo,
     selectedMassInfo,
+    selectedFinishingOption,
+    availableFinishingOptions,
     selectedFillings,
     selectedCreams,
     selectedExtras,
@@ -331,19 +582,44 @@ export function Boxes() {
       "",
       "Itens inclusos:",
       ...selectedBasketInfo.includes.map((item) => `- ${item}`),
+    ];
+
+    if (selectedBasketExtras.length) {
+      lines.push("", "Adicionais desejados (valor proporcional):");
+      lines.push(...selectedBasketExtras.map((item) => `- ${item}`));
+    }
+
+    lines.push(
       "",
-      "Poderiam confirmar disponibilidade e opções de retirada ou entrega?",
+      "Poderiam confirmar disponibilidade e opções de retirada ou entrega?"
+    );
+
+    return lines.join("\n");
+  }, [selectedBasketInfo, selectedBasketExtras]);
+
+  const christmasMessage = useMemo(() => {
+    if (!selectedChristmasInfo) {
+      return "Olá! Gostaria de conhecer as opções de presentes de Natal disponíveis.";
+    }
+
+    const lines = [
+      "Olá! Tenho interesse no item natalino:",
+      `• ${selectedChristmasInfo.name} (${currencyFormatter.format(
+        selectedChristmasInfo.price
+      )})`,
+      "",
+      "Itens inclusos:",
+      ...selectedChristmasInfo.includes.map((item) => `- ${item}`),
+      "",
+      "Poderiam confirmar disponibilidade, personalização e opções de retirada ou entrega?",
     ];
 
     return lines.join("\n");
-  }, [selectedBasketInfo]);
-
-  const closeModal = () => {
-    setModalContent(null);
-  };
+  }, [selectedChristmasInfo]);
 
   const isCakeSendDisabled = !selectedSize || !selectedMass;
   const isBasketSendDisabled = !selectedBasketInfo;
+  const isChristmasSendDisabled = !selectedChristmasInfo;
 
   const openWhatsapp = (message) => {
     if (typeof window !== "undefined") {
@@ -368,6 +644,13 @@ export function Boxes() {
     openWhatsapp(basketMessage);
   };
 
+  const handleChristmasSend = () => {
+    if (isChristmasSendDisabled) {
+      return;
+    }
+    openWhatsapp(christmasMessage);
+  };
+
   return (
     <section id="boxes">
       <div className="div-container">
@@ -388,6 +671,13 @@ export function Boxes() {
               onClick={() => toggleSection("basket")}
             >
               Escolher cesta presente
+            </button>
+            <button
+              type="button"
+              className={`builder-toggle ${isChristmasOpen ? "is-open" : ""}`}
+              onClick={() => toggleSection("christmas")}
+            >
+              Selecionar itens de Natal
             </button>
           </div>
 
@@ -414,6 +704,7 @@ export function Boxes() {
                         onChange={() => {
                           setSelectedSize(size.id);
                           setActiveSection("cake");
+                          setSelectedFinishing("");
                         }}
                       />
                       <div className="option-meta">
@@ -436,7 +727,10 @@ export function Boxes() {
               <div className="builder-group">
                 <div className="group-header">
                   <h2>Escolha a massa</h2>
-                  <p>Massa de chocolate adiciona R$ 12,00 ao valor final.</p>
+                  <p>
+                    Escolha sua massa preferida. Massa de chocolate adiciona R$
+                    12,00 ao valor final.
+                  </p>
                 </div>
                 <div className="option-list">
                   {MASS_OPTIONS.map((option) => (
@@ -445,11 +739,6 @@ export function Boxes() {
                       className={`option-item ${
                         selectedMass === option.id ? "is-selected" : ""
                       }`}
-                      onClick={() => {
-                        if (selectedMass === option.id && option.modalContent) {
-                          setModalContent(option.modalContent);
-                        }
-                      }}
                     >
                       <input
                         type="radio"
@@ -460,12 +749,46 @@ export function Boxes() {
                       />
                       <div className="option-meta">
                         <span>{option.label}</span>
-                        <small>Clique para visualizar detalhes.</small>
                       </div>
                     </label>
                   ))}
                 </div>
               </div>
+
+              {selectedSizeInfo && availableFinishingOptions.length > 0 && (
+                <div className="builder-group">
+                  <div className="group-header">
+                    <h2>Escolha o acabamento</h2>
+                    <p>
+                      Disponível conforme o tamanho selecionado. Informe no
+                      pedido se deseja toppers, vela ou embalagem especial para
+                      alinharmos valores adicionais.
+                    </p>
+                  </div>
+                  <div className="option-list">
+                    {availableFinishingOptions.map((option) => (
+                      <label
+                        key={option.id}
+                        className={`option-item ${
+                          selectedFinishing === option.id ? "is-selected" : ""
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="cake-finishing"
+                          value={option.id}
+                          checked={selectedFinishing === option.id}
+                          onChange={() => setSelectedFinishing(option.id)}
+                        />
+                        <div className="option-meta">
+                          <span>{option.label}</span>
+                          <small>{option.description}</small>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="builder-group">
                 <div className="group-header">
@@ -551,27 +874,6 @@ export function Boxes() {
               {selectionWarning && (
                 <p className="selection-warning">{selectionWarning}</p>
               )}
-
-              <div className="finishing-info">
-                <h2>Acabamentos disponíveis</h2>
-                <ul>
-                  <li>
-                    Naked cake com acabamento no acetato, finalizado com calda,
-                    docinhos, rosetas de brigadeiro ou frutas.
-                  </li>
-                  <li>
-                    Brigadeiro no acabamento para bolos acima de 2 kg,
-                    finalizado com doces ou frutas.
-                  </li>
-                  <li>
-                    Chantilly para bolos a partir de 18 cm: acabamento
-                    espatulado com rosetas, frutas ou flores. Pode haver
-                    acréscimos referentes à embalagem especial e demais
-                    materiais.
-                  </li>
-                </ul>
-              </div>
-
               <div className="summary-card">
                 <h2>Resumo do bolo</h2>
                 <ul>
@@ -582,6 +884,14 @@ export function Boxes() {
                   <li>
                     <strong>Massa:</strong>{" "}
                     {selectedMassInfo ? selectedMassInfo.label : "—"}
+                  </li>
+                  <li>
+                    <strong>Acabamento:</strong>{" "}
+                    {selectedFinishingOption
+                      ? selectedFinishingOption.label
+                      : availableFinishingOptions.length
+                      ? "Nenhum selecionado"
+                      : "Não se aplica"}
                   </li>
                   <li>
                     <strong>Recheios:</strong> {formatList(selectedFillings)}
@@ -654,6 +964,37 @@ export function Boxes() {
                 </div>
               </div>
 
+              {selectedBasket && (
+                <div className="builder-group">
+                  <div className="group-header">
+                    <h2>Adicionais para a cesta</h2>
+                    <p>Valor cobrado proporcionalmente às escolhas.</p>
+                  </div>
+                  <div className="option-grid">
+                    {BASKET_EXTRA_OPTIONS.map((option) => (
+                      <label
+                        key={option}
+                        className={`option-item ${
+                          selectedBasketExtras.includes(option)
+                            ? "is-selected"
+                            : ""
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          value={option}
+                          checked={selectedBasketExtras.includes(option)}
+                          onChange={() => handleBasketExtraToggle(option)}
+                        />
+                        <div className="option-meta">
+                          <span>{option}</span>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {selectedBasketInfo && (
                 <div className="summary-card">
                   <h2>Resumo da cesta</h2>
@@ -664,6 +1005,10 @@ export function Boxes() {
                     <li>
                       <strong>Valor:</strong>{" "}
                       {currencyFormatter.format(selectedBasketInfo.price)}
+                    </li>
+                    <li>
+                      <strong>Adicionais:</strong>{" "}
+                      {formatList(selectedBasketExtras)}
                     </li>
                   </ul>
                   <p className="basket-items-title">Itens inclusos:</p>
@@ -689,7 +1034,85 @@ export function Boxes() {
                   </button>
                   <p className="summary-hint">
                     Personalize a entrega diretamente conosco após o envio da
-                    mensagem.
+                    mensagem. Os adicionais selecionados são cobrados de forma
+                    proporcional.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {isChristmasOpen && (
+            <div className="builder-section">
+              <div className="builder-group">
+                <div className="group-header">
+                  <h2>Escolha seu presente de Natal</h2>
+                  <p>
+                    Opções limitadas do Ateliê para presentear com carinho neste
+                    fim de ano.
+                  </p>
+                </div>
+                <div className="option-list">
+                  {CHRISTMAS_OPTIONS.map((option) => (
+                    <label
+                      key={option.id}
+                      className={`option-item ${
+                        selectedChristmas === option.id ? "is-selected" : ""
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="christmas-item"
+                        value={option.id}
+                        checked={selectedChristmas === option.id}
+                        onChange={() => handleChristmasSelect(option.id)}
+                      />
+                      <div className="option-meta">
+                        <span>{option.name}</span>
+                        <small>{currencyFormatter.format(option.price)}</small>
+                        <small>{option.includes[0]} e muito mais</small>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {selectedChristmasInfo && (
+                <div className="summary-card">
+                  <h2>Resumo do presente natalino</h2>
+                  <ul>
+                    <li>
+                      <strong>Opção:</strong> {selectedChristmasInfo.name}
+                    </li>
+                    <li>
+                      <strong>Valor:</strong>{" "}
+                      {currencyFormatter.format(selectedChristmasInfo.price)}
+                    </li>
+                  </ul>
+                  <p className="basket-items-title">Itens inclusos:</p>
+                  <ul className="basket-items">
+                    {selectedChristmasInfo.includes.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+
+                  <textarea
+                    className="summary-message"
+                    readOnly
+                    value={christmasMessage}
+                  />
+
+                  <button
+                    type="button"
+                    className="whatsapp-button"
+                    onClick={handleChristmasSend}
+                    disabled={isChristmasSendDisabled}
+                  >
+                    Enviar pedido natalino
+                  </button>
+                  <p className="summary-hint">
+                    Estoque limitado para o Natal. Informe no envio se deseja
+                    acrescentar mensagem especial ou personalização extra.
                   </p>
                 </div>
               )}
@@ -697,17 +1120,6 @@ export function Boxes() {
           )}
         </div>
       </div>
-
-      {modalContent && (
-        <section className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            {modalContent}
-          </div>
-        </section>
-      )}
     </section>
   );
 }
