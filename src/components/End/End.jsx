@@ -1,6 +1,4 @@
-import { LiaFacebookF } from "react-icons/lia";
-import { ImLinkedin2 } from "react-icons/im";
-import { FaGooglePlusG } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
@@ -13,14 +11,14 @@ export function End() {
       <div className="container-title-footer">
         <h1>Siga-nos nas redes sociais</h1>
         <div className="container-icons">
-          <a href="" className="button1">
-            <LiaFacebookF />
-          </a>
-          <a href="" className="button2">
-            <ImLinkedin2 />
-          </a>
-          <a href="" className="button3">
-            <FaGooglePlusG />
+          <a
+            href="https://www.instagram.com/lacoseconfeitosatelie/"
+            className="button-instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram Laços e Confeitos"
+          >
+            <FaInstagram />
           </a>
         </div>
       </div>
@@ -32,14 +30,14 @@ export function End() {
             mais!
           </p>
           <div className="container-button-icon">
-            <a href="" className="button1">
-              <LiaFacebookF />
-            </a>
-            <a href="" className="button2">
-              <ImLinkedin2 />
-            </a>
-            <a href="" className="button3">
-              <FaGooglePlusG />
+            <a
+              href="https://www.instagram.com/lacoseconfeitosatelie/"
+              className="button-instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram Laços e Confeitos"
+            >
+              <FaInstagram />
             </a>
           </div>
         </article>
@@ -78,7 +76,11 @@ export function End() {
       </div>
       <div className="container-footer-end">
         <h1>Laços & Confeitos © 2023. Todos os direitos reservados.</h1>
-        <a href="">
+        <a
+          href="https://www.togyrogroupvictory.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Developed by <span>Togyro Group Victory.</span>
         </a>
       </div>

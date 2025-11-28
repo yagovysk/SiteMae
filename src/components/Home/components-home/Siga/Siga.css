@@ -91,19 +91,53 @@
   gap: 1rem;
   padding: 0 24rem;
 }
-.container-photos1 .instagram-hover {
+.container-photos1 .instagram-item,
+.container-photos2 .instagram-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.container-photos1 .instagram-item .instagram-hover,
+.container-photos2 .instagram-item .instagram-hover {
   width: 18rem;
   height: 16.5rem;
 }
+
 .container-photos2 {
   display: flex;
   gap: 1rem;
   padding: 0 24rem;
   padding-bottom: 4.6rem;
 }
-.container-photos2 .instagram-hover {
-  width: 18rem;
-  height: 16.5rem;
+.container-photos2 .instagram-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+.instagram-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366);
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.instagram-icon-link:hover {
+  transform: translateY(-2px);
+}
+
+.instagram-icon-link svg {
+  font-size: 1.25rem;
 }
 .instagram-modal {
   position: fixed;
@@ -197,6 +231,10 @@
   .container-photos2 .instagram-hover {
     width: 16rem;
     height: auto;
+  }
+  .instagram-icon-link {
+    width: 2.5rem;
+    height: 2.5rem;
   }
   .container-photos2 {
     flex-direction: column;

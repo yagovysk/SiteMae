@@ -52,18 +52,30 @@ export function Siga() {
         {GALLERY_ROWS.map((row, rowIndex) => (
           <div
             key={`row-${rowIndex}`}
-            className={rowIndex === 0 ? "container-photos1" : "container-photos2"}
+            className={
+              rowIndex === 0 ? "container-photos1" : "container-photos2"
+            }
           >
             {row.map((image) => (
-              <button
-                type="button"
-                key={image.id}
-                className="instagram-hover"
-                onClick={() => openModal(image)}
-              >
-                <img src={image.src} alt={image.alt} />
-                <FaInstagram className="instagram-icon" />
-              </button>
+              <div key={image.id} className="instagram-item">
+                <button
+                  type="button"
+                  className="instagram-hover"
+                  onClick={() => openModal(image)}
+                >
+                  <img src={image.src} alt={image.alt} />
+                  <FaInstagram className="instagram-icon" />
+                </button>
+                <a
+                  className="instagram-icon-link"
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Abrir perfil no Instagram"
+                >
+                  <FaInstagram />
+                </a>
+              </div>
             ))}
           </div>
         ))}

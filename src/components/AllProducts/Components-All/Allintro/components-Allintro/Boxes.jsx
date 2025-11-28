@@ -356,6 +356,8 @@ export function Boxes() {
   const [selectedBasketExtras, setSelectedBasketExtras] = useState([]);
   const [selectedChristmas, setSelectedChristmas] = useState("");
   const [selectionWarning, setSelectionWarning] = useState("");
+  const [expandedBaskets, setExpandedBaskets] = useState([]);
+  const [expandedChristmas, setExpandedChristmas] = useState([]);
 
   const isCakeOpen = activeSection === "cake";
   const isBasketOpen = activeSection === "basket";
@@ -518,9 +520,25 @@ export function Boxes() {
     setSelectedBasketExtras([...selectedBasketExtras, value]);
   };
 
+  const toggleBasketDetails = (basketId) => {
+    setExpandedBaskets((prev) =>
+      prev.includes(basketId)
+        ? prev.filter((id) => id !== basketId)
+        : [...prev, basketId]
+    );
+  };
+
   const handleChristmasSelect = (optionId) => {
     setSelectedChristmas(optionId);
     setActiveSection("christmas");
+  };
+
+  const toggleChristmasDetails = (optionId) => {
+    setExpandedChristmas((prev) =>
+      prev.includes(optionId)
+        ? prev.filter((id) => id !== optionId)
+        : [...prev, optionId]
+    );
   };
 
   const cakeMessage = useMemo(() => {
@@ -617,9 +635,34 @@ export function Boxes() {
     return lines.join("\n");
   }, [selectedChristmasInfo]);
 
-  const isCakeSendDisabled = !selectedSize || !selectedMass;
-  const isBasketSendDisabled = !selectedBasketInfo;
-  const isChristmasSendDisabled = !selectedChristmasInfo;
+  const cakeNextSteps = useMemo(() => {
+    const pending = [];
+    if (!selectedSizeInfo) {
+      pending.push("Selecione o tamanho do bolo.");
+    }
+    if (!selectedMassInfo) {
+      pending.push("Escolha a massa preferida.");
+    }
+    return pending;
+  }, [selectedSizeInfo, selectedMassInfo]);
+
+  const basketNextSteps = useMemo(() => {
+    if (!selectedBasketInfo) {
+      return ["Escolha uma cesta para liberar o envio."];
+    }
+    return [];
+  }, [selectedBasketInfo]);
+
+  const christmasNextSteps = useMemo(() => {
+    if (!selectedChristmasInfo) {
+      return ["Selecione um item natalino para enviar o pedido."];
+    }
+    return [];
+  }, [selectedChristmasInfo]);
+
+  const isCakeSendDisabled = cakeNextSteps.length > 0;
+  const isBasketSendDisabled = basketNextSteps.length > 0;
+  const isChristmasSendDisabled = christmasNextSteps.length > 0;
 
   const openWhatsapp = (message) => {
     if (typeof window !== "undefined") {
@@ -681,12 +724,30 @@ export function Boxes() {
             </button>
           </div>
 
+          <div className="builder-intro" aria-live="polite">
+            <h2>Monte seu pedido em 3 passos</h2>
+            <ol>
+              <li>Escolha a categoria desejada no topo.</li>
+              <li>Preencha as escolhas obrigatórias em cada etapa.</li>
+              <li>Revise o resumo e envie pelo WhatsApp.</li>
+            </ol>
+            <p>
+              Em celulares, role até o final de cada etapa para visualizar o
+              resumo com as próximas ações.
+            </p>
+          </div>
+
           {isCakeOpen && (
             <div className="builder-section">
               <div className="builder-group">
                 <div className="group-header">
-                  <h2>Escolha o tamanho</h2>
-                  <p>Preço base: R$ 105,00 por kg</p>
+                  <div className="group-title">
+                    <span className="step-indicator">1</span>
+                    <div>
+                      <h2>Escolha o tamanho</h2>
+                      <p>Preço base: R$ 105,00 por kg</p>
+                    </div>
+                  </div>
                 </div>
                 <div className="option-list">
                   {CAKE_SIZES.map((size) => (
@@ -726,11 +787,16 @@ export function Boxes() {
 
               <div className="builder-group">
                 <div className="group-header">
-                  <h2>Escolha a massa</h2>
-                  <p>
-                    Escolha sua massa preferida. Massa de chocolate adiciona R$
-                    12,00 ao valor final.
-                  </p>
+                  <div className="group-title">
+                    <span className="step-indicator">2</span>
+                    <div>
+                      <h2>Escolha a massa</h2>
+                      <p>
+                        Escolha sua massa preferida. Massa de chocolate adiciona
+                        R$ 12,00 ao valor final.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="option-list">
                   {MASS_OPTIONS.map((option) => (
@@ -758,12 +824,17 @@ export function Boxes() {
               {selectedSizeInfo && availableFinishingOptions.length > 0 && (
                 <div className="builder-group">
                   <div className="group-header">
-                    <h2>Escolha o acabamento</h2>
-                    <p>
-                      Disponível conforme o tamanho selecionado. Informe no
-                      pedido se deseja toppers, vela ou embalagem especial para
-                      alinharmos valores adicionais.
-                    </p>
+                    <div className="group-title">
+                      <span className="step-indicator">3</span>
+                      <div>
+                        <h2>Escolha o acabamento</h2>
+                        <p>
+                          Disponível conforme o tamanho selecionado. Informe no
+                          pedido se deseja toppers, vela ou embalagem especial
+                          para alinharmos valores adicionais.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   <div className="option-list">
                     {availableFinishingOptions.map((option) => (
@@ -792,8 +863,18 @@ export function Boxes() {
 
               <div className="builder-group">
                 <div className="group-header">
-                  <h2>Recheios (até 2 opções)</h2>
-                  <p>Selecione os brigadeiros que combinam com o seu bolo.</p>
+                  <div className="group-title">
+                    <span className="step-indicator">4</span>
+                    <div>
+                      <h2>Recheios (até 2 opções)</h2>
+                      <p>
+                        Selecione os brigadeiros que combinam com o seu bolo.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="group-counter">
+                    {selectedFillings.length} de 2 selecionados
+                  </span>
                 </div>
                 <div className="option-grid">
                   {FILLING_OPTIONS.map((option) => (
@@ -819,8 +900,16 @@ export function Boxes() {
 
               <div className="builder-group">
                 <div className="group-header">
-                  <h2>Cremes (até 2 opções)</h2>
-                  <p>Escolha os cremes para acompanhar sua experiência.</p>
+                  <div className="group-title">
+                    <span className="step-indicator">5</span>
+                    <div>
+                      <h2>Cremes (até 2 opções)</h2>
+                      <p>Escolha os cremes para acompanhar sua experiência.</p>
+                    </div>
+                  </div>
+                  <span className="group-counter">
+                    {selectedCreams.length} de 2 selecionados
+                  </span>
                 </div>
                 <div className="option-grid">
                   {CREAM_OPTIONS.map((option) => (
@@ -846,8 +935,16 @@ export function Boxes() {
 
               <div className="builder-group">
                 <div className="group-header">
-                  <h2>Adicionais (R$ 5,00 cada)</h2>
-                  <p>Escolha quantos desejar, valor somado ao total.</p>
+                  <div className="group-title">
+                    <span className="step-indicator">6</span>
+                    <div>
+                      <h2>Adicionais (R$ 5,00 cada)</h2>
+                      <p>Escolha quantos desejar, valor somado ao total.</p>
+                    </div>
+                  </div>
+                  <span className="group-counter">
+                    {selectedExtras.length} selecionado(s)
+                  </span>
                 </div>
                 <div className="option-grid">
                   {EXTRA_OPTIONS.map((option) => (
@@ -872,8 +969,11 @@ export function Boxes() {
               </div>
 
               {selectionWarning && (
-                <p className="selection-warning">{selectionWarning}</p>
+                <p className="selection-warning" role="status">
+                  {selectionWarning}
+                </p>
               )}
+
               <div className="summary-card">
                 <h2>Resumo do bolo</h2>
                 <ul>
@@ -910,6 +1010,21 @@ export function Boxes() {
                   </li>
                 </ul>
 
+                {cakeNextSteps.length > 0 ? (
+                  <div className="summary-checklist" aria-live="polite">
+                    <h3>Próximos passos</h3>
+                    <ul>
+                      {cakeNextSteps.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="summary-ready">
+                    Tudo pronto! Clique em “Enviar pedido de bolo”.
+                  </p>
+                )}
+
                 <textarea
                   className="summary-message"
                   readOnly
@@ -924,10 +1039,16 @@ export function Boxes() {
                 >
                   Enviar pedido de bolo
                 </button>
-                <p className="summary-hint">
-                  Revise as escolhas antes de enviar. O valor final pode variar
-                  conforme decoração e acabamentos escolhidos.
-                </p>
+                {cakeNextSteps.length > 0 ? (
+                  <p className="summary-hint">
+                    Finalize as etapas acima para liberar o envio pelo WhatsApp.
+                  </p>
+                ) : (
+                  <p className="summary-hint">
+                    Revise as escolhas antes de enviar. O valor final pode
+                    variar conforme decoração e acabamentos escolhidos.
+                  </p>
+                )}
               </div>
             </div>
           )}
@@ -936,39 +1057,93 @@ export function Boxes() {
             <div className="builder-section">
               <div className="builder-group">
                 <div className="group-header">
-                  <h2>Selecione sua cesta presente</h2>
-                  <p>Escolha a opção ideal para surpreender alguém especial.</p>
+                  <div className="group-title">
+                    <span className="step-indicator">1</span>
+                    <div>
+                      <h2>Selecione sua cesta presente</h2>
+                      <p>
+                        Escolha a opção ideal para surpreender alguém especial.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="group-counter">
+                    {selectedBasketInfo
+                      ? "Opção escolhida"
+                      : "Nenhuma selecionada"}
+                  </span>
                 </div>
                 <div className="option-list">
-                  {BASKET_OPTIONS.map((basket) => (
-                    <label
-                      key={basket.id}
-                      className={`option-item ${
-                        selectedBasket === basket.id ? "is-selected" : ""
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="gift-basket"
-                        value={basket.id}
-                        checked={selectedBasket === basket.id}
-                        onChange={() => handleBasketSelect(basket.id)}
-                      />
-                      <div className="option-meta">
-                        <span>{basket.name}</span>
-                        <small>{currencyFormatter.format(basket.price)}</small>
-                        <small>{basket.includes[0]} e muito mais</small>
-                      </div>
-                    </label>
-                  ))}
+                  {BASKET_OPTIONS.map((basket) => {
+                    const isExpanded = expandedBaskets.includes(basket.id);
+                    const hasMoreItems = basket.includes.length > 1;
+                    const detailsId = `basket-details-${basket.id}`;
+
+                    return (
+                      <label
+                        key={basket.id}
+                        className={`option-item ${
+                          selectedBasket === basket.id ? "is-selected" : ""
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="gift-basket"
+                          value={basket.id}
+                          checked={selectedBasket === basket.id}
+                          onChange={() => handleBasketSelect(basket.id)}
+                        />
+                        <div className="option-meta">
+                          <span>{basket.name}</span>
+                          <small>
+                            {currencyFormatter.format(basket.price)}
+                          </small>
+                          {hasMoreItems ? (
+                            <small>
+                              {basket.includes[0]}{" "}
+                              <button
+                                type="button"
+                                className="option-expand"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  event.stopPropagation();
+                                  toggleBasketDetails(basket.id);
+                                }}
+                                aria-expanded={isExpanded}
+                                aria-controls={detailsId}
+                              >
+                                {isExpanded ? "ver menos" : "e muito mais"}
+                              </button>
+                            </small>
+                          ) : (
+                            <small>{basket.includes[0]}</small>
+                          )}
+                          {isExpanded && (
+                            <ul className="option-details" id={detailsId}>
+                              {basket.includes.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
 
               {selectedBasket && (
                 <div className="builder-group">
                   <div className="group-header">
-                    <h2>Adicionais para a cesta</h2>
-                    <p>Valor cobrado proporcionalmente às escolhas.</p>
+                    <div className="group-title">
+                      <span className="step-indicator">2</span>
+                      <div>
+                        <h2>Adicionais para a cesta</h2>
+                        <p>Valor cobrado proporcionalmente às escolhas.</p>
+                      </div>
+                    </div>
+                    <span className="group-counter">
+                      {selectedBasketExtras.length} selecionado(s)
+                    </span>
                   </div>
                   <div className="option-grid">
                     {BASKET_EXTRA_OPTIONS.map((option) => (
@@ -995,50 +1170,81 @@ export function Boxes() {
                 </div>
               )}
 
-              {selectedBasketInfo && (
-                <div className="summary-card">
-                  <h2>Resumo da cesta</h2>
-                  <ul>
-                    <li>
-                      <strong>Opção:</strong> {selectedBasketInfo.name}
-                    </li>
-                    <li>
-                      <strong>Valor:</strong>{" "}
-                      {currencyFormatter.format(selectedBasketInfo.price)}
-                    </li>
-                    <li>
-                      <strong>Adicionais:</strong>{" "}
-                      {formatList(selectedBasketExtras)}
-                    </li>
-                  </ul>
-                  <p className="basket-items-title">Itens inclusos:</p>
-                  <ul className="basket-items">
-                    {selectedBasketInfo.includes.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+              <div className="summary-card">
+                <h2>Resumo da cesta</h2>
+                <ul>
+                  <li>
+                    <strong>Opção:</strong>{" "}
+                    {selectedBasketInfo ? selectedBasketInfo.name : "—"}
+                  </li>
+                  <li>
+                    <strong>Valor:</strong>{" "}
+                    {selectedBasketInfo
+                      ? currencyFormatter.format(selectedBasketInfo.price)
+                      : "—"}
+                  </li>
+                  <li>
+                    <strong>Adicionais:</strong>{" "}
+                    {formatList(selectedBasketExtras)}
+                  </li>
+                </ul>
 
-                  <textarea
-                    className="summary-message"
-                    readOnly
-                    value={basketMessage}
-                  />
+                {selectedBasketInfo ? (
+                  <>
+                    <p className="basket-items-title">Itens inclusos:</p>
+                    <ul className="basket-items">
+                      {selectedBasketInfo.includes.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <p className="summary-placeholder">
+                    Selecione uma cesta para visualizar os itens inclusos.
+                  </p>
+                )}
 
-                  <button
-                    type="button"
-                    className="whatsapp-button"
-                    onClick={handleBasketSend}
-                    disabled={isBasketSendDisabled}
-                  >
-                    Enviar pedido de cesta
-                  </button>
+                {basketNextSteps.length > 0 ? (
+                  <div className="summary-checklist" aria-live="polite">
+                    <h3>Próximo passo</h3>
+                    <ul>
+                      {basketNextSteps.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="summary-ready">
+                    Tudo pronto! Clique em “Enviar pedido de cesta”.
+                  </p>
+                )}
+
+                <textarea
+                  className="summary-message"
+                  readOnly
+                  value={basketMessage}
+                />
+
+                <button
+                  type="button"
+                  className="whatsapp-button"
+                  onClick={handleBasketSend}
+                  disabled={isBasketSendDisabled}
+                >
+                  Enviar pedido de cesta
+                </button>
+                {basketNextSteps.length > 0 ? (
+                  <p className="summary-hint">
+                    Escolha uma cesta para liberar o envio pelo WhatsApp.
+                  </p>
+                ) : (
                   <p className="summary-hint">
                     Personalize a entrega diretamente conosco após o envio da
                     mensagem. Os adicionais selecionados são cobrados de forma
                     proporcional.
                   </p>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           )}
 
@@ -1046,76 +1252,152 @@ export function Boxes() {
             <div className="builder-section">
               <div className="builder-group">
                 <div className="group-header">
-                  <h2>Escolha seu presente de Natal</h2>
-                  <p>
-                    Opções limitadas do Ateliê para presentear com carinho neste
-                    fim de ano.
-                  </p>
+                  <div className="group-title">
+                    <span className="step-indicator">1</span>
+                    <div>
+                      <h2>Escolha seu presente de Natal</h2>
+                      <p>
+                        Opções limitadas do Ateliê para presentear com carinho
+                        neste fim de ano.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="group-counter">
+                    {selectedChristmasInfo
+                      ? "Opção escolhida"
+                      : "Nenhuma selecionada"}
+                  </span>
                 </div>
                 <div className="option-list">
-                  {CHRISTMAS_OPTIONS.map((option) => (
-                    <label
-                      key={option.id}
-                      className={`option-item ${
-                        selectedChristmas === option.id ? "is-selected" : ""
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="christmas-item"
-                        value={option.id}
-                        checked={selectedChristmas === option.id}
-                        onChange={() => handleChristmasSelect(option.id)}
-                      />
-                      <div className="option-meta">
-                        <span>{option.name}</span>
-                        <small>{currencyFormatter.format(option.price)}</small>
-                        <small>{option.includes[0]} e muito mais</small>
-                      </div>
-                    </label>
-                  ))}
+                  {CHRISTMAS_OPTIONS.map((option) => {
+                    const isExpanded = expandedChristmas.includes(option.id);
+                    const hasMoreItems = option.includes.length > 1;
+                    const detailsId = `christmas-details-${option.id}`;
+
+                    return (
+                      <label
+                        key={option.id}
+                        className={`option-item ${
+                          selectedChristmas === option.id ? "is-selected" : ""
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="christmas-item"
+                          value={option.id}
+                          checked={selectedChristmas === option.id}
+                          onChange={() => handleChristmasSelect(option.id)}
+                        />
+                        <div className="option-meta">
+                          <span>{option.name}</span>
+                          <small>
+                            {currencyFormatter.format(option.price)}
+                          </small>
+                          {hasMoreItems ? (
+                            <small>
+                              {option.includes[0]}{" "}
+                              <button
+                                type="button"
+                                className="option-expand"
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  event.stopPropagation();
+                                  toggleChristmasDetails(option.id);
+                                }}
+                                aria-expanded={isExpanded}
+                                aria-controls={detailsId}
+                              >
+                                {isExpanded ? "ver menos" : "e muito mais"}
+                              </button>
+                            </small>
+                          ) : (
+                            <small>{option.includes[0]}</small>
+                          )}
+                          {isExpanded && (
+                            <ul className="option-details" id={detailsId}>
+                              {option.includes.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
 
-              {selectedChristmasInfo && (
-                <div className="summary-card">
-                  <h2>Resumo do presente natalino</h2>
-                  <ul>
-                    <li>
-                      <strong>Opção:</strong> {selectedChristmasInfo.name}
-                    </li>
-                    <li>
-                      <strong>Valor:</strong>{" "}
-                      {currencyFormatter.format(selectedChristmasInfo.price)}
-                    </li>
-                  </ul>
-                  <p className="basket-items-title">Itens inclusos:</p>
-                  <ul className="basket-items">
-                    {selectedChristmasInfo.includes.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+              <div className="summary-card">
+                <h2>Resumo do presente natalino</h2>
+                <ul>
+                  <li>
+                    <strong>Opção:</strong>{" "}
+                    {selectedChristmasInfo ? selectedChristmasInfo.name : "—"}
+                  </li>
+                  <li>
+                    <strong>Valor:</strong>{" "}
+                    {selectedChristmasInfo
+                      ? currencyFormatter.format(selectedChristmasInfo.price)
+                      : "—"}
+                  </li>
+                </ul>
 
-                  <textarea
-                    className="summary-message"
-                    readOnly
-                    value={christmasMessage}
-                  />
-
-                  <button
-                    type="button"
-                    className="whatsapp-button"
-                    onClick={handleChristmasSend}
-                    disabled={isChristmasSendDisabled}
-                  >
-                    Enviar pedido natalino
-                  </button>
-                  <p className="summary-hint">
-                    Estoque limitado para o Natal. Informe no envio se deseja
-                    acrescentar mensagem especial ou personalização extra.
+                {selectedChristmasInfo ? (
+                  <>
+                    <p className="basket-items-title">Itens inclusos:</p>
+                    <ul className="basket-items">
+                      {selectedChristmasInfo.includes.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <p className="summary-placeholder">
+                    Escolha um presente natalino para conferir os itens
+                    incluídos.
                   </p>
-                </div>
-              )}
+                )}
+
+                {christmasNextSteps.length > 0 ? (
+                  <div className="summary-checklist" aria-live="polite">
+                    <h3>Próximo passo</h3>
+                    <ul>
+                      {christmasNextSteps.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="summary-ready">
+                    Tudo pronto! Clique em “Enviar pedido natalino”.
+                  </p>
+                )}
+
+                <textarea
+                  className="summary-message"
+                  readOnly
+                  value={christmasMessage}
+                />
+
+                <button
+                  type="button"
+                  className="whatsapp-button"
+                  onClick={handleChristmasSend}
+                  disabled={isChristmasSendDisabled}
+                >
+                  Enviar pedido natalino
+                </button>
+                {christmasNextSteps.length > 0 ? (
+                  <p className="summary-hint">
+                    Escolha um presente para liberar o envio pelo WhatsApp.
+                  </p>
+                ) : (
+                  <p className="summary-hint">
+                    Estoque limitado para o Natal. Informe se deseja adicionar
+                    mensagem especial ou personalização extra.
+                  </p>
+                )}
+              </div>
             </div>
           )}
         </div>
