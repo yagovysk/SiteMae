@@ -1,59 +1,80 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import {
+  FiCoffee,
+  FiGift,
+  FiHeart,
+  FiShoppingBag,
+  FiStar,
+  FiSun,
+} from "react-icons/fi";
+import { GiCakeSlice } from "react-icons/gi";
 import "./Boxes.css";
+import doceLacoPhoto1 from "../../../../../assets/CestaEspecial.jpg";
+import doceLacoPhoto2 from "../../../../../assets/cesta.jpg";
+import doceLacoPhoto3 from "../../../../../assets/img-cesta1.png";
+import doceEncantoPhoto1 from "../../../../../assets/doce-encanto-1.png";
+import doceEncantoPhoto2 from "../../../../../assets/doce-encanto-2.png";
+import amorDeConfeitoPhoto1 from "../../../../../assets/amor-de-confeito.png";
+import lacosDeCarinhoPhoto1 from "../../../../../assets/lacos-de-carinho.png";
+import doceMomentoComNobrezaPhoto1 from "../../../../../assets/doce-momento-com-nobreza.png";
+import doceMomentoComNobrezaPhoto2 from "../../../../../assets/doce-momento-com-nobreza-2.png";
+import boxHappyPhoto1 from "../../../../../assets/box-happy-1.png";
+import boxHappyPhoto2 from "../../../../../assets/box-happy-2.png";
+import referenciaPhoto1 from "../../../../../assets/referencia-1.png";
+import referenciaPhoto2 from "../../../../../assets/referencia-2.png";
+import referenciaPhoto3 from "../../../../../assets/referencia-3.png";
+import referenciaPhoto4 from "../../../../../assets/referencia-4.png";
+import referenciaPhoto5 from "../../../../../assets/referencia-5.png";
+import referenciaPhoto6 from "../../../../../assets/referencia-6.png";
+import referenciaPhoto7 from "../../../../../assets/referencia-7.png";
+import referenciaPhoto8 from "../../../../../assets/referencia-8.png";
+import referenciaPhoto9 from "../../../../../assets/referencia-9.png";
 
-const PRICE_PER_KG = 105;
 const MASS_SURCHARGE_CHOCOLATE = 12;
-const EXTRA_UNIT_PRICE = 5;
 const WHATSAPP_NUMBER = "5561983663051";
 
 const CAKE_SIZES = [
   {
     id: "15-cm",
     label: "Bolo 15 cm",
-    serves: "Serve até 10 pessoas",
-    minKg: 1,
-    maxKg: 1.5,
-    diameter: 15,
-    priceRange: { min: PRICE_PER_KG * 1, max: PRICE_PER_KG * 1.5 },
+    serves: "Serve até 12 fatias",
+    basePrice: 176,
   },
   {
     id: "18-cm",
     label: "Bolo 18 cm",
-    serves: "Serve até 18 pessoas",
-    minKg: 1.5,
-    maxKg: 2,
-    diameter: 18,
-    priceRange: { min: PRICE_PER_KG * 1.5, max: PRICE_PER_KG * 2 },
+    serves: "Serve até 16 fatias",
+    basePrice: 235,
   },
   {
     id: "20-cm",
     label: "Bolo 20 cm",
-    serves: "Serve até 25 pessoas",
-    minKg: 2,
-    maxKg: 2.5,
-    diameter: 20,
-    priceRange: { min: PRICE_PER_KG * 2, max: PRICE_PER_KG * 2.5 },
+    serves: "Serve até 22 fatias",
+    basePrice: 310,
   },
   {
     id: "23-cm",
     label: "Bolo 23 cm",
-    serves: "Serve até 35 pessoas",
-    minKg: 3,
-    maxKg: 3.5,
-    diameter: 23,
-    priceRange: { min: PRICE_PER_KG * 3, max: PRICE_PER_KG * 3.5 },
+    serves: "Serve até 32 fatias",
+    basePrice: 370,
+  },
+  {
+    id: "mini-bolo",
+    label: "Mini bolo (aprox. 1 kg)",
+    serves: "Serve até 6 pessoas",
+    basePrice: 100,
   },
 ];
 
 const MASS_OPTIONS = [
   {
     id: "massa-branca",
-    label: "Massa branca tradicional",
+    label: "Massa branca",
     surcharge: 0,
   },
   {
     id: "massa-baunilha",
-    label: "Massa de baunilha artesanal",
+    label: "Massa de baunilha",
     surcharge: 0,
   },
   {
@@ -61,141 +82,132 @@ const MASS_OPTIONS = [
     label: "Massa de chocolate (+R$ 12,00)",
     surcharge: MASS_SURCHARGE_CHOCOLATE,
   },
+  {
+    id: "massa-saborizada",
+    label: "Massas saborizadas (limão ou laranja)",
+    surcharge: 0,
+  },
 ];
 
 const FINISHING_OPTIONS = [
   {
     id: "finishing-naked",
-    label: "Naked cake no acetato",
-    description:
-      "Disponível para bolos de até 1,5 kg, finalizado com calda, frutas frescas ou docinhos artesanais.",
-    isAvailable: (size) => size.maxKg <= 1.5,
+    label: "Naked cake estruturado",
+    description: "Para bolos estruturados acima de 2,5 kg (20 cm).",
   },
   {
-    id: "finishing-brigadeiro",
-    label: "Brigadeiro em todo acabamento",
+    id: "finishing-acetato",
+    label: "Naked cake no acetato",
+    description: "Para bolos entre 15 cm e 18 cm.",
+  },
+  {
+    id: "finishing-docinhos",
+    label: "Docinhos boleados",
+    description: "Interferem no peso final do bolo.",
+  },
+  {
+    id: "finishing-bico",
+    label: "Brigadeiro de bico e flores",
     description:
-      "Ideal para bolos a partir de 2 kg com finalização em brigadeiro e seleção de docinhos ou chocolates premium.",
-    isAvailable: (size) => size.minKg >= 2,
+      "Para bolos com flores. Informe a espécie desejada (orçamento separado).",
+  },
+  {
+    id: "finishing-frutas",
+    label: "Frutas",
+    description: "Valor cobrado separadamente.",
   },
   {
     id: "finishing-chantilly",
-    label: "Chantilly espatulado",
-    description:
-      "Para bolos a partir de 18 cm com rosetas, frutas ou flores. Pode haver acréscimos para toppers e embalagens.",
-    isAvailable: (size) => size.diameter >= 18,
+    label: "Chantilly 1 cor",
+    description: "Para bolos estruturados acima de 2,2 kg (18 cm).",
   },
 ];
 
 const FILLING_OPTIONS = [
-  "Brigadeiro cremoso de chocolate branco",
-  "Brigadeiro cremoso de chocolate ao leite",
-  "Brigadeiro cremoso de ninho",
-  "Brigadeiro trufado",
-  "Brigadeiro meio amargo",
-];
-
-const CREAM_OPTIONS = [
-  "Creme de maracujá",
-  "Creme de limão",
-  "Creme de cappuccino",
-  "Creme de abacaxi",
-  "Creme de leite condensado",
-  "Creme de doce de leite caseiro",
-  "Creme de ninho trufado",
-  "Creme de Nutella cremosa",
+  "Brigadeiro cremoso (branco, ao leite ou meio amargo)",
+  "Brigadeiro de leite ninho",
+  "Brigadeiro trufado (meio amargo ou ao leite)",
+  "Brigadeiros frutados (maracujá, limão siciliano, frutas vermelhas)",
+  "Brigadeiro de doce de leite caseiro",
+  "Brigadeiro de coco",
+  "Brigadeiro de café",
+  "Brigadeiro de nozes",
+  "Brigadeiro de castanha",
+  "Brigadeiro de cream cheese",
 ];
 
 const EXTRA_OPTIONS = [
+  "Compota de abacaxi",
+  "Compota de morango",
+  "Compota de frutas vermelhas",
   "Paçoca",
+  "Nutella",
   "Nozes",
   "Damasco",
-  "Castanha de Cajú",
+  "Castanha de caju",
   "Castanha do Pará",
-  "Chocolate em gotas",
-  "suflair",
-  "prestígio",
-  "kit kat",
-  "Chocolate Branco",
-  "Compota de Morango",
-  "Pessêgo em Calda",
+  "Chocolates (Kinder Bueno, Oreo, Suflair, Kit Kat)",
+  "Chocolate branco Laka",
+  "Chocolate ao leite ou meio amargo",
   "Kinder Bueno",
-  "Chocolate ao Leite",
-  "Chocolate Meio Amargo",
-  "Nutella",
-  "Compota de Abacaxi",
 ];
 
 const CHRISTMAS_OPTIONS = [
   {
-    id: "natal-1",
-    name: "Natal – Prato decorado",
-    price: 190,
+    id: "dia-das-maes-1",
+    name: "Cesta Doce Encanto de Mãe",
+    price: 295,
     includes: [
-      "Prato decorado",
-      "Tecido natalino",
-      "Bolinho de cacau com especiarias",
-      "Porta guardanapo",
+      "Bolinho caseirinho (P) cacau ou cenoura",
+      "Calda de brigadeiro trufado no potinho 160g",
+      "Cookies do nosso ateliê",
+      "Docinhos boleados",
+      "Baguete (ciabatta)",
+      "Patê de queijo coalho",
+      "Frutinhas",
+      "Drip coffee",
+      "Suco uva integral 300ml",
+      "Caixa tradicional com Big Ecobag personalizada",
+      "Brindes: cartão e foto 10x9",
     ],
   },
   {
-    id: "natal-2",
-    name: "Natal – Bandeja aconchego",
-    price: 369,
+    id: "dia-das-maes-2",
+    name: "Cesta Café com Amor de Mãe",
+    price: 320,
     includes: [
-      "Bandeja de madeira",
-      "Tecido decorativo",
-      "Caneca de cerâmica",
-      "Pó especial para preparo de capuccino artesanal",
-      "Vela aromática",
-      "Pote de vidro com biscoitos amanteigados",
+      "Bolinho caseirinho (P) cacau, cenoura ou banana",
+      "Pão de fermentação natural (baguete)",
+      "Croissant fermentação natural",
+      "Pão de queijo artesanal",
+      "Frios (presunto, queijo mussarela e queijo branco)",
+      "Geleia caseira",
+      "Manteiga temperada",
+      "Suco integral (300 ml) laranja ou uva",
+      "Café drip coffee",
+      "Iogurte natural feito no nosso ateliê",
+      "Broa com goiabada feita aqui no ateliê",
+      "Granola caseira",
+      "Frutinhas",
+      "Caixa tradicional com Big ecobag personalizada",
+      "Brindes: cartão e foto 10x9",
     ],
   },
   {
-    id: "natal-3",
-    name: "Natal – Caixa gourmet",
-    price: 305,
+    id: "dia-das-maes-3",
+    name: "Cesta Momento Chá & Carinho",
+    price: 275,
     includes: [
-      "Caixa de madeira",
-      "Queijo especial canastra",
-      "Brownie crunch com praliné de castanhas",
-      "Baby Chandon",
-    ],
-  },
-  {
-    id: "natal-4",
-    name: "Natal – Brinde festivo",
-    price: 268,
-    includes: [
-      "Bandeja de madeira",
-      "Baby Chandon",
-      "Mini panetone recheado",
-      "Vela aromática",
-    ],
-  },
-  {
-    id: "natal-5",
-    name: "Natal – Cesto doce especiarias",
-    price: 286,
-    includes: [
-      "Cesto",
-      "Pote com biscoitos amanteigados",
-      "Cookie",
-      "Castanhas e frutas secas",
-      "Brownie com especiarias e praliné de castanhas",
-    ],
-  },
-  {
-    id: "natal-6",
-    name: "Natal – Cesta celebração premium",
-    price: 438,
-    includes: [
-      "Cesta",
-      "Charcutaria",
-      "Queijo trufado",
-      "Bisnaga de queijo Brie",
-      "Cookies artesanais",
-      "Brownie com especiarias e praliné de castanhas",
+      "Pão de fermentação natural",
+      "Broa de milho com goiabada feita aqui no ateliê",
+      "Queijo minas",
+      "Geleia caseira de morango",
+      "Suco integral de uva ou laranja 300ml",
+      "Chá importado",
+      "Docinhos boleados",
+      "Biscoito de queijo artesanal",
+      "Caixa tradicional com Big Ecobag personalizada",
+      "Acompanha cartão e foto 10x9",
     ],
   },
 ];
@@ -205,59 +217,61 @@ const BASKET_OPTIONS = [
     name: "Doce Laço",
     price: 238,
     includes: [
-      "Sachê de Café individual",
-      "Suco ou refrigerante",
       "Bolo Caseirinho do dia",
-      "Pão de Queijo",
+      "Suco ou refri 300 ml",
+      "Sachê de café individual",
+      "Pão de queijo",
       "Croissant",
-      "Mini Geleia",
       "Queijo Minas 120g",
+      "Geleia mini",
       "Iogurte natural",
-      "Frutas Cortadas do dia",
+      "Frutas cortadas (do dia)",
     ],
   },
   {
     id: "afternoon",
-    name: "Encantos e Confeitos",
+    name: "Doce Encanto",
     price: 265,
     includes: [
-      "Pão de Fermentação Natural, Pão Levain",
-      "Kit Frios (Queijo e presunto) bandeja com 3 unidades cada",
-      "Pão de Queijo",
-      "Geleia Pote de vidro 180g",
-      "Frutas Cortadas do dia",
-      "Bolo no Pote",
-      "Caixinha com docinhos 1 sabor",
-      "Cereal Sucrilhos ou Granola",
+      "Pão de fermentação natural (1 opção pão levain)",
+      "Kit frios (queijo e presunto), bandeja com 3 unidades de cada",
+      "Pão de queijo",
+      "Geleia pote de vidro 180g",
+      "Frutas cortadas",
+      "Bolo no pote",
+      "Caixinha com docinhos (1 sabor)",
+      "Cereal (sucrilhos ou granola)",
       "Iogurte natural",
-      "Suco de Laranja integral 300ml",
-      "Cappuccino Artesanal",
+      "Suco laranja ou uva integral 300 ml",
+      "Cappuccino artesanal",
     ],
   },
   {
     id: "celebration",
     name: "Amor de Confeito",
+    category: "box-cafe-manha-com-bolo",
     price: 385,
     includes: [
       "Suco integral laranja ou uva",
-      "Mini Bolo do Ateliê (Nacked festa) 900g",
-      "Frutas cortadas do dia",
+      "Mini bolo do ateliê (naked festa) 900g",
+      "Frutas cortadas",
       "Bem casado de colher, brigadeiro de colher ou geleia artesanal de morango",
       "Caixinha com 6 docinhos",
-      "Pão de fermeneção natural",
+      "Pão de fermentação natural (pão rústico, pode ser integral)",
       "Brioche",
-      "Kit frios (queijo e presunto) bandeja com 3 unidades cada",
-      "Torradas",
+      "Kit frios",
+      "Torrada",
       "Requeijão 160g",
       "Iogurte natural",
-      "Capuccino artesanal",
-      "Cereal sucrilhos ou granola",
+      "Cappuccino artesanal",
+      "Cereal (sucrilhos ou granola)",
       "Pão de queijo",
     ],
   },
   {
     id: "lacos-carinho",
     name: "Laços de Carinho",
+    category: "box-cafe-manha-com-bolo",
     price: 240,
     includes: [
       "Café sachê individual",
@@ -272,37 +286,59 @@ const BASKET_OPTIONS = [
   },
   {
     id: "confeitos-nobres",
-    name: "Confeitos Nobres",
+    name: "Doce Momento com Nobreza",
+    category: "box-cafe-manha-com-bolo",
     price: 420,
     includes: [
       "Pão de fermentação natural",
-      "Frios especiais (queijo gouda, salame)",
+      "Frios especiais: queijo gouda e salame",
       "Geleia de pimenta",
-      "Patê (verifique as opções disponíveis)",
+      "Patê (verifique opções disponíveis)",
       "Calda de brigadeiro",
       "Uva verde sem sementes",
       "Torrada aperitivo",
-      "Brownie (do Ateliê)",
+      "Brownie (do ateliê)",
       "Suco integral",
-      "Vinho reservado (consulte as sugestões disponíveis)",
+      "Vinho reservado (consulte sugestão disponível)",
+      "Sugestão: opção para adicionar cerveja ou vinho (valor proporcional à escolha)",
     ],
   },
   {
     id: "happy-birthday-box",
     name: "Box Happy Birthday com mini bolo de aniversário",
     price: 210,
-    includes: ["Mini bolo 930g", "Refrigerante", "Brigadeiros", "Snack"],
+    includes: ["Mini bolo 930g", "Refri", "Brigadeiros", "Snack"],
+  },
+  {
+    id: "lacos-afeto",
+    name: "Laços de Afeto",
+    price: 365,
+    includes: [
+      "Bolinho caseirinho P",
+      "Docinhos na caixinha",
+      "Pão de fermentação natural (baguete rústica)",
+      "Croissant fermentação natural",
+      "Pão de queijo artesanal",
+      "Frios (presunto, queijo mucarela e queijo minas)",
+      "Geleia artesanal de morango",
+      "Creme de ricota",
+      "Suco integral 300 ml (verifique disponibilidade do dia)",
+      "Drip coffee",
+      "Iogurte integral",
+      "Biscoito artesanal",
+      "Frutinhas",
+    ],
   },
   {
     id: "celebrar-cerveja",
-    name: "Box Celebrar com cerveja",
+    name: "Box Celebrar/Cerveja",
     price: 196,
     includes: [
       "Cerveja Baden Baden",
-      "Mix de castanhas",
+      "Mix de castanha",
       "Damasco",
       "Brownie",
-      "Patê de queijo (feito no Ateliê)",
+      "Patê de queijo (feito no ateliê)",
       "Torrada (pão artesanal)",
       "Tulipa acrílico",
     ],
@@ -312,35 +348,119 @@ const BASKET_OPTIONS = [
 const BASKET_EXTRA_OPTIONS = [
   "Cerveja",
   "Vinho",
+  "Água de coco",
   "Água com gás",
   "Suco",
-  "Capuccino",
+  "Cappuccino",
   "Chocolate quente",
   "Caneca personalizada",
   "Foto 10x9",
-  "Caixa cartonizada colorida",
-  "Balões",
+  "Caixa cartonada colorida",
+  "Balão",
+];
+
+const BASKET_CATEGORY_LABELS = {
+  "box-cafe-manha-com-bolo": "Box café da manhã com bolo",
+};
+
+const BASKET_ICONS_BY_ID = {
+  breakfast: FiCoffee,
+  afternoon: FiGift,
+  celebration: GiCakeSlice,
+  "lacos-carinho": FiHeart,
+  "confeitos-nobres": FiStar,
+  "happy-birthday-box": FiGift,
+  "lacos-afeto": FiHeart,
+  "celebrar-cerveja": FiShoppingBag,
+};
+
+const MOTHERS_DAY_ICONS_BY_ID = {
+  "dia-das-maes-1": FiHeart,
+  "dia-das-maes-2": FiCoffee,
+  "dia-das-maes-3": FiSun,
+};
+
+const BASKET_PHOTOS = {
+  breakfast: [
+    {
+      src: doceLacoPhoto1,
+      alt: "Cesta Doce Laço - foto 1",
+    },
+    {
+      src: doceLacoPhoto2,
+      alt: "Cesta Doce Laço - foto 2",
+    },
+    {
+      src: doceLacoPhoto3,
+      alt: "Cesta Doce Laço - foto 3",
+    },
+  ],
+  afternoon: [
+    {
+      src: doceEncantoPhoto1,
+      alt: "Cesta Doce Encanto - foto 1",
+    },
+    {
+      src: doceEncantoPhoto2,
+      alt: "Cesta Doce Encanto - foto 2",
+    },
+  ],
+  celebration: [
+    {
+      src: amorDeConfeitoPhoto1,
+      alt: "Cesta Amor de Confeito - foto 1",
+    },
+  ],
+  "lacos-carinho": [
+    {
+      src: lacosDeCarinhoPhoto1,
+      alt: "Cesta Laços de Carinho - foto 1",
+    },
+  ],
+  "lacos-afeto": [
+    {
+      src: lacosDeCarinhoPhoto1,
+      alt: "Cesta Laços de Afeto - foto 1",
+    },
+  ],
+  "confeitos-nobres": [
+    {
+      src: doceMomentoComNobrezaPhoto1,
+      alt: "Cesta Doce Momento com Nobreza - foto 1",
+    },
+    {
+      src: doceMomentoComNobrezaPhoto2,
+      alt: "Cesta Doce Momento com Nobreza - foto 2",
+    },
+  ],
+  "happy-birthday-box": [
+    {
+      src: boxHappyPhoto1,
+      alt: "Cesta Box Happy Birthday - foto 1",
+    },
+    {
+      src: boxHappyPhoto2,
+      alt: "Cesta Box Happy Birthday - foto 2",
+    },
+  ],
+};
+
+const BASKET_REFERENCE_PHOTOS = [
+  { src: referenciaPhoto1, alt: "Foto de referencia de cestas 1" },
+  { src: referenciaPhoto2, alt: "Foto de referencia de cestas 2" },
+  { src: referenciaPhoto3, alt: "Foto de referencia de cestas 3" },
+  { src: referenciaPhoto4, alt: "Foto de referencia de cestas 4" },
+  { src: referenciaPhoto5, alt: "Foto de referencia de cestas 5" },
+  { src: referenciaPhoto6, alt: "Foto de referencia de cestas 6" },
+  { src: referenciaPhoto7, alt: "Foto de referencia de cestas 7" },
+  { src: referenciaPhoto8, alt: "Foto de referencia de cestas 8" },
+  { src: referenciaPhoto9, alt: "Foto de referencia de cestas 9" },
 ];
 
 const currencyFormatter = new Intl.NumberFormat("pt-BR", {
   style: "currency",
   currency: "BRL",
 });
-
-const formatKg = (value) => {
-  const hasDecimal = Math.round(value * 10) % 10 !== 0;
-  return value.toLocaleString("pt-BR", {
-    minimumFractionDigits: hasDecimal ? 1 : 0,
-    maximumFractionDigits: 1,
-  });
-};
-
-const formatPriceRangeValue = (min, max) => {
-  if (min === max) {
-    return currencyFormatter.format(min);
-  }
-  return `${currencyFormatter.format(min)} a ${currencyFormatter.format(max)}`;
-};
 
 const formatList = (items) => (items.length ? items.join(", ") : "—");
 
@@ -350,7 +470,6 @@ export function Boxes() {
   const [selectedMass, setSelectedMass] = useState("");
   const [selectedFinishing, setSelectedFinishing] = useState("");
   const [selectedFillings, setSelectedFillings] = useState([]);
-  const [selectedCreams, setSelectedCreams] = useState([]);
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [selectedBasket, setSelectedBasket] = useState("");
   const [selectedBasketExtras, setSelectedBasketExtras] = useState([]);
@@ -358,6 +477,7 @@ export function Boxes() {
   const [selectionWarning, setSelectionWarning] = useState("");
   const [expandedBaskets, setExpandedBaskets] = useState([]);
   const [expandedChristmas, setExpandedChristmas] = useState([]);
+  const [isReferenceGalleryOpen, setIsReferenceGalleryOpen] = useState(false);
 
   const isCakeOpen = activeSection === "cake";
   const isBasketOpen = activeSection === "basket";
@@ -365,86 +485,46 @@ export function Boxes() {
 
   const selectedSizeInfo = useMemo(
     () => CAKE_SIZES.find((size) => size.id === selectedSize) || null,
-    [selectedSize]
+    [selectedSize],
   );
 
   const selectedMassInfo = useMemo(
     () => MASS_OPTIONS.find((option) => option.id === selectedMass) || null,
-    [selectedMass]
+    [selectedMass],
   );
-
-  const availableFinishingOptions = useMemo(() => {
-    if (!selectedSizeInfo) {
-      return [];
-    }
-    return FINISHING_OPTIONS.filter((option) =>
-      option.isAvailable(selectedSizeInfo)
-    );
-  }, [selectedSizeInfo]);
 
   const selectedFinishingOption = useMemo(
     () =>
       FINISHING_OPTIONS.find((option) => option.id === selectedFinishing) ||
       null,
-    [selectedFinishing]
+    [selectedFinishing],
   );
 
   const selectedBasketInfo = useMemo(
     () => BASKET_OPTIONS.find((basket) => basket.id === selectedBasket) || null,
-    [selectedBasket]
+    [selectedBasket],
   );
 
   const selectedChristmasInfo = useMemo(
     () =>
       CHRISTMAS_OPTIONS.find((option) => option.id === selectedChristmas) ||
       null,
-    [selectedChristmas]
+    [selectedChristmas],
   );
 
-  useEffect(() => {
-    if (!selectedSizeInfo || !availableFinishingOptions.length) {
-      if (selectedFinishing) {
-        setSelectedFinishing("");
-      }
-      return;
+  const selectedBasketPhotos = useMemo(() => {
+    if (!selectedBasket) {
+      return [];
     }
+    return BASKET_PHOTOS[selectedBasket] || [];
+  }, [selectedBasket]);
 
-    if (
-      selectedFinishing &&
-      !availableFinishingOptions.some(
-        (option) => option.id === selectedFinishing
-      )
-    ) {
-      setSelectedFinishing("");
-    }
-  }, [availableFinishingOptions, selectedFinishing, selectedSizeInfo]);
-
-  const extrasTotal = useMemo(
-    () => selectedExtras.length * EXTRA_UNIT_PRICE,
-    [selectedExtras]
-  );
-
-  const totalMin = useMemo(() => {
+  const totalBase = useMemo(() => {
     if (!selectedSizeInfo) {
       return 0;
     }
-    return (
-      selectedSizeInfo.priceRange.min +
-      (selectedMassInfo?.surcharge || 0) +
-      extrasTotal
-    );
-  }, [selectedSizeInfo, selectedMassInfo, extrasTotal]);
-
-  const totalMax = useMemo(() => {
-    if (!selectedSizeInfo) {
-      return 0;
-    }
-    return (
-      selectedSizeInfo.priceRange.max +
-      (selectedMassInfo?.surcharge || 0) +
-      extrasTotal
-    );
-  }, [selectedSizeInfo, selectedMassInfo, extrasTotal]);
+    return selectedSizeInfo.basePrice + (selectedMassInfo?.surcharge || 0);
+  }, [selectedSizeInfo, selectedMassInfo]);
 
   const toggleSection = (section) => {
     setActiveSection((prev) => (prev === section ? null : section));
@@ -461,7 +541,7 @@ export function Boxes() {
     selectedValues,
     setter,
     limit,
-    label
+    label,
   ) => {
     setSelectionWarning("");
     if (selectedValues.includes(value)) {
@@ -481,17 +561,7 @@ export function Boxes() {
       selectedFillings,
       setSelectedFillings,
       2,
-      "recheios"
-    );
-  };
-
-  const handleCreamToggle = (value) => {
-    toggleLimitedSelection(
-      value,
-      selectedCreams,
-      setSelectedCreams,
-      2,
-      "cremes"
+      "recheios",
     );
   };
 
@@ -513,7 +583,7 @@ export function Boxes() {
   const handleBasketExtraToggle = (value) => {
     if (selectedBasketExtras.includes(value)) {
       setSelectedBasketExtras(
-        selectedBasketExtras.filter((item) => item !== value)
+        selectedBasketExtras.filter((item) => item !== value),
       );
       return;
     }
@@ -524,7 +594,7 @@ export function Boxes() {
     setExpandedBaskets((prev) =>
       prev.includes(basketId)
         ? prev.filter((id) => id !== basketId)
-        : [...prev, basketId]
+        : [...prev, basketId],
     );
   };
 
@@ -537,7 +607,7 @@ export function Boxes() {
     setExpandedChristmas((prev) =>
       prev.includes(optionId)
         ? prev.filter((id) => id !== optionId)
-        : [...prev, optionId]
+        : [...prev, optionId],
     );
   };
 
@@ -553,23 +623,16 @@ export function Boxes() {
       `• Acabamento: ${
         selectedFinishingOption
           ? selectedFinishingOption.label
-          : availableFinishingOptions.length
-          ? "não selecionado"
-          : "não se aplica"
+          : "não selecionado"
       }`,
       `• Recheios: ${
         selectedFillings.length ? selectedFillings.join(", ") : "a definir"
       }`,
-      `• Cremes: ${
-        selectedCreams.length ? selectedCreams.join(", ") : "a definir"
-      }`,
       `• Adicionais: ${
         selectedExtras.length ? selectedExtras.join(", ") : "sem adicionais"
       }`,
-      `Estimativa de investimento: ${formatPriceRangeValue(
-        totalMin,
-        totalMax
-      )}`,
+      `Valor base inicial: ${currencyFormatter.format(totalBase)}`,
+      "Valores de recheios especiais, finalização e adicionais são confirmados no orçamento.",
       "",
       "Podem confirmar disponibilidade e opções de decoração?",
     ];
@@ -579,12 +642,9 @@ export function Boxes() {
     selectedSizeInfo,
     selectedMassInfo,
     selectedFinishingOption,
-    availableFinishingOptions,
     selectedFillings,
-    selectedCreams,
     selectedExtras,
-    totalMin,
-    totalMax,
+    totalBase,
   ]);
 
   const basketMessage = useMemo(() => {
@@ -595,7 +655,7 @@ export function Boxes() {
     const lines = [
       "Olá! Tenho interesse na seguinte cesta presente:",
       `• ${selectedBasketInfo.name} (${currencyFormatter.format(
-        selectedBasketInfo.price
+        selectedBasketInfo.price,
       )})`,
       "",
       "Itens inclusos:",
@@ -609,7 +669,7 @@ export function Boxes() {
 
     lines.push(
       "",
-      "Poderiam confirmar disponibilidade e opções de retirada ou entrega?"
+      "Poderiam confirmar disponibilidade e opções de retirada ou entrega?",
     );
 
     return lines.join("\n");
@@ -617,13 +677,13 @@ export function Boxes() {
 
   const christmasMessage = useMemo(() => {
     if (!selectedChristmasInfo) {
-      return "Olá! Gostaria de conhecer as opções de presentes de Natal disponíveis.";
+      return "Olá! Gostaria de conhecer as opções de cestas de Dia das Mães disponíveis.";
     }
 
     const lines = [
-      "Olá! Tenho interesse no item natalino:",
+      "Olá! Tenho interesse na cesta de Dia das Mães:",
       `• ${selectedChristmasInfo.name} (${currencyFormatter.format(
-        selectedChristmasInfo.price
+        selectedChristmasInfo.price,
       )})`,
       "",
       "Itens inclusos:",
@@ -655,7 +715,7 @@ export function Boxes() {
 
   const christmasNextSteps = useMemo(() => {
     if (!selectedChristmasInfo) {
-      return ["Selecione um item natalino para enviar o pedido."];
+      return ["Selecione uma cesta de Dia das Mães para enviar o pedido."];
     }
     return [];
   }, [selectedChristmasInfo]);
@@ -667,11 +727,15 @@ export function Boxes() {
   const openWhatsapp = (message) => {
     if (typeof window !== "undefined") {
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-        message
+        message,
       )}`;
       window.open(url, "_blank");
     }
   };
+
+  const deliveryWhatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    "Olá! Gostaria de tirar dúvidas sobre as condições de entrega.",
+  )}`;
 
   const handleCakeSend = () => {
     if (isCakeSendDisabled) {
@@ -706,6 +770,7 @@ export function Boxes() {
               className={`builder-toggle ${isCakeOpen ? "is-open" : ""}`}
               onClick={() => toggleSection("cake")}
             >
+              <GiCakeSlice className="toggle-icon" aria-hidden="true" />
               Montar bolo personalizado
             </button>
             <button
@@ -713,6 +778,7 @@ export function Boxes() {
               className={`builder-toggle ${isBasketOpen ? "is-open" : ""}`}
               onClick={() => toggleSection("basket")}
             >
+              <FiGift className="toggle-icon" aria-hidden="true" />
               Escolher cesta presente
             </button>
             <button
@@ -720,80 +786,110 @@ export function Boxes() {
               className={`builder-toggle ${isChristmasOpen ? "is-open" : ""}`}
               onClick={() => toggleSection("christmas")}
             >
-              Selecionar itens de Natal
+              <FiHeart className="toggle-icon" aria-hidden="true" />
+              Selecionar itens de dias das mães
             </button>
           </div>
 
-          <div className="builder-intro" aria-live="polite">
-            <h2>Monte seu pedido em 3 passos</h2>
-            <ol>
-              <li>Escolha a categoria desejada no topo.</li>
-              <li>Preencha as escolhas obrigatórias em cada etapa.</li>
-              <li>Revise o resumo e envie pelo WhatsApp.</li>
-            </ol>
+          <div className="delivery-info-card" aria-label="Condições de entrega">
+            <h2>Condições de entrega</h2>
+            <p>É necessário ter alguém no endereço indicado para receber.</p>
+            <p>Infrutífero o contato por fora do prazo.</p>
             <p>
-              Em celulares, role até o final de cada etapa para visualizar o
-              resumo com as próximas ações.
+              O entregador poderá aguardar no local pelo prazo máximo de 10 min
+              - caso não consiga a entrega, o mesmo retornará no final da rota e
+              SERÁ COBRADO NOVA TAXA.
             </p>
+            <p>
+              Nossas cestas são únicas e artesanais e por isso pode haver
+              algumas diferenças na montagem e/ou substituições de algum produto
+              por algo similar ou superior.
+            </p>
+            <p>
+              Mensagem para o cartão, fotos e dados para entrega deverão ser
+              enviados no ato do pedido, juntamente com o comprovante de
+              pagamento;
+            </p>
+            <p>Confirmação de pedido após pagamento do valor total;</p>
+            <p>Formas de pagamento:</p>
+            <p>
+              Transferência, pix ou link para pagamento com cartão de crédito
+              com acréscimo de 5%.
+            </p>
+            <p className="delivery-highlight">CONSULTE A TAXA DE ENTREGA</p>
+            <div className="delivery-contact">
+              <p>Dúvidas e maiores informações:</p>
+              <a
+                href={deliveryWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp-button delivery-whatsapp-button"
+              >
+                Falar no WhatsApp
+              </a>
+            </div>
           </div>
 
           {isCakeOpen && (
             <div className="builder-section">
-              <div className="builder-group">
-                <div className="group-header">
-                  <div className="group-title">
-                    <span className="step-indicator">1</span>
-                    <div>
-                      <h2>Escolha o tamanho</h2>
-                      <p>Preço base: R$ 105,00 por kg</p>
-                    </div>
-                  </div>
+              <div className="builder-intro" aria-live="polite">
+                <h2>Como montar o seu bolo</h2>
+                <ol>
+                  <li>Escolha o sabor da massa.</li>
+                  <li>Escolha até 2 opções de recheios.</li>
+                  <li>Escolha o acabamento e os adicionais.</li>
+                  <li>Defina o tamanho para visualizar o valor base.</li>
+                </ol>
+                <div className="cake-assembly-guide">
+                  <span className="assembly-item">
+                    <span
+                      className="assembly-icon icon-massa"
+                      aria-hidden="true"
+                    />
+                    Massa
+                  </span>
+                  <span className="assembly-item">
+                    <span
+                      className="assembly-icon icon-recheio"
+                      aria-hidden="true"
+                    />
+                    Recheio
+                  </span>
+                  <span className="assembly-item">
+                    <span
+                      className="assembly-icon icon-acabamento"
+                      aria-hidden="true"
+                    />
+                    Acabamento
+                  </span>
+                  <span className="assembly-item">
+                    <span
+                      className="assembly-icon icon-tamanho"
+                      aria-hidden="true"
+                    />
+                    Tamanho
+                  </span>
                 </div>
-                <div className="option-list">
-                  {CAKE_SIZES.map((size) => (
-                    <label
-                      key={size.id}
-                      className={`option-item ${
-                        selectedSize === size.id ? "is-selected" : ""
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="cake-size"
-                        value={size.id}
-                        checked={selectedSize === size.id}
-                        onChange={() => {
-                          setSelectedSize(size.id);
-                          setActiveSection("cake");
-                          setSelectedFinishing("");
-                        }}
-                      />
-                      <div className="option-meta">
-                        <span>{size.label}</span>
-                        <small>{size.serves}</small>
-                        <small>
-                          {formatKg(size.minKg)} kg a {formatKg(size.maxKg)} kg
-                          •{" "}
-                          {formatPriceRangeValue(
-                            size.priceRange.min,
-                            size.priceRange.max
-                          )}
-                        </small>
-                      </div>
-                    </label>
-                  ))}
-                </div>
+                <p>
+                  Valores de referência baseados em recheios tradicionais e sem
+                  toppings. Acréscimos são informados no orçamento.
+                </p>
+                <p className="builder-note">
+                  Obs.: cake board e embalagem de transporte adequada estão
+                  inclusos no valor final do pedido.
+                </p>
               </div>
 
               <div className="builder-group">
                 <div className="group-header">
                   <div className="group-title">
-                    <span className="step-indicator">2</span>
+                    <span className="step-indicator">1</span>
+                    <span className="step-icon icon-massa" aria-hidden="true" />
                     <div>
                       <h2>Escolha a massa</h2>
                       <p>
-                        Escolha sua massa preferida. Massa de chocolate adiciona
-                        R$ 12,00 ao valor final.
+                        Branca, baunilha, chocolate ou saborizadas (limão e
+                        laranja).
                       </p>
                     </div>
                   </div>
@@ -815,60 +911,28 @@ export function Boxes() {
                       />
                       <div className="option-meta">
                         <span>{option.label}</span>
+                        {option.id === "massa-chocolate" && (
+                          <small>Acréscimo de R$ 12,00.</small>
+                        )}
                       </div>
                     </label>
                   ))}
                 </div>
               </div>
 
-              {selectedSizeInfo && availableFinishingOptions.length > 0 && (
-                <div className="builder-group">
-                  <div className="group-header">
-                    <div className="group-title">
-                      <span className="step-indicator">3</span>
-                      <div>
-                        <h2>Escolha o acabamento</h2>
-                        <p>
-                          Disponível conforme o tamanho selecionado. Informe no
-                          pedido se deseja toppers, vela ou embalagem especial
-                          para alinharmos valores adicionais.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="option-list">
-                    {availableFinishingOptions.map((option) => (
-                      <label
-                        key={option.id}
-                        className={`option-item ${
-                          selectedFinishing === option.id ? "is-selected" : ""
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="cake-finishing"
-                          value={option.id}
-                          checked={selectedFinishing === option.id}
-                          onChange={() => setSelectedFinishing(option.id)}
-                        />
-                        <div className="option-meta">
-                          <span>{option.label}</span>
-                          <small>{option.description}</small>
-                        </div>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               <div className="builder-group">
                 <div className="group-header">
                   <div className="group-title">
-                    <span className="step-indicator">4</span>
+                    <span className="step-indicator">2</span>
+                    <span
+                      className="step-icon icon-recheio"
+                      aria-hidden="true"
+                    />
                     <div>
                       <h2>Recheios (até 2 opções)</h2>
                       <p>
-                        Selecione os brigadeiros que combinam com o seu bolo.
+                        Escolha até 2 recheios. Combinações especiais podem ter
+                        acréscimo.
                       </p>
                     </div>
                   </div>
@@ -901,32 +965,38 @@ export function Boxes() {
               <div className="builder-group">
                 <div className="group-header">
                   <div className="group-title">
-                    <span className="step-indicator">5</span>
+                    <span className="step-indicator">3</span>
+                    <span
+                      className="step-icon icon-acabamento"
+                      aria-hidden="true"
+                    />
                     <div>
-                      <h2>Cremes (até 2 opções)</h2>
-                      <p>Escolha os cremes para acompanhar sua experiência.</p>
+                      <h2>Escolha o acabamento</h2>
+                      <p>
+                        Informe no pedido detalhes de flores, toppers e itens
+                        extras para orçamento final.
+                      </p>
                     </div>
                   </div>
-                  <span className="group-counter">
-                    {selectedCreams.length} de 2 selecionados
-                  </span>
                 </div>
-                <div className="option-grid">
-                  {CREAM_OPTIONS.map((option) => (
+                <div className="option-list">
+                  {FINISHING_OPTIONS.map((option) => (
                     <label
-                      key={option}
+                      key={option.id}
                       className={`option-item ${
-                        selectedCreams.includes(option) ? "is-selected" : ""
+                        selectedFinishing === option.id ? "is-selected" : ""
                       }`}
                     >
                       <input
-                        type="checkbox"
-                        value={option}
-                        checked={selectedCreams.includes(option)}
-                        onChange={() => handleCreamToggle(option)}
+                        type="radio"
+                        name="cake-finishing"
+                        value={option.id}
+                        checked={selectedFinishing === option.id}
+                        onChange={() => setSelectedFinishing(option.id)}
                       />
                       <div className="option-meta">
-                        <span>{option}</span>
+                        <span>{option.label}</span>
+                        <small>{option.description}</small>
                       </div>
                     </label>
                   ))}
@@ -936,10 +1006,14 @@ export function Boxes() {
               <div className="builder-group">
                 <div className="group-header">
                   <div className="group-title">
-                    <span className="step-indicator">6</span>
+                    <span className="step-indicator">4</span>
+                    <span className="step-icon icon-top" aria-hidden="true" />
                     <div>
-                      <h2>Adicionais (R$ 5,00 cada)</h2>
-                      <p>Escolha quantos desejar, valor somado ao total.</p>
+                      <h2>Adicionais</h2>
+                      <p>
+                        Valores dos adicionais serão informados no momento do
+                        orçamento.
+                      </p>
                     </div>
                   </div>
                   <span className="group-counter">
@@ -968,6 +1042,53 @@ export function Boxes() {
                 </div>
               </div>
 
+              <div className="builder-group">
+                <div className="group-header">
+                  <div className="group-title">
+                    <span className="step-indicator">5</span>
+                    <span
+                      className="step-icon icon-tamanho"
+                      aria-hidden="true"
+                    />
+                    <div>
+                      <h2>Tamanho e valor base</h2>
+                      <p>
+                        Base para recheios tradicionais e sem toppings.
+                        Disponibilidade de mini bolo depende do dia.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="option-list">
+                  {CAKE_SIZES.map((size) => (
+                    <label
+                      key={size.id}
+                      className={`option-item ${
+                        selectedSize === size.id ? "is-selected" : ""
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="cake-size"
+                        value={size.id}
+                        checked={selectedSize === size.id}
+                        onChange={() => {
+                          setSelectedSize(size.id);
+                          setActiveSection("cake");
+                        }}
+                      />
+                      <div className="option-meta">
+                        <span>{size.label}</span>
+                        <small>{size.serves}</small>
+                        <small>
+                          {currencyFormatter.format(size.basePrice)}
+                        </small>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               {selectionWarning && (
                 <p className="selection-warning" role="status">
                   {selectionWarning}
@@ -989,23 +1110,18 @@ export function Boxes() {
                     <strong>Acabamento:</strong>{" "}
                     {selectedFinishingOption
                       ? selectedFinishingOption.label
-                      : availableFinishingOptions.length
-                      ? "Nenhum selecionado"
-                      : "Não se aplica"}
+                      : "Nenhum selecionado"}
                   </li>
                   <li>
                     <strong>Recheios:</strong> {formatList(selectedFillings)}
                   </li>
                   <li>
-                    <strong>Cremes:</strong> {formatList(selectedCreams)}
-                  </li>
-                  <li>
                     <strong>Adicionais:</strong> {formatList(selectedExtras)}
                   </li>
                   <li>
-                    <strong>Estimativa:</strong>{" "}
+                    <strong>Valor base inicial:</strong>{" "}
                     {selectedSizeInfo
-                      ? formatPriceRangeValue(totalMin, totalMax)
+                      ? currencyFormatter.format(totalBase)
                       : "—"}
                   </li>
                 </ul>
@@ -1041,12 +1157,13 @@ export function Boxes() {
                 </button>
                 {cakeNextSteps.length > 0 ? (
                   <p className="summary-hint">
-                    Finalize as etapas acima para liberar o envio pelo WhatsApp.
+                    Finalize as etapas obrigatórias para liberar o envio pelo
+                    WhatsApp.
                   </p>
                 ) : (
                   <p className="summary-hint">
-                    Revise as escolhas antes de enviar. O valor final pode
-                    variar conforme decoração e acabamentos escolhidos.
+                    Valores finais variam conforme recheios especiais,
+                    finalização e toppings escolhidos.
                   </p>
                 )}
               </div>
@@ -1055,10 +1172,57 @@ export function Boxes() {
 
           {isBasketOpen && (
             <div className="builder-section">
+              <div className="basket-reference-card">
+                <h3>Sobre a personalização:</h3>
+                <p>
+                  Nossas caixas são personalizadas com atenção e dedicação,
+                  refletindo o cuidado que temos em cada detalhe. Utilizamos
+                  artigos de alta qualidade e não poupamos esforços na
+                  finalização, garantindo sempre o melhor resultado. Desde
+                  forros de tricotine até potinhos de vidro com tampa dourada,
+                  talheres de madeira, canudos, pratinhos decorados, fitas de
+                  qualidade e outros acabamentos cuidadosamente selecionados,
+                  tudo é pensado para transformar o presente em algo único e
+                  inesquecível.
+                </p>
+                <h3>Sobre os itens de alimentação:</h3>
+                <p>
+                  Em todas as montagens, os itens são cuidadosamente embalados,
+                  individualmente em caixas ou embalagens descartáveis de alta
+                  qualidade, garantindo o frescor de todos os alimentos. Cada
+                  elemento presente em nossas montagens são selecionados
+                  minuciosamente, refletindo o nosso comprometimento com a
+                  excelência. A qualidade é sempre o nosso lema.
+                </p>
+                <button
+                  type="button"
+                  className="reference-button"
+                  onClick={() => setIsReferenceGalleryOpen((prev) => !prev)}
+                >
+                  Ver referencias de cestas fotos
+                </button>
+                {isReferenceGalleryOpen && (
+                  <div className="reference-photos-grid">
+                    {BASKET_REFERENCE_PHOTOS.map((photo) => (
+                      <img
+                        key={photo.alt}
+                        src={photo.src}
+                        alt={photo.alt}
+                        className="reference-photo-item"
+                        loading="lazy"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <div className="builder-group">
                 <div className="group-header">
                   <div className="group-title">
                     <span className="step-indicator">1</span>
+                    <span className="section-header-icon" aria-hidden="true">
+                      <FiGift />
+                    </span>
                     <div>
                       <h2>Selecione sua cesta presente</h2>
                       <p>
@@ -1073,59 +1237,76 @@ export function Boxes() {
                   </span>
                 </div>
                 <div className="option-list">
-                  {BASKET_OPTIONS.map((basket) => {
+                  {BASKET_OPTIONS.map((basket, index) => {
                     const isExpanded = expandedBaskets.includes(basket.id);
                     const hasMoreItems = basket.includes.length > 1;
                     const detailsId = `basket-details-${basket.id}`;
+                    const BasketIcon = BASKET_ICONS_BY_ID[basket.id] || FiGift;
+                    const previousBasket = BASKET_OPTIONS[index - 1];
+                    const showCategoryTitle =
+                      !!basket.category &&
+                      previousBasket?.category !== basket.category;
 
                     return (
-                      <label
-                        key={basket.id}
-                        className={`option-item ${
-                          selectedBasket === basket.id ? "is-selected" : ""
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="gift-basket"
-                          value={basket.id}
-                          checked={selectedBasket === basket.id}
-                          onChange={() => handleBasketSelect(basket.id)}
-                        />
-                        <div className="option-meta">
-                          <span>{basket.name}</span>
-                          <small>
-                            {currencyFormatter.format(basket.price)}
-                          </small>
-                          {hasMoreItems ? (
+                      <div key={basket.id} className="basket-option-block">
+                        {showCategoryTitle && (
+                          <p className="basket-category-title">
+                            {BASKET_CATEGORY_LABELS[basket.category]}
+                          </p>
+                        )}
+                        <label
+                          className={`option-item ${
+                            selectedBasket === basket.id ? "is-selected" : ""
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="gift-basket"
+                            value={basket.id}
+                            checked={selectedBasket === basket.id}
+                            onChange={() => handleBasketSelect(basket.id)}
+                          />
+                          <div className="option-meta">
+                            <span className="option-name">
+                              <BasketIcon
+                                className="option-name-icon"
+                                aria-hidden="true"
+                              />
+                              {basket.name}
+                            </span>
                             <small>
-                              {basket.includes[0]}{" "}
-                              <button
-                                type="button"
-                                className="option-expand"
-                                onClick={(event) => {
-                                  event.preventDefault();
-                                  event.stopPropagation();
-                                  toggleBasketDetails(basket.id);
-                                }}
-                                aria-expanded={isExpanded}
-                                aria-controls={detailsId}
-                              >
-                                {isExpanded ? "ver menos" : "e muito mais"}
-                              </button>
+                              {currencyFormatter.format(basket.price)}
                             </small>
-                          ) : (
-                            <small>{basket.includes[0]}</small>
-                          )}
-                          {isExpanded && (
-                            <ul className="option-details" id={detailsId}>
-                              {basket.includes.map((item) => (
-                                <li key={item}>{item}</li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      </label>
+                            {hasMoreItems ? (
+                              <small>
+                                {basket.includes[0]}{" "}
+                                <button
+                                  type="button"
+                                  className="option-expand"
+                                  onClick={(event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    toggleBasketDetails(basket.id);
+                                  }}
+                                  aria-expanded={isExpanded}
+                                  aria-controls={detailsId}
+                                >
+                                  {isExpanded ? "ver menos" : "e muito mais"}
+                                </button>
+                              </small>
+                            ) : (
+                              <small>{basket.includes[0]}</small>
+                            )}
+                            {isExpanded && (
+                              <ul className="option-details" id={detailsId}>
+                                {basket.includes.map((item) => (
+                                  <li key={item}>{item}</li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        </label>
+                      </div>
                     );
                   })}
                 </div>
@@ -1197,6 +1378,22 @@ export function Boxes() {
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
+                    {selectedBasketPhotos.length > 0 && (
+                      <div className="basket-photos">
+                        <p className="basket-items-title">Fotos da cesta:</p>
+                        <div className="basket-photos-grid">
+                          {selectedBasketPhotos.map((photo) => (
+                            <img
+                              key={photo.alt}
+                              src={photo.src}
+                              alt={photo.alt}
+                              className="basket-photo-item"
+                              loading="lazy"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </>
                 ) : (
                   <p className="summary-placeholder">
@@ -1250,15 +1447,62 @@ export function Boxes() {
 
           {isChristmasOpen && (
             <div className="builder-section">
+              <div className="basket-reference-card">
+                <h3>Sobre a personalização:</h3>
+                <p>
+                  Nossas caixas são personalizadas com atenção e dedicação,
+                  refletindo o cuidado que temos em cada detalhe. Utilizamos
+                  artigos de alta qualidade e não poupamos esforços na
+                  finalização, garantindo sempre o melhor resultado. Desde
+                  forros de tricotine até potinhos de vidro com tampa dourada,
+                  talheres de madeira, canudos, pratinhos decorados, fitas de
+                  qualidade e outros acabamentos cuidadosamente selecionados,
+                  tudo é pensado para transformar o presente em algo único e
+                  inesquecível.
+                </p>
+                <h3>Sobre os itens de alimentação:</h3>
+                <p>
+                  Em todas as montagens, os itens são cuidadosamente embalados,
+                  individualmente em caixas ou embalagens descartáveis de alta
+                  qualidade, garantindo o frescor de todos os alimentos. Cada
+                  elemento presente em nossas montagens são selecionados
+                  minuciosamente, refletindo o nosso comprometimento com a
+                  excelência. A qualidade é sempre o nosso lema.
+                </p>
+                <button
+                  type="button"
+                  className="reference-button"
+                  onClick={() => setIsReferenceGalleryOpen((prev) => !prev)}
+                >
+                  Ver referencias de cestas fotos
+                </button>
+                {isReferenceGalleryOpen && (
+                  <div className="reference-photos-grid">
+                    {BASKET_REFERENCE_PHOTOS.map((photo) => (
+                      <img
+                        key={photo.alt}
+                        src={photo.src}
+                        alt={photo.alt}
+                        className="reference-photo-item"
+                        loading="lazy"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <div className="builder-group">
                 <div className="group-header">
                   <div className="group-title">
                     <span className="step-indicator">1</span>
+                    <span className="section-header-icon" aria-hidden="true">
+                      <FiHeart />
+                    </span>
                     <div>
-                      <h2>Escolha seu presente de Natal</h2>
+                      <h2>Escolha sua cesta de Dia das Mães</h2>
                       <p>
-                        Opções limitadas do Ateliê para presentear com carinho
-                        neste fim de ano.
+                        Opções especiais para homenagear com carinho neste Dia
+                        das Mães.
                       </p>
                     </div>
                   </div>
@@ -1273,6 +1517,8 @@ export function Boxes() {
                     const isExpanded = expandedChristmas.includes(option.id);
                     const hasMoreItems = option.includes.length > 1;
                     const detailsId = `christmas-details-${option.id}`;
+                    const MothersDayIcon =
+                      MOTHERS_DAY_ICONS_BY_ID[option.id] || FiHeart;
 
                     return (
                       <label
@@ -1289,7 +1535,13 @@ export function Boxes() {
                           onChange={() => handleChristmasSelect(option.id)}
                         />
                         <div className="option-meta">
-                          <span>{option.name}</span>
+                          <span className="option-name">
+                            <MothersDayIcon
+                              className="option-name-icon"
+                              aria-hidden="true"
+                            />
+                            {option.name}
+                          </span>
                           <small>
                             {currencyFormatter.format(option.price)}
                           </small>
@@ -1328,7 +1580,7 @@ export function Boxes() {
               </div>
 
               <div className="summary-card">
-                <h2>Resumo do presente natalino</h2>
+                <h2>Resumo da cesta de Dia das Mães</h2>
                 <ul>
                   <li>
                     <strong>Opção:</strong>{" "}
@@ -1353,7 +1605,7 @@ export function Boxes() {
                   </>
                 ) : (
                   <p className="summary-placeholder">
-                    Escolha um presente natalino para conferir os itens
+                    Escolha uma cesta de Dia das Mães para conferir os itens
                     incluídos.
                   </p>
                 )}
@@ -1369,7 +1621,7 @@ export function Boxes() {
                   </div>
                 ) : (
                   <p className="summary-ready">
-                    Tudo pronto! Clique em “Enviar pedido natalino”.
+                    Tudo pronto! Clique em “Enviar pedido de Dia das Mães”.
                   </p>
                 )}
 
@@ -1385,16 +1637,16 @@ export function Boxes() {
                   onClick={handleChristmasSend}
                   disabled={isChristmasSendDisabled}
                 >
-                  Enviar pedido natalino
+                  Enviar pedido de Dia das Mães
                 </button>
                 {christmasNextSteps.length > 0 ? (
                   <p className="summary-hint">
-                    Escolha um presente para liberar o envio pelo WhatsApp.
+                    Escolha uma cesta para liberar o envio pelo WhatsApp.
                   </p>
                 ) : (
                   <p className="summary-hint">
-                    Estoque limitado para o Natal. Informe se deseja adicionar
-                    mensagem especial ou personalização extra.
+                    Se desejar, informe mensagem especial e personalizações no
+                    envio do WhatsApp.
                   </p>
                 )}
               </div>

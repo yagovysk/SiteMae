@@ -5,6 +5,7 @@ import { Menu } from "../Menu/Menu";
 import { MenuClick } from "../Menu/MenuClick";
 import { Nossosservicos } from "./Components-services/Nossosservicos";
 import { Titleservice } from "./Components-services/Titleservice";
+import { ConfeiteiroDigital } from "../ConfeiteiroDigital/ConfeiteiroDigital";
 import "./ServicesPage.css";
 
 export function ServicesPage() {
@@ -17,6 +18,7 @@ export function ServicesPage() {
       <SpecialCake />
       <Other />
       <End />
+      <ConfeiteiroDigital />
     </section>
   );
 }

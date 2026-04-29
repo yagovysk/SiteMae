@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import produto1 from "../../../../assets/Produto1.png";
-import produto2 from "../../../../assets/Produto2.png";
-import produto3 from "../../../../assets/Produto3.png";
-import produto4 from "../../../../assets/Produto4.png";
+import produto1 from "../../../../assets/mais-vendidos-1.png";
+import produto2 from "../../../../assets/mais-vendidos-2.png";
+import produto3 from "../../../../assets/mais-vendidos-3.png";
+import produto4 from "../../../../assets/mais-vendidos-4.png";
 import "./Produtos.css";
 
 export function Products() {

@@ -5,6 +5,7 @@ import { MenuClick } from "../Menu/MenuClick";
 import { Title } from "./Components-All/Title/Title";
 import { Allintro } from "./Components-All/Allintro/Allintro";
 import { End } from "../End/End";
+import { ConfeiteiroDigital } from "../ConfeiteiroDigital/ConfeiteiroDigital";
 import "./Products.css";
 
 export function AllProducts() {
@@ -28,6 +29,7 @@ export function AllProducts() {
       <Title />
       <Allintro />
       <End />
+      <ConfeiteiroDigital />
     </section>
   );
 }

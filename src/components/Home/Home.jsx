@@ -10,6 +10,7 @@ import { Siga } from "./components-home/Siga/Siga";
 import { Menu } from "../Menu/Menu";
 import { MenuClick } from "../Menu/MenuClick";
 import { End } from "../End/End";
+import { ConfeiteiroDigital } from "../ConfeiteiroDigital/ConfeiteiroDigital";
 
 export function Home() {
   return (
@@ -25,6 +26,7 @@ export function Home() {
       <Depoiments />
       <Siga />
       <End />
+      <ConfeiteiroDigital />
     </main>
   );
 }

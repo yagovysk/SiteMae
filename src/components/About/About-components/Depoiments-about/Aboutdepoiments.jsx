@@ -1,7 +1,11 @@
 import "./Aboutdepoiments.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import perfil1 from "../../../../assets/perfil1.png";
+import perfil1 from "../../../../assets/perfil-1.avif";
+import perfil2 from "../../../../assets/perfil-2.jpg";
+import perfil3 from "../../../../assets/perfil-3.jpg";
+import perfil4 from "../../../../assets/perfil-4.jpg";
+import perfil5 from "../../../../assets/perfil-5.webp";
 import linha from "../../../../assets/linhadepoiments.png";
 import stars from "../../../../assets/stars.png";
 
@@ -11,24 +15,40 @@ export function Aboutdepoiments() {
       id: 1,
       image: perfil1,
       author: "Carlos Almeida",
-      text: "Nunca provei doces tão incríveis. Os Bolos eram perfeitos, com uma combinação de sabores que me fez viajar. Superou todas minhas expectativas!",
-      title: "A qualidade é extema!",
+      text: "Os bolos sao macios, molhadinhos e com um sabor que impressiona de verdade. Todo mundo aqui em casa pediu bis e agora ja virou tradicao nos aniversarios.",
+      title: "Bolos incriveis e sempre frescos",
       star: stars,
     },
     {
       id: 2,
-      image: perfil1,
-      author: "Autor 2",
-      text: "Depoimento 2...",
-      title: "A qualidade é extema!",
+      image: perfil2,
+      author: "Mariana Souza",
+      text: "As cestas vieram lindas, super caprichadas e com produtos de qualidade. Foi presente de Dia das Maes e emocionou muito, vale cada centavo.",
+      title: "Cestas lindas e muito completas",
       star: stars,
     },
     {
       id: 3,
-      image: perfil1,
-      author: "Autor 3",
-      text: "Depoimento 3...",
-      title: "A qualidade é extema!",
+      image: perfil3,
+      author: "Renato Lima",
+      text: "Os cookies sao maravilhosos: crocantes por fora, macios por dentro e muito saborosos. Experimentei uma vez e agora sempre incluo no pedido.",
+      title: "Cookies deliciosos de verdade",
+      star: stars,
+    },
+    {
+      id: 4,
+      image: perfil4,
+      author: "Juliana Ferreira",
+      text: "Pedi bolo e cesta para uma data especial e chegou tudo impecavel. Atendimento atencioso, entrega no horario e sabores que conquistaram todos os convidados.",
+      title: "Experiencia completa e saborosa",
+      star: stars,
+    },
+    {
+      id: 5,
+      image: perfil5,
+      author: "Thiago Martins",
+      text: "Vale muito a pena experimentar: os bolos sao perfeitos, as cestas sao bem montadas e os cookies sao viciantes. Qualidade que voce percebe na primeira mordida.",
+      title: "Qualidade que vale cada pedido",
       star: stars,
     },
   ];

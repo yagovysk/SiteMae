@@ -6,6 +6,7 @@ import { Aboutdepoiments } from "./About-components/Depoiments-about/Aboutdepoim
 import { Memory } from "./About-components/Memory/Memory";
 import { Our } from "./About-components/Our/Our";
 import { Titleabout } from "./About-components/TitleAbout/Titleabout";
+import { ConfeiteiroDigital } from "../ConfeiteiroDigital/ConfeiteiroDigital";
 
 export function About() {
   return (
@@ -18,6 +19,7 @@ export function About() {
       <Como />
       <Aboutdepoiments />
       <End />
+      <ConfeiteiroDigital />
     </section>
   );
 }

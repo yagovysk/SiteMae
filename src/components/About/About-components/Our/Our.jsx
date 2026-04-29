@@ -1,5 +1,5 @@
 import linha from "../../../../assets/linha-allintro.png";
-import img from "../../../../assets/img-about.png";
+import img from "../../../../assets/conheca-nossa-image.png";
 import "./Our.css";
 
 export function Our() {
