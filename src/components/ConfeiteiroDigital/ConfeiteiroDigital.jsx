@@ -10,7 +10,6 @@ import {
   FiMessageCircle,
   FiPackage,
   FiSend,
-  FiShoppingBag,
   FiX,
 } from "react-icons/fi";
 import { GiCakeSlice } from "react-icons/gi";
@@ -34,7 +33,7 @@ const INITIAL_MESSAGES = [
   {
     id: "welcome-1",
     role: "bot",
-    text: "Bem-vinda(o)! Eu sou o Confeiteiro Digital da Lacos e Confeitos Atelie. Hoje posso te auxiliar com:\n\n- Montar bolo personalizado (massa, recheios, acabamento, tamanho e adicionais).\n- Escolher cestas presentes e ver o que vem em cada opcao.\n- Conferir as cestas de Dia das Maes com itens e valores.\n- Explicar entrega, taxa por regiao e formas de pagamento.\n- Tirar duvidas sobre personalizacao, embalagens e itens de alimentacao.\n- Abrir rapidamente o WhatsApp para pedido e orcamento.\n- Mostrar fotos e levar voce para o Instagram oficial.\n- Te guiar para as paginas certas: Inicio, Produtos, Sobre e Servicos.\n\nSe quiser, me diga o que voce procura e eu te levo direto para a secao ideal.",
+    text: "Bem-vinda(o)! Eu sou o Confeiteiro Digital da Lacos e Confeitos Atelie. Hoje posso te auxiliar com:\n\n- Montar bolo personalizado (massa, recheios, acabamento, tamanho e adicionais).\n- Escolher cestas presentes e ver o que vem em cada opcao.\n- Conferir as cestas de Dia das Maes com itens e valores.\n- Explicar entrega, taxa por regiao e formas de pagamento.\n- Tirar duvidas sobre personalizacao, embalagens e itens de alimentacao.\n- Mostrar fotos e levar voce para o Instagram oficial.\n- Te guiar para as paginas certas: Inicio, Produtos, Sobre e Servicos.\n\nSe quiser, me diga o que voce procura e eu te levo direto para a secao ideal.",
   },
 ];
 
@@ -58,7 +57,7 @@ export function ConfeiteiroDigital() {
         icon: <GiCakeSlice aria-hidden="true" />,
         label: "Montar bolo",
         handler: () => {
-          goToRoute("/products", "#boxes");
+          goToRoute("/products", { hash: "#boxes", section: "cake" });
           addBotMessage(
             "Perfeito! Te levei para a seção de pedidos. Em Montar bolo você escolhe massa, recheios, acabamento, adicionais e tamanho para gerar sua mensagem de orçamento no WhatsApp.",
           );
@@ -69,7 +68,7 @@ export function ConfeiteiroDigital() {
         icon: <FiGift aria-hidden="true" />,
         label: "Comprar cestas",
         handler: () => {
-          goToRoute("/products", "#boxes");
+          goToRoute("/products", { hash: "#boxes", section: "basket" });
           addBotMessage(
             "As cestas estão na seção de pedidos em Escolher cesta presente. Dá para ver os itens, visualizar fotos e enviar o pedido pronto para o WhatsApp.",
           );
@@ -80,7 +79,7 @@ export function ConfeiteiroDigital() {
         icon: <FiHeart aria-hidden="true" />,
         label: "Dia das Mães",
         handler: () => {
-          goToRoute("/products", "#boxes");
+          goToRoute("/products", { hash: "#boxes", section: "christmas" });
           addBotMessage(
             "Na aba Selecionar itens de dias das mães você encontra as 3 cestas especiais com os itens inclusos e valores.",
           );
@@ -97,19 +96,8 @@ export function ConfeiteiroDigital() {
           );
         },
       },
-      {
-        id: "whatsapp",
-        icon: <FiMessageCircle aria-hidden="true" />,
-        label: "Falar no WhatsApp",
-        handler: () => {
-          openWhatsapp(
-            "Olá! Vim pelo site e gostaria de ajuda para montar meu pedido.",
-          );
-          addBotMessage("Abrindo o WhatsApp para atendimento direto.");
-        },
-      },
     ],
-    [location.pathname],
+    [location.pathname, location.search],
   );
 
   const addBotMessage = (text) => {
@@ -126,8 +114,11 @@ export function ConfeiteiroDigital() {
     ]);
   };
 
-  const goToRoute = (path, hash = "") => {
-    if (location.pathname === path && hash) {
+  const goToRoute = (path, options = {}) => {
+    const { hash = "", section = "" } = options;
+    const search = section ? `?section=${section}` : "";
+
+    if (location.pathname === path && location.search === search && hash) {
       const target = document.querySelector(hash);
       if (target) {
         target.scrollIntoView({ behavior: "smooth" });
@@ -135,12 +126,12 @@ export function ConfeiteiroDigital() {
       }
     }
 
-    if (location.pathname === path && !hash) {
+    if (location.pathname === path && location.search === search && !hash) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
-    navigate(`${path}${hash}`);
+    navigate(`${path}${search}${hash}`);
   };
 
   const openWhatsapp = (message) => {
@@ -158,17 +149,17 @@ export function ConfeiteiroDigital() {
     const question = normalizeText(rawQuestion);
 
     if (question.includes("bolo") || question.includes("montar")) {
-      goToRoute("/products", "#boxes");
+      goToRoute("/products", { hash: "#boxes", section: "cake" });
       return "Para montar seu bolo, vá em Montar bolo personalizado na seção de pedidos. Você escolhe massa, até 2 recheios, acabamento, adicionais e tamanho. No final, o sistema prepara sua mensagem pronta para o WhatsApp.";
     }
 
     if (question.includes("dia das maes") || question.includes("maes")) {
-      goToRoute("/products", "#boxes");
+      goToRoute("/products", { hash: "#boxes", section: "christmas" });
       return "Temos 3 opções de cestas de Dia das Mães na seção de pedidos, com itens e valores exibidos para facilitar sua escolha.";
     }
 
     if (question.includes("cesta") || question.includes("presente")) {
-      goToRoute("/products", "#boxes");
+      goToRoute("/products", { hash: "#boxes", section: "basket" });
       return "Na área Escolher cesta presente você vê os itens de cada cesta, fotos e pode enviar o pedido direto no WhatsApp.";
     }
 
@@ -345,19 +336,11 @@ export function ConfeiteiroDigital() {
             </button>
             <button
               type="button"
-              onClick={() => goToRoute("/products", "#boxes")}
-            >
-              <FiPackage aria-hidden="true" /> Fazer pedido
-            </button>
-            <button
-              type="button"
               onClick={() =>
-                openWhatsapp(
-                  "Olá! Vim pelo site e gostaria de atendimento sobre pedidos.",
-                )
+                goToRoute("/products", { hash: "#boxes", section: "cake" })
               }
             >
-              <FiShoppingBag aria-hidden="true" /> WhatsApp
+              <FiPackage aria-hidden="true" /> Fazer pedido
             </button>
           </div>
         </aside>

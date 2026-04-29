@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   FiCoffee,
   FiGift,
@@ -463,11 +464,12 @@ const currencyFormatter = new Intl.NumberFormat("pt-BR", {
 });
 
 const formatApproxCurrency = (value) =>
-  `≈ ${currencyFormatter.format(value)}`;
+  `valor aproximado: ${currencyFormatter.format(value)}`;
 
 const formatList = (items) => (items.length ? items.join(", ") : "—");
 
 export function Boxes() {
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState("cake");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedMass, setSelectedMass] = useState("");
@@ -532,6 +534,15 @@ export function Boxes() {
   const toggleSection = (section) => {
     setActiveSection((prev) => (prev === section ? null : section));
   };
+
+  useEffect(() => {
+    const sectionParam = new URLSearchParams(location.search).get("section");
+    const allowedSections = ["cake", "basket", "christmas"];
+
+    if (allowedSections.includes(sectionParam)) {
+      setActiveSection(sectionParam);
+    }
+  }, [location.search]);
 
   const handleMassSelect = (option) => {
     setSelectedMass(option.id);
@@ -634,7 +645,7 @@ export function Boxes() {
       `• Adicionais: ${
         selectedExtras.length ? selectedExtras.join(", ") : "sem adicionais"
       }`,
-      `Valor base aproximado inicial: ${formatApproxCurrency(totalBase)}`,
+      `Valor base aproximado inicial: ${currencyFormatter.format(totalBase)}`,
       "Valores de recheios especiais, finalização e adicionais são confirmados no orçamento.",
       "",
       "Podem confirmar disponibilidade e opções de decoração?",
@@ -1122,7 +1133,7 @@ export function Boxes() {
                   <li>
                     <strong>Valor base aproximado inicial:</strong>{" "}
                     {selectedSizeInfo
-                      ? formatApproxCurrency(totalBase)
+                      ? currencyFormatter.format(totalBase)
                       : "—"}
                   </li>
                 </ul>
