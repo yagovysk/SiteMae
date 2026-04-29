@@ -462,6 +462,9 @@ const currencyFormatter = new Intl.NumberFormat("pt-BR", {
   currency: "BRL",
 });
 
+const formatApproxCurrency = (value) =>
+  `≈ ${currencyFormatter.format(value)}`;
+
 const formatList = (items) => (items.length ? items.join(", ") : "—");
 
 export function Boxes() {
@@ -631,7 +634,7 @@ export function Boxes() {
       `• Adicionais: ${
         selectedExtras.length ? selectedExtras.join(", ") : "sem adicionais"
       }`,
-      `Valor base inicial: ${currencyFormatter.format(totalBase)}`,
+      `Valor base aproximado inicial: ${formatApproxCurrency(totalBase)}`,
       "Valores de recheios especiais, finalização e adicionais são confirmados no orçamento.",
       "",
       "Podem confirmar disponibilidade e opções de decoração?",
@@ -1080,9 +1083,7 @@ export function Boxes() {
                       <div className="option-meta">
                         <span>{size.label}</span>
                         <small>{size.serves}</small>
-                        <small>
-                          {currencyFormatter.format(size.basePrice)}
-                        </small>
+                        <small>{formatApproxCurrency(size.basePrice)}</small>
                       </div>
                     </label>
                   ))}
@@ -1119,9 +1120,9 @@ export function Boxes() {
                     <strong>Adicionais:</strong> {formatList(selectedExtras)}
                   </li>
                   <li>
-                    <strong>Valor base inicial:</strong>{" "}
+                    <strong>Valor base aproximado inicial:</strong>{" "}
                     {selectedSizeInfo
-                      ? currencyFormatter.format(totalBase)
+                      ? formatApproxCurrency(totalBase)
                       : "—"}
                   </li>
                 </ul>
