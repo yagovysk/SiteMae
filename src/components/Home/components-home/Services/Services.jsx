@@ -1,4 +1,4 @@
-import linha1 from "../../../../assets/linha1.png";
+import linha1 from "../../../../assets/linha1.webp";
 import { RiCake2Fill } from "react-icons/ri";
 import { GiBasket } from "react-icons/gi";
 import { LuCandy } from "react-icons/lu";

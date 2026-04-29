@@ -1,13 +1,13 @@
 import "./Aboutdepoiments.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import perfil1 from "../../../../assets/perfil-1.avif";
-import perfil2 from "../../../../assets/perfil-2.jpg";
-import perfil3 from "../../../../assets/perfil-3.jpg";
-import perfil4 from "../../../../assets/perfil-4.jpg";
+import perfil1 from "../../../../assets/perfil-1.webp";
+import perfil2 from "../../../../assets/perfil-2.webp";
+import perfil3 from "../../../../assets/perfil-3.webp";
+import perfil4 from "../../../../assets/perfil-4.webp";
 import perfil5 from "../../../../assets/perfil-5.webp";
-import linha from "../../../../assets/linhadepoiments.png";
-import stars from "../../../../assets/stars.png";
+import linha from "../../../../assets/linhadepoiments.webp";
+import stars from "../../../../assets/stars.webp";
 
 export function Aboutdepoiments() {
   const testimonials = [

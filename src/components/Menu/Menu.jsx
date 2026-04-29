@@ -3,7 +3,7 @@ import { AiFillYoutube } from "react-icons/ai";
 import { SiFacebook } from "react-icons/si";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/Logo.webp";
 import "./Menu.css";
 
 export function Menu() {

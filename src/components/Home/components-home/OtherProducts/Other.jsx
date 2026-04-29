@@ -1,5 +1,5 @@
-import other1 from "../../../../assets/other1.png";
-import other2 from "../../../../assets/other2.png";
+import other1 from "../../../../assets/other1.webp";
+import other2 from "../../../../assets/other2.webp";
 import "./Other.css";
 import { Link } from "react-router-dom";
 

@@ -14,10 +14,10 @@ import {
   FiX,
 } from "react-icons/fi";
 import { GiCakeSlice } from "react-icons/gi";
-import referenciaPhoto1 from "../../assets/referencia-1.png";
-import referenciaPhoto2 from "../../assets/referencia-2.png";
-import referenciaPhoto3 from "../../assets/referencia-3.png";
-import referenciaPhoto4 from "../../assets/referencia-4.png";
+import referenciaPhoto1 from "../../assets/referencia-1.webp";
+import referenciaPhoto2 from "../../assets/referencia-2.webp";
+import referenciaPhoto3 from "../../assets/referencia-3.webp";
+import referenciaPhoto4 from "../../assets/referencia-4.webp";
 import "./ConfeiteiroDigital.css";
 
 const WHATSAPP_NUMBER = "5561983663051";

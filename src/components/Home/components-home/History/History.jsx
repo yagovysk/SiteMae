@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import foto1 from "../../../../assets/conheca-nossa-image.png";
+import foto1 from "../../../../assets/conheca-nossa-image.webp";
 import "./History.css";
 
 export function History() {

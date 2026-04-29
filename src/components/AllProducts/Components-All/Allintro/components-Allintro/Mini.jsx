@@ -1,4 +1,4 @@
-import docinhos from '../../../../../assets/img-doces.png';
+import docinhos from '../../../../../assets/img-doces.webp';
 import './Mini.css';
 
 export function Mini() {

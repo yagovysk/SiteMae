@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./MenuClick.css";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/Logo.webp";
 
 export function MenuClick() {
   const [menuOpen, setMenuOpen] = useState(false);

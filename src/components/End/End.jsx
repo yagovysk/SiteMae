@@ -2,7 +2,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
-import wppicon from "../../assets/wpp.png";
+import wppicon from "../../assets/wpp.webp";
 import "./End.css";
 
 export function End() {

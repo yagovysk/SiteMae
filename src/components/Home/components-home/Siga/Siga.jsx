@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { FaInstagram } from "react-icons/fa";
-import bolo1 from "../../../../assets/img-bolo1.png";
-import doces from "../../../../assets/img-doces.png";
-import cafe from "../../../../assets/img-cafe.png";
-import cesta from "../../../../assets/img-cesta1.png";
-import bolo4 from "../../../../assets/img-bolo4.png";
-import bolopote from "../../../../assets/bolo-pote.png";
-import bolo2 from "../../../../assets/img-bolo2.png";
-import bolo3 from "../../../../assets/img-bolo3.png";
-import linhasiga from "../../../../assets/linha-siga.png";
+import bolo1 from "../../../../assets/img-bolo1.webp";
+import doces from "../../../../assets/img-doces.webp";
+import cafe from "../../../../assets/img-cafe.webp";
+import cesta from "../../../../assets/img-cesta1.webp";
+import bolo4 from "../../../../assets/img-bolo4.webp";
+import bolopote from "../../../../assets/bolo-pote.webp";
+import bolo2 from "../../../../assets/img-bolo2.webp";
+import bolo3 from "../../../../assets/img-bolo3.webp";
+import linhasiga from "../../../../assets/linha-siga.webp";
 import "./Siga.css";
 
 const GALLERY_ROWS = [

@@ -1,4 +1,4 @@
-import cestaicon from "../../../../assets/cesta.jpg";
+import cestaicon from "../../../../assets/cesta.webp";
 import "./Special.css";
 
 export function SpecialCake() {

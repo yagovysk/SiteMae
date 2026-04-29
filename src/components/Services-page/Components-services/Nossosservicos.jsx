@@ -1,10 +1,10 @@
-import linha from "../../../assets/linha-siga.png";
-import doces from "../../../assets/img-doces.png";
-import cesta from "../../../assets/CestaEspecial.jpg";
-import bolo from "../../../assets/img-bolo1.png";
-import Boloespecial from "../../../assets/img-bolo4.png";
-import cookie from "../../../assets/SpecialCookie.png";
-import caneca from "../../../assets/Caneca.png";
+import linha from "../../../assets/linha-siga.webp";
+import doces from "../../../assets/img-doces.webp";
+import cesta from "../../../assets/CestaEspecial.webp";
+import bolo from "../../../assets/img-bolo1.webp";
+import Boloespecial from "../../../assets/img-bolo4.webp";
+import cookie from "../../../assets/SpecialCookie.webp";
+import caneca from "../../../assets/Caneca.webp";
 import "./Nosso.css";
 
 export function Nossosservicos() {

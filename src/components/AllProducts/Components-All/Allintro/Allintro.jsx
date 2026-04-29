@@ -1,4 +1,4 @@
-import imgall from "../../../../assets/linha-allintro.png";
+import imgall from "../../../../assets/linha-allintro.webp";
 import "./Allintro.css";
 import { Boxes } from "./components-Allintro/Boxes";
 

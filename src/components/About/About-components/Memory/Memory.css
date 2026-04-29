@@ -1,7 +1,7 @@
 .container-memory {
   display: flex;
   flex-direction: column;
-  background: url("../../../../assets/fundo-memory.jpg");
+  background: url("../../../../assets/fundo-memory.webp");
   background-size: cover;
   justify-content: center;
   align-items: center;

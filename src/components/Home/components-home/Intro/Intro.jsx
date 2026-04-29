@@ -3,9 +3,9 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { MdArrowBackIosNew } from "react-icons/md";
-import carrosselImage1 from "../../../../assets/carrossel-image-1.png";
-import carrosselImage2 from "../../../../assets/carrossel-image-2.jpeg";
-import carrosselImage3 from "../../../../assets/carrossel-image-3.jpeg";
+import carrosselImage1 from "../../../../assets/carrossel-image-1.webp";
+import carrosselImage2 from "../../../../assets/carrossel-image-2.webp";
+import carrosselImage3 from "../../../../assets/carrossel-image-3.webp";
 import "./Intro.css";
 
 export function Intro() {

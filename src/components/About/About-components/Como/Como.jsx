@@ -1,6 +1,6 @@
-import linha from "../../../../assets/linha-siga.png";
-import img1 from "../../../../assets/como-img1.png";
-import img2 from "../../../../assets/como-img2.png";
+import linha from "../../../../assets/linha-siga.webp";
+import img1 from "../../../../assets/como-img1.webp";
+import img2 from "../../../../assets/como-img2.webp";
 import "./Como.css";
 
 export function Como() {
