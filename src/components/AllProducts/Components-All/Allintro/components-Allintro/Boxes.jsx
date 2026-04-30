@@ -31,7 +31,6 @@ import referenciaPhoto7 from "../../../../../assets/referencia-7.webp";
 import referenciaPhoto8 from "../../../../../assets/referencia-8.webp";
 import referenciaPhoto9 from "../../../../../assets/referencia-9.webp";
 
-const MASS_SURCHARGE_CHOCOLATE = 12;
 const WHATSAPP_NUMBER = "5561983663051";
 
 const CAKE_SIZES = [
@@ -39,31 +38,26 @@ const CAKE_SIZES = [
     id: "15-cm",
     label: "Bolo 15 cm",
     serves: "Serve até 12 fatias",
-    basePrice: 176,
   },
   {
     id: "18-cm",
     label: "Bolo 18 cm",
     serves: "Serve até 16 fatias",
-    basePrice: 235,
   },
   {
     id: "20-cm",
     label: "Bolo 20 cm",
     serves: "Serve até 22 fatias",
-    basePrice: 310,
   },
   {
     id: "23-cm",
     label: "Bolo 23 cm",
     serves: "Serve até 32 fatias",
-    basePrice: 370,
   },
   {
     id: "mini-bolo",
     label: "Mini bolo (aprox. 1 kg)",
     serves: "Serve até 6 pessoas",
-    basePrice: 100,
   },
 ];
 
@@ -71,22 +65,18 @@ const MASS_OPTIONS = [
   {
     id: "massa-branca",
     label: "Massa branca",
-    surcharge: 0,
   },
   {
     id: "massa-baunilha",
     label: "Massa de baunilha",
-    surcharge: 0,
   },
   {
     id: "massa-chocolate",
-    label: "Massa de chocolate (+R$ 12,00)",
-    surcharge: MASS_SURCHARGE_CHOCOLATE,
+    label: "Massa de chocolate",
   },
   {
     id: "massa-saborizada",
     label: "Massas saborizadas (limão ou laranja)",
-    surcharge: 0,
   },
 ];
 
@@ -157,7 +147,6 @@ const CHRISTMAS_OPTIONS = [
   {
     id: "dia-das-maes-1",
     name: "Cesta Doce Encanto de Mãe",
-    price: 295,
     includes: [
       "Bolinho caseirinho (P) cacau ou cenoura",
       "Calda de brigadeiro trufado no potinho 160g",
@@ -175,7 +164,6 @@ const CHRISTMAS_OPTIONS = [
   {
     id: "dia-das-maes-2",
     name: "Cesta Café com Amor de Mãe",
-    price: 320,
     includes: [
       "Bolinho caseirinho (P) cacau, cenoura ou banana",
       "Pão de fermentação natural (baguete)",
@@ -197,7 +185,6 @@ const CHRISTMAS_OPTIONS = [
   {
     id: "dia-das-maes-3",
     name: "Cesta Momento Chá & Carinho",
-    price: 275,
     includes: [
       "Pão de fermentação natural",
       "Broa de milho com goiabada feita aqui no ateliê",
@@ -216,7 +203,6 @@ const BASKET_OPTIONS = [
   {
     id: "breakfast",
     name: "Doce Laço",
-    price: 238,
     includes: [
       "Bolo Caseirinho do dia",
       "Suco ou refri 300 ml",
@@ -232,7 +218,6 @@ const BASKET_OPTIONS = [
   {
     id: "afternoon",
     name: "Doce Encanto",
-    price: 265,
     includes: [
       "Pão de fermentação natural (1 opção pão levain)",
       "Kit frios (queijo e presunto), bandeja com 3 unidades de cada",
@@ -251,7 +236,6 @@ const BASKET_OPTIONS = [
     id: "celebration",
     name: "Amor de Confeito",
     category: "box-cafe-manha-com-bolo",
-    price: 385,
     includes: [
       "Suco integral laranja ou uva",
       "Mini bolo do ateliê (naked festa) 900g",
@@ -273,7 +257,6 @@ const BASKET_OPTIONS = [
     id: "lacos-carinho",
     name: "Laços de Carinho",
     category: "box-cafe-manha-com-bolo",
-    price: 240,
     includes: [
       "Café sachê individual",
       "Chá especial sachê",
@@ -289,7 +272,6 @@ const BASKET_OPTIONS = [
     id: "confeitos-nobres",
     name: "Doce Momento com Nobreza",
     category: "box-cafe-manha-com-bolo",
-    price: 420,
     includes: [
       "Pão de fermentação natural",
       "Frios especiais: queijo gouda e salame",
@@ -307,13 +289,11 @@ const BASKET_OPTIONS = [
   {
     id: "happy-birthday-box",
     name: "Box Happy Birthday com mini bolo de aniversário",
-    price: 210,
     includes: ["Mini bolo 930g", "Refri", "Brigadeiros", "Snack"],
   },
   {
     id: "lacos-afeto",
     name: "Laços de Afeto",
-    price: 365,
     includes: [
       "Bolinho caseirinho P",
       "Docinhos na caixinha",
@@ -333,7 +313,6 @@ const BASKET_OPTIONS = [
   {
     id: "celebrar-cerveja",
     name: "Box Celebrar/Cerveja",
-    price: 196,
     includes: [
       "Cerveja Baden Baden",
       "Mix de castanha",
@@ -458,14 +437,6 @@ const BASKET_REFERENCE_PHOTOS = [
   { src: referenciaPhoto9, alt: "Foto de referencia de cestas 9" },
 ];
 
-const currencyFormatter = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-});
-
-const formatApproxCurrency = (value) =>
-  `valor aproximado: ${currencyFormatter.format(value)}`;
-
 const formatList = (items) => (items.length ? items.join(", ") : "—");
 
 export function Boxes() {
@@ -523,13 +494,6 @@ export function Boxes() {
     }
     return BASKET_PHOTOS[selectedBasket] || [];
   }, [selectedBasket]);
-
-  const totalBase = useMemo(() => {
-    if (!selectedSizeInfo) {
-      return 0;
-    }
-    return selectedSizeInfo.basePrice + (selectedMassInfo?.surcharge || 0);
-  }, [selectedSizeInfo, selectedMassInfo]);
 
   const toggleSection = (section) => {
     setActiveSection((prev) => (prev === section ? null : section));
@@ -645,8 +609,7 @@ export function Boxes() {
       `• Adicionais: ${
         selectedExtras.length ? selectedExtras.join(", ") : "sem adicionais"
       }`,
-      `Valor base aproximado inicial: ${currencyFormatter.format(totalBase)}`,
-      "Valores de recheios especiais, finalização e adicionais são confirmados no orçamento.",
+      "Detalhes de recheios especiais, finalização e adicionais são confirmados no orçamento.",
       "",
       "Podem confirmar disponibilidade e opções de decoração?",
     ];
@@ -658,7 +621,6 @@ export function Boxes() {
     selectedFinishingOption,
     selectedFillings,
     selectedExtras,
-    totalBase,
   ]);
 
   const basketMessage = useMemo(() => {
@@ -668,9 +630,7 @@ export function Boxes() {
 
     const lines = [
       "Olá! Tenho interesse na seguinte cesta presente:",
-      `• ${selectedBasketInfo.name} (${currencyFormatter.format(
-        selectedBasketInfo.price,
-      )})`,
+      `• ${selectedBasketInfo.name}`,
       "",
       "Itens inclusos:",
       ...selectedBasketInfo.includes.map((item) => `- ${item}`),
@@ -696,9 +656,7 @@ export function Boxes() {
 
     const lines = [
       "Olá! Tenho interesse na cesta de Dia das Mães:",
-      `• ${selectedChristmasInfo.name} (${currencyFormatter.format(
-        selectedChristmasInfo.price,
-      )})`,
+      `• ${selectedChristmasInfo.name}`,
       "",
       "Itens inclusos:",
       ...selectedChristmasInfo.includes.map((item) => `- ${item}`),
@@ -808,7 +766,7 @@ export function Boxes() {
           <div className="delivery-info-card" aria-label="Condições de entrega">
             <h2>Condições de entrega</h2>
             <p>É necessário ter alguém no endereço indicado para receber.</p>
-            <p>Infrutífero o contato por fora do prazo.</p>
+            <p>Contato fora do prazo não é aceito.</p>
             <p>
               O entregador poderá aguardar no local pelo prazo máximo de 10 min
               - caso não consiga a entrega, o mesmo retornará no final da rota e
@@ -852,7 +810,7 @@ export function Boxes() {
                   <li>Escolha o sabor da massa.</li>
                   <li>Escolha até 2 opções de recheios.</li>
                   <li>Escolha o acabamento e os adicionais.</li>
-                  <li>Defina o tamanho para visualizar o valor base.</li>
+                  <li>Defina o tamanho do bolo.</li>
                 </ol>
                 <div className="cake-assembly-guide">
                   <span className="assembly-item">
@@ -885,8 +843,8 @@ export function Boxes() {
                   </span>
                 </div>
                 <p>
-                  Valores de referência baseados em recheios tradicionais e sem
-                  toppings. Acréscimos são informados no orçamento.
+                  Recheios tradicionais e sem toppings. Acréscimos são
+                  informados no orçamento.
                 </p>
                 <p className="builder-note">
                   Obs.: cake board e embalagem de transporte adequada estão
@@ -925,9 +883,6 @@ export function Boxes() {
                       />
                       <div className="option-meta">
                         <span>{option.label}</span>
-                        {option.id === "massa-chocolate" && (
-                          <small>Acréscimo de R$ 12,00.</small>
-                        )}
                       </div>
                     </label>
                   ))}
@@ -1065,10 +1020,10 @@ export function Boxes() {
                       aria-hidden="true"
                     />
                     <div>
-                      <h2>Tamanho e valor base</h2>
+                      <h2>Tamanho do bolo</h2>
                       <p>
-                        Base para recheios tradicionais e sem toppings.
-                        Disponibilidade de mini bolo depende do dia.
+                        Recheios tradicionais e sem toppings. Disponibilidade de
+                        mini bolo depende do dia.
                       </p>
                     </div>
                   </div>
@@ -1094,7 +1049,6 @@ export function Boxes() {
                       <div className="option-meta">
                         <span>{size.label}</span>
                         <small>{size.serves}</small>
-                        <small>{formatApproxCurrency(size.basePrice)}</small>
                       </div>
                     </label>
                   ))}
@@ -1129,12 +1083,6 @@ export function Boxes() {
                   </li>
                   <li>
                     <strong>Adicionais:</strong> {formatList(selectedExtras)}
-                  </li>
-                  <li>
-                    <strong>Valor base aproximado inicial:</strong>{" "}
-                    {selectedSizeInfo
-                      ? currencyFormatter.format(totalBase)
-                      : "—"}
                   </li>
                 </ul>
 
@@ -1286,9 +1234,6 @@ export function Boxes() {
                               />
                               {basket.name}
                             </span>
-                            <small>
-                              {currencyFormatter.format(basket.price)}
-                            </small>
                             {hasMoreItems ? (
                               <small>
                                 {basket.includes[0]}{" "}
@@ -1311,7 +1256,7 @@ export function Boxes() {
                             )}
                             {isExpanded && (
                               <ul className="option-details" id={detailsId}>
-                                {basket.includes.map((item) => (
+                                {basket.includes.slice(1).map((item) => (
                                   <li key={item}>{item}</li>
                                 ))}
                               </ul>
@@ -1369,12 +1314,6 @@ export function Boxes() {
                   <li>
                     <strong>Opção:</strong>{" "}
                     {selectedBasketInfo ? selectedBasketInfo.name : "—"}
-                  </li>
-                  <li>
-                    <strong>Valor:</strong>{" "}
-                    {selectedBasketInfo
-                      ? currencyFormatter.format(selectedBasketInfo.price)
-                      : "—"}
                   </li>
                   <li>
                     <strong>Adicionais:</strong>{" "}
@@ -1554,9 +1493,6 @@ export function Boxes() {
                             />
                             {option.name}
                           </span>
-                          <small>
-                            {currencyFormatter.format(option.price)}
-                          </small>
                           {hasMoreItems ? (
                             <small>
                               {option.includes[0]}{" "}
@@ -1579,7 +1515,7 @@ export function Boxes() {
                           )}
                           {isExpanded && (
                             <ul className="option-details" id={detailsId}>
-                              {option.includes.map((item) => (
+                              {option.includes.slice(1).map((item) => (
                                 <li key={item}>{item}</li>
                               ))}
                             </ul>
@@ -1597,12 +1533,6 @@ export function Boxes() {
                   <li>
                     <strong>Opção:</strong>{" "}
                     {selectedChristmasInfo ? selectedChristmasInfo.name : "—"}
-                  </li>
-                  <li>
-                    <strong>Valor:</strong>{" "}
-                    {selectedChristmasInfo
-                      ? currencyFormatter.format(selectedChristmasInfo.price)
-                      : "—"}
                   </li>
                 </ul>
 
