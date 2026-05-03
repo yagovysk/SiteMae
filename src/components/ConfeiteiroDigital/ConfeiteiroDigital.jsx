@@ -5,7 +5,6 @@ import {
   FiGift,
   FiHeart,
   FiHome,
-  FiImage,
   FiInstagram,
   FiMessageCircle,
   FiPackage,
@@ -13,21 +12,10 @@ import {
   FiX,
 } from "react-icons/fi";
 import { GiCakeSlice } from "react-icons/gi";
-import referenciaPhoto1 from "../../assets/referencia-1.webp";
-import referenciaPhoto2 from "../../assets/referencia-2.webp";
-import referenciaPhoto3 from "../../assets/referencia-3.webp";
-import referenciaPhoto4 from "../../assets/referencia-4.webp";
 import "./ConfeiteiroDigital.css";
 
 const WHATSAPP_NUMBER = "5561983663051";
 const INSTAGRAM_URL = "https://www.instagram.com/lacoseconfeitosatelie/";
-
-const INSTAGRAM_PREVIEW = [
-  { src: referenciaPhoto1, alt: "Preview Instagram 1" },
-  { src: referenciaPhoto2, alt: "Preview Instagram 2" },
-  { src: referenciaPhoto3, alt: "Preview Instagram 3" },
-  { src: referenciaPhoto4, alt: "Preview Instagram 4" },
-];
 
 const INITIAL_MESSAGES = [
   {
@@ -284,27 +272,13 @@ export function ConfeiteiroDigital() {
           </div>
 
           <section className="confeiteiro-instagram">
-            <div className="confeiteiro-instagram-title">
-              <FiImage aria-hidden="true" />
-              <h3>Fotos do Instagram</h3>
-            </div>
-            <div className="confeiteiro-instagram-grid">
-              {INSTAGRAM_PREVIEW.map((photo) => (
-                <img
-                  key={photo.alt}
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                />
-              ))}
-            </div>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="confeiteiro-instagram-link"
             >
-              Ver Instagram oficial
+              Veja nosso Instagram
               <FiArrowRight aria-hidden="true" />
             </a>
           </section>
