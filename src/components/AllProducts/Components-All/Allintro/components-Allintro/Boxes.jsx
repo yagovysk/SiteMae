@@ -32,6 +32,7 @@ import referenciaPhoto8 from "../../../../../assets/referencia-8.webp";
 import referenciaPhoto9 from "../../../../../assets/referencia-9.webp";
 
 const WHATSAPP_NUMBER = "5561983663051";
+const CAKE_PRICE_PER_KG = 108;
 
 const CAKE_SIZES = [
   {
@@ -147,6 +148,7 @@ const CHRISTMAS_OPTIONS = [
   {
     id: "dia-das-maes-1",
     name: "Cesta Doce Encanto de Mãe",
+    price: 298,
     includes: [
       "Bolinho caseirinho (P) cacau ou cenoura",
       "Calda de brigadeiro trufado no potinho 160g",
@@ -164,6 +166,7 @@ const CHRISTMAS_OPTIONS = [
   {
     id: "dia-das-maes-2",
     name: "Cesta Café com Amor de Mãe",
+    price: 360,
     includes: [
       "Bolinho caseirinho (P) cacau, cenoura ou banana",
       "Pão de fermentação natural (baguete)",
@@ -185,6 +188,7 @@ const CHRISTMAS_OPTIONS = [
   {
     id: "dia-das-maes-3",
     name: "Cesta Momento Chá & Carinho",
+    price: 286,
     includes: [
       "Pão de fermentação natural",
       "Broa de milho com goiabada feita aqui no ateliê",
@@ -203,6 +207,7 @@ const BASKET_OPTIONS = [
   {
     id: "breakfast",
     name: "Doce Laço",
+    price: 238,
     includes: [
       "Bolo Caseirinho do dia",
       "Suco ou refri 300 ml",
@@ -218,6 +223,7 @@ const BASKET_OPTIONS = [
   {
     id: "afternoon",
     name: "Doce Encanto",
+    price: 265,
     includes: [
       "Pão de fermentação natural (1 opção pão levain)",
       "Kit frios (queijo e presunto), bandeja com 3 unidades de cada",
@@ -235,6 +241,7 @@ const BASKET_OPTIONS = [
   {
     id: "celebration",
     name: "Amor de Confeito",
+    price: 385,
     category: "box-cafe-manha-com-bolo",
     includes: [
       "Suco integral laranja ou uva",
@@ -256,6 +263,7 @@ const BASKET_OPTIONS = [
   {
     id: "lacos-carinho",
     name: "Laços de Carinho",
+    price: 240,
     category: "box-cafe-manha-com-bolo",
     includes: [
       "Café sachê individual",
@@ -270,7 +278,8 @@ const BASKET_OPTIONS = [
   },
   {
     id: "confeitos-nobres",
-    name: "Doce Momento com Nobreza",
+    name: "Doce Momento de Nobreza",
+    price: 420,
     category: "box-cafe-manha-com-bolo",
     includes: [
       "Pão de fermentação natural",
@@ -289,6 +298,7 @@ const BASKET_OPTIONS = [
   {
     id: "happy-birthday-box",
     name: "Box Happy Birthday com mini bolo de aniversário",
+    price: 210,
     includes: ["Mini bolo 930g", "Refri", "Brigadeiros", "Snack"],
   },
   {
@@ -438,6 +448,8 @@ const BASKET_REFERENCE_PHOTOS = [
 ];
 
 const formatList = (items) => (items.length ? items.join(", ") : "—");
+const formatCurrencyBRL = (value) =>
+  `R$ ${Number(value).toFixed(2).replace(".", ",")}`;
 
 export function Boxes() {
   const location = useLocation();
@@ -596,6 +608,7 @@ export function Boxes() {
 
     const lines = [
       "Olá! Gostaria de montar um bolo personalizado:",
+      `• Valor base: 1 kg = ${formatCurrencyBRL(CAKE_PRICE_PER_KG)}`,
       `• Tamanho: ${selectedSizeInfo.label} (${selectedSizeInfo.serves})`,
       `• Massa: ${selectedMassInfo.label}`,
       `• Acabamento: ${
@@ -631,6 +644,7 @@ export function Boxes() {
     const lines = [
       "Olá! Tenho interesse na seguinte cesta presente:",
       `• ${selectedBasketInfo.name}`,
+      `• Valor: ${formatCurrencyBRL(selectedBasketInfo.price)}`,
       "",
       "Itens inclusos:",
       ...selectedBasketInfo.includes.map((item) => `- ${item}`),
@@ -657,6 +671,7 @@ export function Boxes() {
     const lines = [
       "Olá! Tenho interesse na cesta de Dia das Mães:",
       `• ${selectedChristmasInfo.name}`,
+      `• Valor: ${formatCurrencyBRL(selectedChristmasInfo.price)}`,
       "",
       "Itens inclusos:",
       ...selectedChristmasInfo.includes.map((item) => `- ${item}`),
@@ -1025,6 +1040,7 @@ export function Boxes() {
                         Recheios tradicionais e sem toppings. Disponibilidade de
                         mini bolo depende do dia.
                       </p>
+                      <p>Valor base: 1 kg = {formatCurrencyBRL(CAKE_PRICE_PER_KG)}.</p>
                     </div>
                   </div>
                 </div>
@@ -1067,6 +1083,10 @@ export function Boxes() {
                   <li>
                     <strong>Tamanho:</strong>{" "}
                     {selectedSizeInfo ? selectedSizeInfo.label : "—"}
+                  </li>
+                  <li>
+                    <strong>Valor base:</strong>{" "}
+                    1 kg = {formatCurrencyBRL(CAKE_PRICE_PER_KG)}
                   </li>
                   <li>
                     <strong>Massa:</strong>{" "}
@@ -1234,6 +1254,7 @@ export function Boxes() {
                               />
                               {basket.name}
                             </span>
+                            <small>{formatCurrencyBRL(basket.price)}</small>
                             {hasMoreItems ? (
                               <small>
                                 {basket.includes[0]}{" "}
@@ -1314,6 +1335,12 @@ export function Boxes() {
                   <li>
                     <strong>Opção:</strong>{" "}
                     {selectedBasketInfo ? selectedBasketInfo.name : "—"}
+                  </li>
+                  <li>
+                    <strong>Valor:</strong>{" "}
+                    {selectedBasketInfo
+                      ? formatCurrencyBRL(selectedBasketInfo.price)
+                      : "—"}
                   </li>
                   <li>
                     <strong>Adicionais:</strong>{" "}
@@ -1493,6 +1520,7 @@ export function Boxes() {
                             />
                             {option.name}
                           </span>
+                          <small>{formatCurrencyBRL(option.price)}</small>
                           {hasMoreItems ? (
                             <small>
                               {option.includes[0]}{" "}
@@ -1533,6 +1561,12 @@ export function Boxes() {
                   <li>
                     <strong>Opção:</strong>{" "}
                     {selectedChristmasInfo ? selectedChristmasInfo.name : "—"}
+                  </li>
+                  <li>
+                    <strong>Valor:</strong>{" "}
+                    {selectedChristmasInfo
+                      ? formatCurrencyBRL(selectedChristmasInfo.price)
+                      : "—"}
                   </li>
                 </ul>
 
