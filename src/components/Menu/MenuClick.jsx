@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./MenuClick.css";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -6,6 +6,19 @@ import logo from "../../assets/Logo.webp";
 
 export function MenuClick() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleCloseFromAssistant = () => {
+      if (window.innerWidth <= 768) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("close-mobile-menu", handleCloseFromAssistant);
+    return () => {
+      window.removeEventListener("close-mobile-menu", handleCloseFromAssistant);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);

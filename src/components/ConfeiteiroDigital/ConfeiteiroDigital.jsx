@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   FiArrowRight,
@@ -16,6 +16,7 @@ import "./ConfeiteiroDigital.css";
 
 const WHATSAPP_NUMBER = "5561983663051";
 const INSTAGRAM_URL = "https://www.instagram.com/lacoseconfeitosatelie/";
+const MOBILE_BREAKPOINT = 768;
 
 const INITIAL_MESSAGES = [
   {
@@ -34,9 +35,26 @@ const normalizeText = (value) =>
 export function ConfeiteiroDigital() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth <= MOBILE_BREAKPOINT : false,
+  );
+  const [isOpen, setIsOpen] = useState(
+    typeof window !== "undefined" ? window.innerWidth > MOBILE_BREAKPOINT : true,
+  );
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const quickActions = useMemo(
     () => [
@@ -213,17 +231,25 @@ export function ConfeiteiroDigital() {
     addBotMessage(answer);
   };
 
+  const handleOpenAssistant = () => {
+    if (isMobile) {
+      window.dispatchEvent(new Event("close-mobile-menu"));
+    }
+
+    setIsOpen(true);
+  };
+
   return (
     <>
       {!isOpen && (
         <button
           type="button"
-          className="confeiteiro-trigger"
-          onClick={() => setIsOpen(true)}
+          className={`confeiteiro-trigger ${isMobile ? "is-mobile" : ""}`}
+          onClick={handleOpenAssistant}
           aria-label="Abrir Confeiteiro Digital"
         >
           <FiMessageCircle aria-hidden="true" />
-          <span>Confeiteiro Digital</span>
+          <span>{isMobile ? "Oi! Posso te ajudar com seu pedido?" : "Confeiteiro Digital"}</span>
         </button>
       )}
 
